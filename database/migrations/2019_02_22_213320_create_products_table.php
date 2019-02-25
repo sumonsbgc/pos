@@ -15,10 +15,10 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('category_id');
-            $table->integer('brand_id');
-            $table->integer('supplier_id')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('brand_id');
+            $table->unsignedInteger('supplier_id')->nullable();
             $table->string('product_name');
             $table->string('product_description');
             $table->string('purchase_rate');
@@ -27,8 +27,15 @@ class CreateProductsTable extends Migration
             $table->string('unit')->nullable();
             $table->string('size')->nullable();
             $table->string('color')->nullable();
+            $table->string('product_image')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();
+
+//            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+//            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+//            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+//            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+//            $table->engine = 'InnoDB';
         });
     }
 

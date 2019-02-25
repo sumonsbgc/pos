@@ -17,7 +17,7 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('supplier_id');
+            $table->unsignedInteger('supplier_id');
             $table->string('product_type');
             $table->string('quantity');
             $table->string('cash_purchase')->nullable();
@@ -26,6 +26,9 @@ class CreatePurchasesTable extends Migration
             $table->string('transaction_id')->nullable();
             $table->time('purchase_date');
             $table->timestamps();
+
+//            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+//            $table->engine = 'InnoDB';
         });
     }
 

@@ -18,9 +18,9 @@ class CreateSalesEntriesTable extends Migration
         Schema::create('sales_entries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('receipt_no');
-            $table->integer('product_id');
+            $table->unsignedInteger('product_id');
             $table->string('product_imei')->nullable();
-            $table->integer('customer_id')->nullable();
+            $table->unsignedInteger('customer_id')->nullable();
             $table->string('sale_quantity');
             $table->string('retail_price');
             $table->string('total_price');
@@ -30,6 +30,10 @@ class CreateSalesEntriesTable extends Migration
             $table->string('receive_amount');
             $table->string('due_amount');
             $table->timestamps();
+
+//            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+//            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+//            $table->engine = 'InnoDB';
         });
     }
 
