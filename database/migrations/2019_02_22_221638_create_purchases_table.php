@@ -22,8 +22,8 @@ class CreatePurchasesTable extends Migration
             $table->string('quantity');
             $table->string('cash_purchase')->nullable();
             $table->string('credit_purchase')->nullable();
-            $table->string('transaction_id')->nullable();
             $table->string('transaction_type')->nullable();
+            $table->string('transaction_id')->nullable();
             $table->time('purchase_date');
             $table->timestamps();
         });
