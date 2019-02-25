@@ -107,7 +107,7 @@
         <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_22_221638_create_purchases_table.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+              <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -347,12 +347,12 @@
       <updated>1550855273420</updated>
       <workItem from="1550855274984" duration="8278000" />
       <workItem from="1550902449537" duration="2985000" />
-      <workItem from="1551081321519" duration="4909000" />
+      <workItem from="1551081321519" duration="5081000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16172000" />
+    <option name="totallyTimeSpent" value="16344000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -537,7 +537,7 @@
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_22_221638_create_purchases_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
         </state>
       </provider>
     </entry>
