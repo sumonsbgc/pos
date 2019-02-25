@@ -21,7 +21,7 @@ class CreateSuppliersTable extends Migration
             $table->string('mobile_no');
             $table->string('phone_no');
             $table->string('mail');
-            $table->timestamp('opening_date');
+            $table->time('opening_date');
             $table->timestamps();
         });
     }
