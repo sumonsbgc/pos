@@ -17,12 +17,14 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('supplier_id');
+            $table->string('product_type');
+            $table->string('quantity');
             $table->string('cash_purchase')->nullable();
             $table->string('credit_purchase')->nullable();
             $table->string('transaction_id')->nullable();
+            $table->string('transaction_type')->nullable();
             $table->time('purchase_date');
-            $table->string('product_id');
-            $table->string('supplier_name');
             $table->timestamps();
         });
     }
