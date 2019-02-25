@@ -25,10 +25,6 @@ class CreatePurchasesTable extends Migration
             $table->string('transaction_type')->nullable();
             $table->string('transaction_id')->nullable();
             $table->time('purchase_date');
-<<<<<<< HEAD
-=======
-            $table->string('supplier_name');
->>>>>>> 472865d7e993a7f5ce3eda1d9871ce6f09354437
             $table->timestamps();
         });
     }
