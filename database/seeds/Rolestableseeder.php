@@ -13,9 +13,9 @@ class Rolestableseeder extends Seeder
     {
         DB::table('roles')->insert([
             [
-            'name' => 'admin',
-            'description' => 'it has all privillege',
-            'created_at' => new DateTime()
+                'name' => 'admin',
+                'description' => 'it has all privillege',
+                'created_at' => new DateTime()
             ],
             [
                 'name' => 'stuff',
