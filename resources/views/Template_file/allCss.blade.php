@@ -11,7 +11,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/weather-icons/climacons.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/fonts/meteocons/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/charts/morris.css')}}">
-
+<link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/forms/icheck/icheck.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/forms/icheck/custom.css')}}">
 <!-- END VENDOR CSS-->
 <!-- BEGIN STACK CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/app.css')}}">
@@ -22,6 +23,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/fonts/simple-line-icons/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/core/colors/palette-gradient.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/pages/timeline.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/pages/login-register.css')}}">
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/assets/css/style.css')}}">

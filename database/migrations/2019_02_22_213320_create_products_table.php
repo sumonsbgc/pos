@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('product_description');
             $table->string('purchase_rate');
             $table->string('retail_rate')->nullable();
+            $table->string('product_imei')->nullable();
             $table->string('quantity');
             $table->string('unit')->nullable();
             $table->string('size')->nullable();
