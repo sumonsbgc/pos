@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Brand;
 use Illuminate\Http\Request;
 
 class BrandsController extends Controller
@@ -13,7 +13,8 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        return view('brands');
+        $all=Brand::all();
+        return view('brands',compact('all'));
     }
 
     /**
@@ -34,7 +35,19 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store=$request->validate([
+            'brand_name'=>'required',
+        ]);
+
+    
+       
+        // Brand:create([
+        //     'brand_name'=>$request->brand_name
+        // ]);
+
+    Brand::create($store);
+        
+        return redirect('brands');
     }
 
     /**
@@ -45,7 +58,7 @@ class BrandsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -68,7 +81,11 @@ class BrandsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $newData=$request->all();
+        $updateData=Brand::findorfail($id);
+        $updateData->update($newData);
+        return redirect('brands');
+
     }
 
     /**
@@ -79,6 +96,8 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deletaData=brand::findOrfail($id);
+        $deletaData->delete($deletaData);
+        return redirect('brands');
     }
 }

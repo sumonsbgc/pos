@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Category;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('categories');
+        $category=Category::where('parent_status','=',0)->get();
+        $all=Category::all();
+        return view('categories',compact('all','category'));
     }
 
     /**
@@ -34,7 +37,16 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store=$request->validate([
+            'category_name'=>'required',
+            'parent_status' => 'required'
+        ]);
+
+        Category::create($store);
+            // 'category_name' => $request->category_name,
+            // 'parent_status' =>$request->parent_name
+            
+            return redirect('categories');
     }
 
     /**
@@ -68,7 +80,11 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $newData=$request->all();
+        $updateData=Category::findorfail($id);
+        $updateData->update($newData);       
+        return redirect('categories');
+
     }
 
     /**
@@ -79,6 +95,9 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData=Category::findOrfail($id);
+        $deleteData->delete();
+        return redirect('categories');
+
     }
 }
