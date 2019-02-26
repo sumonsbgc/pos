@@ -7,7 +7,8 @@
 <script src="{{asset('template_asset/app-assets/js/core/app.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/customizer.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script>
-
+<script src="{{asset('template_asset/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/js/scripts/tables/datatables/datatable-basic.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/vendors/js/forms/icheck/icheck.min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/forms/form-login-register.js')}}"></script>

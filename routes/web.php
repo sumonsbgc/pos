@@ -11,14 +11,25 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('index');
-//});
 
-Route::get('addProducts', function () {
-    return view('addProducts');
+Route::middleware('auth')->group(function (){
+
+    Route::get('/', function () {
+        return view('index');
+    });
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/create_user', 'Auth\RegisterController@showRegistrationForm')->name('create_user');
+
+    Route::resource('/brands', 'BrandsController');
+    Route::resource('/categories', 'CategoriesController');
+
+
 });
+
+
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+

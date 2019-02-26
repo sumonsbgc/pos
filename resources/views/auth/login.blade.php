@@ -48,25 +48,18 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form-horizontal form-simple" action="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-modern-menu-template/index.html" novalidate>
+                                    <form class="form-horizontal form-simple" action="{{route('login')}}" method="post">
 
-                                        <fieldset class="form-group position-relative has-icon-left">
-                                            <select class="form-control form-control-lg" id="basicSelect">
-                                                <option>Select Role</option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                            </select>
-                                        </fieldset>
+                                        @csrf
 
-                                        <fieldset class="form-group position-relative has-icon-left mb-0">
-                                            <input type="text" class="form-control form-control-lg" id="user-name" placeholder="Your Username" required>
+                                        <fieldset class="form-group position-relative has-icon-left mb-1">
+                                            <input type="text" class="form-control form-control-lg" id="user-name" name="username" placeholder="User Name">
                                             <div class="form-control-position">
                                                 <i class="ft-user"></i>
                                             </div>
                                         </fieldset>
                                         <fieldset class="form-group position-relative has-icon-left">
-                                            <input type="password" class="form-control form-control-lg" id="user-password" placeholder="Enter Password" required>
+                                            <input type="password" class="form-control form-control-lg" name="password" id="user-password" placeholder="Enter Password" required>
                                             <div class="form-control-position">
                                                 <i class="fa fa-key"></i>
                                             </div>
@@ -74,11 +67,11 @@
                                         <div class="form-group row">
                                             <div class="col-md-6 col-12 text-center text-md-left">
                                                 <fieldset>
-                                                    <input type="checkbox" id="remember-me" class="chk-remember">
+                                                    <input type="checkbox" id="remember-me" name="remember_token" class="chk-remember">
                                                     <label for="remember-me"> Remember Me</label>
                                                 </fieldset>
                                             </div>
-                                            <div class="col-md-6 col-12 text-center text-md-right"><a href="recover-password.html" class="card-link">Forgot Password?</a></div>
+                                            <div class="col-md-6 col-12 text-center text-md-right"><a href="" class="card-link">Forgot Password?</a></div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
                                     </form>

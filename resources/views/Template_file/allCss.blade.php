@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/charts/morris.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/forms/icheck/icheck.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/forms/icheck/custom.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
 <!-- END VENDOR CSS-->
 <!-- BEGIN STACK CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/app.css')}}">
