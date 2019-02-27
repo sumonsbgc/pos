@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
+use App\Supplier;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -24,7 +28,12 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::where('parent_status','=',0)->get();
+        $sub_category = Category::where('parent_status','=',1)->get();
+
+        $suppliers = Supplier::all();
+
+        return view('add_products', compact('category','sub_category','suppliers'));
     }
 
     /**
@@ -35,7 +44,38 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request['user_id'] = Auth::user()->id;
+
+        if ($request['imei_1'] && $request['imei_2'] != null){
+
+            $request['product_imei'] = $request['imei_1'].','.$request['imei_2'];
+        }
+        elseif ($request['imei_1'] !=null && $request['imei_2'] == null){
+            $request['product_imei'] = $request['imei_1'];
+        }
+        elseif ($request['imei_2'] !=null && $request['imei_1'] == null){
+            $request['product_imei'] = $request['imei_2'];
+        }
+        else{
+            $request['product_imei'] = null;
+        }
+
+        $request->validate([
+            'product_name' =>'required',
+            'category_id' => 'required',
+            'supplier_id' => 'required',
+            'purchase_rate' => 'required',
+            'retail_rate' => 'required',
+        ]);
+
+        $all =$request->except(['imei_1','imei_2']);
+
+        Product::create($all);
+
+        return redirect('products/create');
+
+
     }
 
     /**
