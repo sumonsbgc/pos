@@ -104,7 +104,7 @@
                                                             <form action="{{route('brands.update',$data->id)}}" method="POST">
                                                                 @method('PATCH') @csrf
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="category" value="{{$data->brand_name}}" name="name" class="form-control">
+                                                                    <input type="text" placeholder="category" value="{{$data->brand_name}}" name="brand_name" class="form-control">
                                                                 </div>
 
                                                                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>

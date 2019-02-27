@@ -97,6 +97,7 @@ class BrandsController extends Controller
     public function destroy($id)
     {
         $deletaData=brand::findOrfail($id);
+        // dd($deleteData);
         $deletaData->delete($deletaData);
         return redirect('brands');
     }

@@ -138,7 +138,7 @@
                                                             <form action="{{route('categories.update',$data->id)}}" method="POST">
                                                                 @method('PATCH') @csrf
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="category" value="{{$data->category_name}}" name="name" class="form-control">
+                                                                    <input type="text" placeholder="category" value="{{$data->category_name}}" name="category_name" class="form-control">
                                                                 </div>
 
                                                                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
