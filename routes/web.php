@@ -25,6 +25,12 @@ Route::middleware('auth')->group(function (){
     Route::resource('/brands', 'BrandsController');
     Route::resource('/categories', 'CategoriesController');
 
+    Route::post('/finding_sub_categories/{id}', 'CategoriesController@changingSubCat');
+    Route::post('/finding_brands/{id}', 'CategoriesController@changingProductBrands');
+
+    Route::resource('/supplier', 'SupplierController');
+    Route::resource('/products', 'ProductsController');
+
 
 });
 

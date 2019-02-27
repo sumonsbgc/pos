@@ -14,10 +14,31 @@
             @endif
 
             <li class=" nav-item"><a href="{{url('/brands/create')}}"><i class="ft-star"></i><span class="menu-title" data-i18n="">Product Brand</span></a>
+            </li>
             <li class=" nav-item"><a href="{{url('/categories/create')}}"><i class="ft-navigation"></i><span class="menu-title" data-i18n="">Product Category</span></a>
+            </li>
 
+            <li class=" nav-item"><a href="#"><i class="ft-cast"></i><span class="menu-title" data-i18n=""> Product Supplier</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{{url('/supplier/create')}}"><span class="menu-title" data-i18n="">Add Supplier</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/supplier')}}"><span class="menu-title" data-i18n="">Show Supplier</span></a>
+                    </li>
+                </ul>
+            </li>
 
-
+            <li class=" nav-item"><a href="#"><i class="fa fa-th"></i><span class="menu-title" data-i18n=""> Products </span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{{url('/products/create')}}"><span class="menu-title" data-i18n="">Add Product</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/products')}}"><span class="menu-title" data-i18n="">Show Product</span></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

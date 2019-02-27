@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Category;
 
 use Illuminate\Http\Request;
+use App\Brand;
 
 class CategoriesController extends Controller
 {
@@ -100,4 +101,55 @@ class CategoriesController extends Controller
         return redirect('categories');
 
     }
+
+
+
+    public function changingSubCat($id){
+        $subCategories =  Category::where('parent_status', '=', $id)->get();
+        $html1 =[];
+        $html2 =[];
+
+        foreach ($subCategories as $subcategory){
+            array_push($html1, "<option value='$subcategory->id'>$subcategory->category_name</option>");
+//            $html1[] = "<option value='$subcategory->id'>$subcategory->category_name</option>";
+
+            if (Brand::all() != null){
+                $brands =  Brand::where('category_id', '=', $subcategory->id)->get();
+
+                foreach ($brands as $brand){
+                    array_push($html2, "<option value='$brand->id'>$brand->brand_name</option>");
+    //                $html2[] = "<option value='$brand->id'>$brand->brand_name</option>";
+                }
+
+            }
+
+        }
+
+        return array($html1, $html2);
+
+    }
+
+    public function changingProductBrands($id){
+
+        if (Brand::all() !=null){
+
+        $brands =  Brand::where('category_id', '=', $id)->get();
+
+        $html =[];
+
+
+        foreach ($brands as $brand){
+
+            $html[] = "<option value='$brand->id'>$brand->brand_name</option>";
+
+        }
+
+//        dd($html2);
+
+        return $html;
+
+        }
+
+    }
+
 }

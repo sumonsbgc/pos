@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Brand;
-use App\Category;
+
+use App\Supplier;
 use Illuminate\Http\Request;
 
-class BrandsController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,9 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        $all=Brand::all();
-        $category = Category::where('parent_status','=',0)->get();
-        $sub_category = Category::where('parent_status','=',1)->get();
-        return view('brands',compact('all', 'category', 'sub_category'));
+        $all = Supplier::all();
+
+        return view('show_supplier',compact('all'));
     }
 
     /**
@@ -27,7 +26,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        return redirect('brands');
+        return view('add_supplier');
     }
 
     /**
@@ -38,11 +37,11 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-        $store=$request->all();
+        $all =$request->all();
 
-        Brand::create($store);
-        
-        return redirect('brands');
+        Supplier::create($all);
+
+        return redirect('supplier/create');
     }
 
     /**
@@ -53,7 +52,7 @@ class BrandsController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -76,14 +75,13 @@ class BrandsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $newData=$request->all();
+        $new  = $request->all();
 
-        $updateData=Brand::findorfail($id);
+        $old  = Supplier::findorfail($id);
 
-        $updateData->update($newData);
+        $old->update($new);
 
-        return redirect('brands');
-
+        return redirect('supplier');
     }
 
     /**
@@ -94,8 +92,9 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        $deletaData=brand::findorfail($id);
-        $deletaData->delete($deletaData);
-        return redirect('brands');
+        $target = Supplier::findorfail($id);
+        $target->delete();
+
+        return redirect('supplier');
     }
 }
