@@ -41,8 +41,30 @@
                                 <form class="form-simple brand-form" action="{{route('brands.store')}}" method="post">
                                     @csrf
 
+                                    <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="phoneNumber1">Select Category</label>
+                                                    <select id="projectinput5" name="category_id" class="form-control" onchange="goToSubCategory(this.value)">
+                                                        @foreach($category as $mainCategory)
+                                                        <option value="{{$mainCategory->id}}">{{$mainCategory->category_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="phoneNumber1">Select Sub-Category</label>
+                                                    <select id="subCategory" name="category_id" class="form-control">
+                                                        @foreach($sub_category as $sub)
+                                                        <option value="{{$sub->id}}">{{$sub->category_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     <fieldset class="form-group">
-                                        <input type="text" class="form-control form-control-lg" id="user-name" name="brand_name" placeholder="User Name">
+                                        <input type="text" class="form-control form-control-lg" id="user-name" name="brand_name" placeholder="Brand Name">
                                     </fieldset>
                                     <button type="submit" class="btn btn-primary btn-lg">Add</button>
                                 </form>
@@ -81,14 +103,6 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Serial</th>
-                                                <th>Brand Name</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
 
                                             <div class="modal fade" id="exampleModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -96,15 +110,15 @@
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
                                                         <div class="modal-body">
 
                                                             <form action="{{route('brands.update',$data->id)}}" method="POST">
                                                                 @method('PATCH') @csrf
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="category" value="{{$data->brand_name}}" name="name" class="form-control">
+                                                                    <input type="text" placeholder="category" value="{{$data->brand_name}}" name="brand_name" class="form-control">
                                                                 </div>
 
                                                                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
@@ -134,17 +148,21 @@
                                                             <form action="{{route('brands.destroy',$data->id)}}" method="POST">
                                                                 {{ method_field('DELETE') }} @csrf
                                                                 <button type="button" class="btn btn-info" >Cancel</button>
-                                                                <button type="button" class="btn btn-danger" type="submit">Delete</button>
+                                                                <button class="btn btn-danger" type="submit">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
- 
-                                      @endforeach
-                                        
+                                     @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Serial</th>
+                                                <th>Brand Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>

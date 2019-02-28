@@ -50,12 +50,11 @@
                                             <div class="form-group">
                                                 <label for="projectinput5">Category Status</label>
                                                 <select id="projectinput5" name="parent_status" class="form-control">
-                                                        <option value="none">select one</option>
                                                         <option value="0">Main Category</option>
                                                         @foreach($category as $mainCategory)
-                                                    <option value="{{$mainCategory->id}}">{{$mainCategory->category_name}}</option>
-                                                      @endforeach
-                                                    </select>
+                                                            <option value="{{$mainCategory->id}}">{{$mainCategory->category_name}}</option>
+                                                        @endforeach
+                                                </select>
                                             </div>
 
                                         </div>
@@ -138,7 +137,7 @@
                                                             <form action="{{route('categories.update',$data->id)}}" method="POST">
                                                                 @method('PATCH') @csrf
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="category" value="{{$data->category_name}}" name="name" class="form-control">
+                                                                    <input type="text" placeholder="category" value="{{$data->category_name}}" name="category_name" class="form-control">
                                                                 </div>
 
                                                                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
@@ -168,7 +167,7 @@
                                                             <form action="{{route('brands.destroy',$data->id)}}" method="POST">
                                                                 {{ method_field('DELETE') }} @csrf
                                                                 <button type="button" class="btn btn-info">Cancel</button>
-                                                                <button type="button" class="btn btn-danger" type="submit">Delete</button>
+                                                                <button class="btn btn-danger" type="submit">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>

@@ -13,7 +13,7 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Product', function (Blueprint $table) {
+        Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('category_id');
@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('purchase_rate');
             $table->string('retail_rate')->nullable();
             $table->string('product_imei')->nullable();
-            $table->string('quantity');
+            $table->string('quantity')->nullable();
             $table->string('unit')->nullable();
             $table->string('size')->nullable();
             $table->string('color')->nullable();
