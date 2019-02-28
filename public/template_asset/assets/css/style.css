@@ -30,6 +30,11 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 }
 
 
+.profile_card{
+  font-size: 25px;
+}
+
+
 /*--Custom_Css*/
 body {
     font-family: 'Varela Round', sans-serif;
@@ -116,4 +121,9 @@ body {
   .trigger-btn {
     display: inline-block;
     margin: 100px auto;
+  }
+
+
+  .action_data{
+    padding:10px;
   }

@@ -9,10 +9,15 @@
             </li>
 
             @if(Auth::user()->user_role == 'owner')
-            <li class=" nav-item"><a href="{{url('/register')}}"><i class="ft-users"></i><span class="menu-title"             data-i18n="">Create User</span></a>
+            <li class=" nav-item"><a href="{{url('/register')}}"><i class="ft-users"></i><span class="menu-title" data-i18n="">Create User</span></a>
+            </li>
+     
+
+            <li class=" nav-item"><a href="{{url('/users')}}"><i class="ft-users"></i><span class="menu-title" data-i18n="">All Users</span></a>
             </li>
             @endif
-
+          
+           
             <li class=" nav-item"><a href="{{url('/brands/create')}}"><i class="ft-star"></i><span class="menu-title" data-i18n="">Product Brand</span></a>
             </li>
             <li class=" nav-item"><a href="{{url('/categories/create')}}"><i class="ft-navigation"></i><span class="menu-title" data-i18n="">Product Category</span></a>
