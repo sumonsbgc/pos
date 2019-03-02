@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Category;
+use APP\Brand;
 use App\Product;
 use App\Supplier;
 use App\User;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,12 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+      $product=DB::table('product')
+      ->join('categories','product.category_id','=','categories.id')
+      ->join('brands','product.brand_id','=','brands.id')
+      ->join('suppliers','product.supplier_id','=','suppliers.id')
+      ->select('product.*','categories.category_name','brands.brand_name','suppliers.supplier_name')->get();
+        return view('show_products',compact('product'));
     }
 
     /**

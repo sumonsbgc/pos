@@ -1,15 +1,14 @@
-@extends('Template_file.master')
-
-@section('title','Add New User')
-
-
+@extends('Template_file.master') 
+@section('title','Add New User') 
 @section('content')
 
-    <div class="app-content content">
+<div class="app-content content">
+    <div class="content-wrapper">
         <div class="content-wrapper">
-            <div class="content-header row">
+           
             </div>
-            <div class="content-body"><section class="flexbox-container">
+            <div class="content-body">
+                <section class="flexbox-container">
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="col-md-4 col-10 box-shadow-2 p-0">
                             <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
@@ -21,7 +20,8 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <form class="form-horizontal form-simple" action="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-modern-menu-template/index.html" novalidate>
+                                        <form class="form-horizontal form-simple" action="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/html/ltr/vertical-modern-menu-template/index.html"
+                                            novalidate>
 
                                             <fieldset class="form-group position-relative has-icon-left">
                                                 <select class="form-control form-control-lg" name="user_role" id="basicSelect">
@@ -52,7 +52,8 @@
                                                 </div>
                                             </fieldset>
                                             <fieldset class="form-group position-relative has-icon-left">
-                                                <input type="password" class="form-control form-control-lg" name="password" id="user-password" placeholder="Enter Password" required>
+                                                <input type="password" class="form-control form-control-lg" name="password" id="user-password" placeholder="Enter Password"
+                                                    required>
                                                 <div class="form-control-position">
                                                     <i class="fa fa-key"></i>
                                                 </div>
@@ -69,7 +70,4 @@
             </div>
         </div>
     </div>
-
 @endsection
-
-

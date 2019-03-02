@@ -379,7 +379,7 @@
                                                                                 href=""><i
                                         class="ft-message-square"></i> Chats</a>
                                   <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('logout')}}"><i class="ft-power"></i> Logout</a>
+                            <a class="dropdown-item" href="{{route('logout')}}"><i class="ft-power"></i>Logout</a>
                         </div>
                     </li>
                 </ul>

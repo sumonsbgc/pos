@@ -1,6 +1,6 @@
 @extends('Template_file.master')
 
-@section('title','Supplier')
+@section('title','All Suppliers')
 
 @section('content')
 
@@ -8,13 +8,12 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0">Horizontal Forms</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="#">Add Supplier</a>
+                                <li class="breadcrumb-item active"><a href="#">All Suppliers</a>
                                 </li>
                             </ol>
                         </div>
@@ -70,11 +69,11 @@
                                                     <td>{{$data->mobile_no}}</td>
 
                                                     <td>
-                                                        <button type="button" class="btn btn-primary btn-circle pull-left">
+                                                        <button type="button" class="btn btn-primary btn-circle ">
                                                             <i class="fa fa-search-plus"></i>
                                                         </button>
 
-                                                        <button type="button" class="btn btn-primary btn-circle pull-left" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
+                                                        <button type="button" class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
                                                             <i class="fa fa-list"></i>
                                                         </button>
 
@@ -90,15 +89,12 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                     
                                                         </div>
                                                         <div class="modal-body">
 
                                                             <form class="form form-horizontal" action="{{route('supplier.update',$data->id)}}" method="post">
                                                                 @method('PATCH')
-
                                                                 @csrf
 
                                                                 <div class="form-body">
@@ -153,7 +149,7 @@
                                                                 </div>
 
                                                                 <div class="form-actions">
-                                                                    <button type="button" class="btn btn-warning mr-1">
+                                                                    <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">
                                                                         <i class="ft-x"></i> Cancel
                                                                     </button>
                                                                     <button type="submit" class="btn btn-primary">

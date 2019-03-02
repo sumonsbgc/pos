@@ -3736,7 +3736,7 @@ input[type="button"].btn-block {
       text-decoration: none;
       opacity: .75; }
 
-button.close {
+button.update_close {
   padding: 0;
   background-color: transparent;
   border: 0;
@@ -3782,6 +3782,15 @@ button.close {
     height: calc(100vh - (0.5rem * 2));
     content: ""; }
 
+/*  
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 1rem;
+} */
+  
+        
 .modal-content {
   position: relative;
   display: flex;
@@ -3807,37 +3816,20 @@ button.close {
   .modal-backdrop.show {
     opacity: 0.5; }
 
-.modal-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 1px solid #98A4B8;
-  border-top-left-radius: 0.27rem;
-  border-top-right-radius: 0.27rem; }
-  .modal-header .close {
-    padding: 1rem;
-    margin: -1rem -1rem -1rem auto; }
+
 
 .modal-title {
   margin-bottom: 0;
-  line-height: 1.45; }
+  line-height: 3.45;
+  margin-left: 20px;
+ }
 
 .modal-body {
   position: relative;
   flex: 1 1 auto;
   padding: 1rem; }
 
-.modal-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 1rem;
-  border-top: 1px solid #98A4B8; }
-  .modal-footer > :not(:first-child) {
-    margin-left: .25rem; }
-  .modal-footer > :not(:last-child) {
-    margin-right: .25rem; }
+
 
 .modal-scrollbar-measure {
   position: absolute;

@@ -73,7 +73,7 @@
                                 <div class="card-body card-dashboard">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
-                                            <tr>
+                                            <tr class="text-center">
                                                 <th>Serial</th>
                                                 <th>Brand Name</th>
                                                 <th>Action</th>
@@ -90,11 +90,11 @@
                                                 $id++; 
                                             @endphp 
 
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td>{{$id}}</td>
                                                 <td>{{$data->brand_name}}</td>
                                                 <td class="text-center action_data">
-                                                    <button type="button"  class="btn btn-primary btn-circle pull-left" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
+                                                    <button type="button"  class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
                                                         <i class="fa fa-list"></i>
                                                     </button>
 
@@ -109,9 +109,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                           
                                                         </div>
                                                         <div class="modal-body">
 
@@ -133,8 +131,8 @@
                                                 <div class="modal-dialog modal-confirm">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <div class="icon-box">
-                                                                <i class="fas fa-times"></i>
+                                                            <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-times"></i>
                                                             </div>
                                                             <h4 class="modal-title">Are you sure?</h4>
 
@@ -147,7 +145,7 @@
 
                                                             <form action="{{route('brands.destroy',$data->id)}}" method="POST">
                                                                 {{ method_field('DELETE') }} @csrf
-                                                                <button type="button" class="btn btn-info" >Cancel</button>
+                                                                <button type="button" class="btn btn-info" data-dismiss="modal" >Cancel</button>
                                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                                             </form>
                                                         </div>
