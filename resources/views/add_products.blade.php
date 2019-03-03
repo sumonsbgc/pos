@@ -86,7 +86,9 @@
                                                         <div class="form-group">
                                                             <label for="phoneNumber1">Select Brand</label>
                                                             <select id="product_brand" name="brand_id" class="form-control">
-
+                                                                @foreach($brands as $brand)
+                                                                    <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>

@@ -40,16 +40,13 @@
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
                                             <tr>
-                                                <th>Serial</th>
-                                                <th>Product Name</th>
+                                                <th>SL</th>
+                                                <th> Name</th>
                                                 <th>Category</th>
-                                                <th>Brand</th>
-                                                <th>Suppliers</th>
-                                                <th>Description</th>
-                                                <th>IEMI</th>
-                                                <th>Purchase Rate</th>
-                                                <th>Retail Rate</th>
-                                                <th>Color</th>
+                                                <th>Brand</th>                                       
+                                                <th>Purchase</th>
+                                                <th>Retail</th>
+                                                <th>quantity</td>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -65,93 +62,79 @@
                                                 <td>{{$id}}</td>
                                                 <td>{{$data->product_name}}</td>
                                                 <td>{{$data->category_name}}</td>
-                                                <td>{{$data->brand_name}}</td>
-                                                <td>{{$data->supplier_name}}</td>
-                                                <td>{{$data->product_description}}</td>
-                                                <td>{{$data->product_imei}}</td>
+                                                <td>{{$data->brand_name}}</td>                                       
                                                 <td>{{$data->purchase_rate}}</td>
                                                 <td>{{$data->retail_rate}}</td>
-                                                <td>{{$data->color}}</td>
+                                                <td>                                                 
+                                                    {{get_total_products($data->product_name)}}
+                                                </td>
+                                               
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-circle pull-left">
+                                                    <button type="button" class="btn btn-primary btn-circle ">
                                                             <i class="fa fa-search-plus"></i>
                                                         </button>
 
-                                                    <button type="button" class="btn btn-primary btn-circle pull-left" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
+                                                    <button type="button" class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
                                                             <i class="fa fa-list"></i>
                                                         </button>
 
-                                                    <button type="button" class="btn btn-warning btn-circle" data-toggle="modal" data-target="#deleteModal{{$data->id}}"><i
+                                                    <button type="button" class="btn btn-warning btn-circle " data-toggle="modal" data-target="#deleteModal{{$data->id}}"><i
                                                                     class="fa fa-times"></i>
                                                         </button>
                                                 </td>
                                             </tr>
                                         </tbody>
 
-                                        {{--
+                                    
                                         <div class="modal fade" id="exampleModal{{$data->id}}" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                    
                                                     </div>
                                                     <div class="modal-body">
 
-                                                        <form class="form form-horizontal" action="{{route('supplier.update',$data->id)}}" method="post">
+                                                        <form class="form form-horizontal" action="{{route('products.update',$data->id)}}" method="post">
                                                             @method('PATCH') @csrf
 
                                                             <div class="form-body">
                                                                 <div class="form-group row">
-                                                                    <label class="col-md-3 label-control" for="projectinput1">Supplier Name</label>
+                                                                    <label class="col-md-3 label-control" for="projectinput1">Product Name</label>
                                                                     <div class="col-md-9">
-                                                                        <input type="text" id="projectinput1" class="form-control" placeholder="Supplier Name" name="supplier_name" value="{{$data->supplier_name}}">
+                                                                        <input type="text" id="projectinput1" class="form-control" placeholder="Prodcut Name" name="product_name" value="{{$data->product_name}}">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
-                                                                    <label class="col-md-3 label-control" for="projectinput2">Company Name</label>
+                                                                    <label class="col-md-3 label-control" for="projectinput2">Category </label>
                                                                     <div class="col-md-9">
-                                                                        <input type="text" id="projectinput2" class="form-control" placeholder="Company Name" name="company_name" value="{{$data->company_name}}">
+                                                                        <input type="text" id="projectinput2" class="form-control" placeholder="Category Name" name="category_name" value="{{$data->category_name}}">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label class="col-md-3 label-control" for="projectinput2">Present Address</label>
+                                                                    <label class="col-md-3 label-control" for="projectinput2">Brand </label>
                                                                     <div class="col-md-9">
-                                                                        <input type="text" id="projectinput2" class="form-control" name="present_add" value="{{$data->present_add}}">
+                                                                        <input type="text" id="projectinput2" class="form-control" name="brand_name" value="{{$data->brand_name}}">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label class="col-md-3 label-control" for="projectinput2">Permanent Address</label>
+                                                                    <label class="col-md-3 label-control" for="projectinput2">Purchase Rate</label>
                                                                     <div class="col-md-9">
-                                                                        <input type="text" id="projectinput2" class="form-control" name="permanent_add" value="{{$data->permanent_add}}">
+                                                                        <input type="text" id="projectinput2" class="form-control" name="purchase_rate" value="{{$data->purchase_rate}}">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label class="col-md-3 label-control" for="projectinput2">Mobile No</label>
+                                                                    <label class="col-md-3 label-control" for="projectinput2">Retail Rate</label>
                                                                     <div class="col-md-9">
-                                                                        <input type="text" id="projectinput2" class="form-control" name="mobile_no" value="{{$data->mobile_no}}">
+                                                                        <input type="text" id="projectinput2" class="form-control" name="retail_rate" value="{{$data->retail_rate}}">
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="form-group row">
-                                                                    <label class="col-md-3 label-control" for="projectinput4">Phone No</label>
-                                                                    <div class="col-md-9">
-                                                                        <input type="text" id="projectinput4" class="form-control" placeholder="Phone" name="phone_no" value="{{$data->phone_no}}">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label class="col-md-3 label-control" for="projectinput3">E-mail</label>
-                                                                    <div class="col-md-9">
-                                                                        <input type="email" id="projectinput3" class="form-control" placeholder="E-mail" name="mail" value="{{$data->mail}}">
-                                                                    </div>
-                                                                </div>
+                  
 
                                                             </div>
 
@@ -185,7 +168,7 @@
                                                     </div>
                                                     <div class="modal-footer">
 
-                                                        <form action="{{route('supplier.destroy',$data->id)}}" method="POST">
+                                                        <form action="{{route('products.destroy',$data->id)}}" method="POST">
                                                             {{ method_field('DELETE') }} @csrf
 
                                                             <button type="button" class="btn btn-dark" data-dismiss="modal" aria-label="Close">Cancel</button>
@@ -194,20 +177,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div> 
                                          @endforeach
                                         <tfoot>
                                             <tr>
                                                 <th>Serial</th>
-                                                <th>Product Name</th>
+                                                <th>Name</th>
                                                 <th>Category</th>
                                                 <th>Brand</th>
-                                                <th>Suppliers</th>
-                                                <th>Description</th>
-                                                <th>IEMI</th>
-                                                <th>Purchase Rate</th>
-                                                <th>Retail Rate</th>
-                                                <th>Color</th>
+                                                <th>Purchase</th>
+                                                <th>Retail</th>
+                                                <th>quantity</td>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>

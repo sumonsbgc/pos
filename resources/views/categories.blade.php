@@ -88,7 +88,7 @@
                                             <tr>
                                                 <th>Serial</th>
                                                 <th>Category</th>
-                                                <th>Parent Status</th>
+                                                <th>Parent Category</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -108,13 +108,13 @@
                                                 <td>{{$id}}</td>
                                                 <td>{{$data->category_name}}</td>
                                            <td>
-                                                {{$data->parent_status}}
-                                               {{-- @if($data->parent_status == 0)
+                                                {{-- {{$data->parent_status}} --}}
+                                               @if($data->parent_status == 0)
                                                {{"Main Category"}}
                                                @else
                                              
                                                {{ parent_cate_name($data->parent_status)}}
-                                               @endif --}}
+                                               @endif
                                            </td>
 
                                                 <td>
@@ -182,7 +182,7 @@
                                             <tr>
                                                 <th>Serial</th>
                                                 <th>Brand Name</th>
-                                                <th>Parent Status</th>
+                                                <th>Parent Category</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>                    
