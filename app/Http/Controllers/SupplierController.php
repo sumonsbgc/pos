@@ -76,11 +76,8 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         $new  = $request->all();
-
         $old  = Supplier::findorfail($id);
-
         $old->update($new);
-
         return redirect('supplier');
     }
 

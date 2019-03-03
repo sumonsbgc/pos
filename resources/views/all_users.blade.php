@@ -49,6 +49,7 @@
                                                 <th>Email</th>
                                                 <th>Role</th>
                                                 <th>Action</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,14 +68,20 @@
                                                 <td>{{$data->name}}</td>
                                                 <td>{{$data->username}}</td>
                                                 <td>{{$data->email}}</td>
+<<<<<<< HEAD
                                                 <td>{{$data->user_role}}</td>
 
                                                 <td class="text-center">
                                                     <button type="button"  class="btn btn-primary btn-circle pull-left" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
+=======
+                                               
+                                                <td class="text-center edit_delete">
+                                                    <button type="button"  class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
+>>>>>>> origin/shakhawat
                                                         <i class="fa fa-list"></i>
                                                     </button>
 
-                                                    <button type="button" class="btn btn-warning btn-circle pull-left" data-toggle="modal" data-target="#deleteModal{{$data->id}}" ><i
+                                                    <button type="button" class="btn btn-warning btn-circle " data-toggle="modal" data-target="#deleteModal{{$data->id}}" ><i
                                                             class="fa fa-times"></i>
                                                     </button>
                                                 </td>
@@ -85,9 +92,9 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            {{-- <button type="button" class="update_close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                            </button> --}}
                                                         </div>
                                                         <div class="modal-body">
 
@@ -111,8 +118,8 @@
                                                 <div class="modal-dialog modal-confirm">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <div class="icon-box">
-                                                                <i class="material-icons"></i>
+                                                            <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-times"></i>
                                                             </div>
                                                             <h4 class="modal-title">Are you sure?</h4>
 
@@ -124,7 +131,8 @@
                                                         <div class="modal-footer">
 
                                                             <form action="{{route('users.destroy',$data->id)}}" method="POST">
-                                                                {{ method_field('DELETE') }} @csrf
+                                                                {{ method_field('DELETE') }}
+                                                                 @csrf
                                                                 <button type="button" class="btn btn-info" data-dismiss="modal" >Cancel</button>
                                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                                             </form>
@@ -132,6 +140,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                      
                                      @endforeach
                                         </tbody>
                                         <tfoot>
