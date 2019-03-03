@@ -44,6 +44,17 @@
                     </li>
                 </ul>
             </li>
+
+            <li class=" nav-item"><a href="#"><i class="ft-cast"></i><span class="menu-title" data-i18n=""> Purchase</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{{url('/create_purchase')}}"><span class="menu-title" data-i18n="">Create Purchase</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/show_purchase_notes')}}"><span class="menu-title" data-i18n="">Show Purchase List</span></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

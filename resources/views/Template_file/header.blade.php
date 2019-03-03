@@ -367,19 +367,22 @@
                                         src="{{asset('template_asset/app-assets/images/portrait/small/avatar-s-1.png')}}"
                                         alt="avatar"><i></i></span><span class="user-name">John Doe</span></a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            {{-- @if(Auth::user()->user_role=='stuff') --}}
-                            <a class="dropdown-item" href="{{url('/users/create')}}"><i
+                            <a class="dropdown-item" href="{{url('/my_account')}}"><i
                                         class="ft-user"></i>My Account</a>
-                             {{-- @endif            --}}
                             <a class="dropdown-item"
-                                           href="><i
-                                        class="ft-mail"></i> My Inbox</a>
+                                           href=""><i class="ft-mail"></i> My Inbox</a>
                             <a class="dropdown-item" href=""><i
                                         class="ft-check-square"></i> Task</a><a class="dropdown-item"
                                                                                 href=""><i
                                         class="ft-message-square"></i> Chats</a>
                                   <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('logout')}}"><i class="ft-power"></i> Logout</a>
+                            <a class="dropdown-item" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <i class="ft-power"></i> Logout
+                            </a>
                         </div>
                     </li>
                 </ul>

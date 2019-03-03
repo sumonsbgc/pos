@@ -18,13 +18,16 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('supplier_id');
-            $table->string('product_type');
-            $table->string('quantity');
+            $table->string('product_type')->nullable();
+            $table->text('product_details')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('total_amount')->nullable();
             $table->string('cash_purchase')->nullable();
             $table->string('credit_purchase')->nullable();
             $table->string('transaction_type')->nullable();
             $table->string('transaction_id')->nullable();
-            $table->time('purchase_date');
+            $table->time('purchase_date')->nullable();
+            $table->time('files')->nullable();
             $table->timestamps();
 
 //            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');

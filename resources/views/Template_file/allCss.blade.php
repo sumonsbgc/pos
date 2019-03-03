@@ -30,6 +30,9 @@
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/core/colors/palette-gradient.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/pages/timeline.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/pages/login-register.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/pages/invoice.css')}}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css">
+
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/assets/css/style.css')}}">

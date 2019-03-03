@@ -47,6 +47,7 @@
                                                 <th>Name</th>
                                                 <th>Username</th>
                                                 <th>Email</th>
+                                                <th>Role</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -66,7 +67,8 @@
                                                 <td>{{$data->name}}</td>
                                                 <td>{{$data->username}}</td>
                                                 <td>{{$data->email}}</td>
-                                               
+                                                <td>{{$data->user_role}}</td>
+
                                                 <td class="text-center">
                                                     <button type="button"  class="btn btn-primary btn-circle pull-left" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
                                                         <i class="fa fa-list"></i>
@@ -138,7 +140,8 @@
                                                 <th>Name</th>
                                                 <th>Username</th>
                                                 <th>Email</th>
-                                               
+                                                <th>role</th>
+
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>

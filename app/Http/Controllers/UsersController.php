@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -25,12 +27,9 @@ class UsersController extends Controller
     public function create()
     {
         //testing//
-       $profileData=User::where('user_role','=','owner')->first();
-       return view('edit_profile',compact('profileData'));
+//       $profileData=User::where('user_role','=','owner')->first();
+//       return view('edit_profile',compact('profileData'));
 
-
-        
-     
     }
 
     /**
@@ -92,5 +91,38 @@ class UsersController extends Controller
         $deleteData=user::findOrfail($id);
         $deleteData->delete($deleteData);
         return redirect('users/create');
+    }
+
+    public function user_profile(){
+
+        return view('edit_profile');
+
+    }
+
+    public function update_password(Request $request){
+
+        $password = Hash::make($request->password);
+
+        Auth::user()->password = $password;
+
+        Auth::user()->save();
+
+        return back();
+    }
+
+    public function user_update(Request $request){
+
+        Auth::user()->name = $request->name;
+        Auth::user()->username = $request->username;
+        Auth::user()->present_add = $request->present_add;
+        Auth::user()->permanent_add = $request->permanent_add;
+        Auth::user()->mobile_no = $request->mobile_no;
+        Auth::user()->nid_no = $request->nid_no;
+        Auth::user()->birth_certificate_no = $request->birth_certificate_no;
+
+        Auth::user()->save();
+
+        return back();
+
     }
 }
