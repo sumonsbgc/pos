@@ -376,7 +376,6 @@
                                                                                 href=""><i
                                         class="ft-message-square"></i> Chats</a>
                                   <div class="dropdown-divider"></div>
-<<<<<<< HEAD
                             <a class="dropdown-item" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
@@ -384,9 +383,6 @@
                                 </form>
                                 <i class="ft-power"></i> Logout
                             </a>
-=======
-                            <a class="dropdown-item" href="{{route('logout')}}"><i class="ft-power"></i>Logout</a>
->>>>>>> origin/shakhawat
                         </div>
                     </li>
                 </ul>

@@ -68,16 +68,10 @@
                                                 <td>{{$data->name}}</td>
                                                 <td>{{$data->username}}</td>
                                                 <td>{{$data->email}}</td>
-<<<<<<< HEAD
                                                 <td>{{$data->user_role}}</td>
 
-                                                <td class="text-center">
-                                                    <button type="button"  class="btn btn-primary btn-circle pull-left" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
-=======
-                                               
                                                 <td class="text-center edit_delete">
                                                     <button type="button"  class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
->>>>>>> origin/shakhawat
                                                         <i class="fa fa-list"></i>
                                                     </button>
 

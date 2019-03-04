@@ -12,6 +12,7 @@
 <script src="{{asset('template_asset/app-assets/vendors/js/forms/icheck/icheck.min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/forms/form-login-register.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/js/scripts/modal/components-modal.js')}}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
