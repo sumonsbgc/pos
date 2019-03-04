@@ -20,6 +20,14 @@ class PurchaseController extends Controller
 
     public function store_purchase_notes(Request $request){
 
+        $this->validate($request,[
+        'supplier_id'=>'required',
+        'transaction_type'=>'required',
+        'total_amount'=>'required',
+        'cash_purchase'=>'required',
+        
+        ]);
+
         $details = htmlentities($request->product_details);
 
         $request->product_details = $details;

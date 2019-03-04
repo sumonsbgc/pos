@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Category;
-use APP\Brand;
+use App\Brand;
 use App\Product;
 use App\Supplier;
 use App\User;
@@ -37,9 +36,10 @@ class ProductsController extends Controller
         $category = Category::where('parent_status','=',0)->get();
         $sub_category = Category::where('parent_status','=',1)->get();
         $brands = Brand::all();
+
         $suppliers = Supplier::all();
 
-        return view('add_products', compact('category','sub_category','suppliers','brands'));
+        return view('add_products', compact('category','sub_category','brands','suppliers'));
     }
 
     /**
@@ -73,6 +73,7 @@ class ProductsController extends Controller
             'supplier_id' => 'required',
             'purchase_rate' => 'required',
             'retail_rate' => 'required',
+            'imei_1' => 'required',
         ]);
 
         $all =$request->except(['imei_1','imei_2']);

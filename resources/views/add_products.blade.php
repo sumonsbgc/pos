@@ -44,8 +44,14 @@
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
+                                                @php
+                                                $id=0;
+                                                @endphp
                                                 @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
+                                                @php
+                                                $id++;
+                                                @endphp
+                                                    <li>{{$id}}.{{ $error }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>

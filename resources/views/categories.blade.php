@@ -37,6 +37,21 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                    @php
+                                                    $id=0;
+                                                    @endphp
+                                                    @foreach ($errors->all() as $error)
+                                                    @php
+                                                    $id++;
+                                                    @endphp
+                                                        <li>{{$id}}.{{ $error }}</li>
+                                                    @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     <form class="form" action={{route( 'categories.store')}} method="POST">
                                         @csrf
                                         <div class="form-body">
