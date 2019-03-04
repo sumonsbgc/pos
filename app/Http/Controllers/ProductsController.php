@@ -36,10 +36,10 @@ class ProductsController extends Controller
     {
         $category = Category::where('parent_status','=',0)->get();
         $sub_category = Category::where('parent_status','=',1)->get();
-
+        $brands = Brand::all();
         $suppliers = Supplier::all();
 
-        return view('add_products', compact('category','sub_category','suppliers'));
+        return view('add_products', compact('category','sub_category','suppliers','brands'));
     }
 
     /**
@@ -113,9 +113,15 @@ class ProductsController extends Controller
      * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, products $products)
+    public function update(Request $request, $id)
     {
-        //
+        $all=$request->all();
+        $updateData=Product::findOrfail($id);
+        $updateData->update($all);
+        return redirect('products/create');
+
+
+
     }
 
     /**
@@ -124,8 +130,11 @@ class ProductsController extends Controller
      * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(products $products)
+    public function destroy(products $id)
     {
-        //
+        $deleteData=Product::findOrfail();
+        $deleteData->delete($id);
+        return redirect('products/create');
+
     }
 }

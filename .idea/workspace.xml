@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd081d2a-4fcc-40df-b28f-a4edaee581f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml___jb_tmp___" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Helper/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helper/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SupplierController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SupplierController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SupplierController.php___jb_tmp___" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template_asset/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/template_asset/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Template_file/allScript.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Template_file/allScript.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Template_file/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Template_file/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/all_users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/all_users.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/show_supplier.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/show_supplier.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/add_products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/add_products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/categories.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categories.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/show_products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/show_products.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +100,7 @@
           <entry key="example" value="1" />
           <entry key="html" value="17" />
           <entry key="json" value="2" />
-          <entry key="php" value="195" />
+          <entry key="php" value="196" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -113,7 +109,7 @@
           <entry key="CSS" value="2" />
           <entry key="HTML" value="17" />
           <entry key="JSON" value="2" />
-          <entry key="PHP" value="130" />
+          <entry key="PHP" value="131" />
           <entry key="PLAIN_TEXT" value="5" />
         </counts>
       </usages-collector>
@@ -121,14 +117,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/show_supplier.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="161" column="122" selection-start-line="161" selection-start-column="122" selection-end-line="161" selection-end-column="122" />
+            <state relative-caret-position="66">
+              <caret line="123" column="64" lean-forward="true" selection-start-line="123" selection-start-column="64" selection-end-line="156" selection-end-column="70" />
               <folding>
                 <element signature="e#0#16690#0#Blade" />
                 <element signature="e#5927#6439#0#HTML" />
+                <element signature="e#8047#10600#0#HTML" />
+                <element signature="e#7381#8330#0#HTML" />
                 <element signature="e#4908#12036#0#HTML" />
                 <element signature="e#13724#15727#0#HTML" />
               </folding>
@@ -139,8 +137,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/template_asset/assets/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="149" column="23" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="23" />
+            <state relative-caret-position="162">
+              <caret line="134" selection-start-line="134" selection-end-line="150" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Helper/helpers.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+              <folding>
+                <element signature="e#6#35#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -211,11 +221,11 @@
         <option value="$PROJECT_DIR$/resources/views/create_purchase.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Template_file/header.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SupplierController.php" />
-        <option value="$PROJECT_DIR$/app/Helper/helpers.php" />
         <option value="$PROJECT_DIR$/resources/views/all_users.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Template_file/allScript.blade.php" />
         <option value="$PROJECT_DIR$/public/template_asset/assets/css/style.css" />
         <option value="$PROJECT_DIR$/resources/views/show_supplier.blade.php" />
+        <option value="$PROJECT_DIR$/app/Helper/helpers.php" />
       </list>
     </option>
   </component>
@@ -471,12 +481,12 @@
       <workItem from="1551566035267" duration="1582000" />
       <workItem from="1551597142442" duration="5219000" />
       <workItem from="1551634376352" duration="4769000" />
-      <workItem from="1551686733227" duration="10942000" />
+      <workItem from="1551686733227" duration="11479000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137339000" />
+    <option name="totallyTimeSpent" value="137876000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -818,16 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Helper/helpers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-          <folding>
-            <element signature="e#6#35#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/all_users.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -884,22 +884,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/template_asset/assets/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="149" column="23" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/show_supplier.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="161" column="122" selection-start-line="161" selection-start-column="122" selection-end-line="161" selection-end-column="122" />
+        <state relative-caret-position="66">
+          <caret line="123" column="64" lean-forward="true" selection-start-line="123" selection-start-column="64" selection-end-line="156" selection-end-column="70" />
           <folding>
             <element signature="e#0#16690#0#Blade" />
             <element signature="e#5927#6439#0#HTML" />
+            <element signature="e#8047#10600#0#HTML" />
+            <element signature="e#7381#8330#0#HTML" />
             <element signature="e#4908#12036#0#HTML" />
             <element signature="e#13724#15727#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template_asset/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="134" selection-start-line="134" selection-end-line="150" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Helper/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#6#35#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

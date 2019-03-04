@@ -46,7 +46,6 @@ class CategoriesController extends Controller
         Category::create($store);
             // 'category_name' => $request->category_name,
             // 'parent_status' =>$request->parent_name
-            
             return redirect('categories');
     }
 
