@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function (){
 
     Route::resource('/supplier', 'SupplierController');
     Route::resource('/products', 'ProductsController');
+    Route::get('/unique_items/{name}','ProductsController@unique_items');
+
     Route::resource('/users', 'UsersController');
 
     Route::get('/my_account','UsersController@user_profile');

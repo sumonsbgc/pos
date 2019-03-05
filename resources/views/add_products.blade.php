@@ -103,7 +103,7 @@
                                                             <label for="phoneNumber1">Select Supplier</label>
                                                             <select id="projectinput5" name="supplier_id" class="form-control">
                                                                 @foreach($suppliers as $supplier)
-                                                                    <option value="{{$supplier->id}}">{{$supplier->supplier_name}}</option>
+                                                                    <option                            value="{{$supplier->id}}">{{$supplier->supplier_name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
