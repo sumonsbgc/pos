@@ -23,6 +23,8 @@
             tabsize: 2,
             height: 300
         });
+        // table = $('#example').DataTable();
+        // table.column(1).data().unique();
     });
 </script>
 
@@ -42,8 +44,6 @@
 
         })
     }
-
-
     function goToBrands(value){
 
         var Category = value;
@@ -59,7 +59,5 @@
 
 
     }
-
-
 
 </script>

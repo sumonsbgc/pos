@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Category;
-use APP\Brand;
+use App\Brand;
 use App\Product;
 use App\Supplier;
 use App\User;
@@ -19,12 +19,26 @@ class ProductsController extends Controller
      */
     public function index()
     {
-      $product=DB::table('product')
-      ->join('categories','product.category_id','=','categories.id')
-      ->join('brands','product.brand_id','=','brands.id')
-      ->join('suppliers','product.supplier_id','=','suppliers.id')
-      ->select('product.*','categories.category_name','brands.brand_name','suppliers.supplier_name')->get();
-        return view('show_products',compact('product'));
+//      $products=DB::table('product')
+//      ->select('product.*','categories.category_name','brands.brand_name','suppliers.supplier_name')
+//      ->join('categories','product.category_id','=','categories.id')
+//      ->join('brands','product.brand_id','=','brands.id')
+//      ->join('suppliers','product.supplier_id','=','suppliers.id')->distinct('product_name')->get();
+//
+////        $product = $products->groupBy('product_name');
+//
+////        dd($products);
+//        return view('show_products',compact('products'));
+
+//        $products = DB::table('product')->distinct('product_name')->get();
+//        $prod = DB::table('product')->unique('product_name')->get();
+
+        $products = DB::table('product')->distinct()->select('product_name', 'id')->get();
+
+//        $product = $products->groupBy('product_name');
+        dd($products);
+        return view('show_products', compact('products'));
+
     }
 
     /**
