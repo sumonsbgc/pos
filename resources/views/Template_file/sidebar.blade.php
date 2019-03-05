@@ -9,10 +9,15 @@
             </li>
 
             @if(Auth::user()->user_role == 'owner')
-            <li class=" nav-item"><a href="{{url('/register')}}"><i class="ft-users"></i><span class="menu-title"             data-i18n="">Create User</span></a>
+            <li class=" nav-item"><a href="{{url('/register')}}"><i class="ft-users"></i><span class="menu-title" data-i18n="">Create User</span></a>
+            </li>
+     
+
+            <li class=" nav-item"><a href="{{url('/users')}}"><i class="ft-users"></i><span class="menu-title" data-i18n="">All Users</span></a>
             </li>
             @endif
-
+          
+           
             <li class=" nav-item"><a href="{{url('/brands/create')}}"><i class="ft-star"></i><span class="menu-title" data-i18n="">Product Brand</span></a>
             </li>
             <li class=" nav-item"><a href="{{url('/categories/create')}}"><i class="ft-navigation"></i><span class="menu-title" data-i18n="">Product Category</span></a>
@@ -36,6 +41,17 @@
                     </li>
                     <li>
                         <a href="{{url('/products')}}"><span class="menu-title" data-i18n="">Show Product</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class=" nav-item"><a href="#"><i class="ft-cast"></i><span class="menu-title" data-i18n=""> Purchase</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{{url('/create_purchase')}}"><span class="menu-title" data-i18n="">Create Purchase</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/show_purchase_notes')}}"><span class="menu-title" data-i18n="">Show Purchase List</span></a>
                     </li>
                 </ul>
             </li>

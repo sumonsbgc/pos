@@ -14,8 +14,11 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $all = Supplier::all();
+//        $all = Supplier::leftJoin('purchases','suppliers.id','=','purchases.supplier_id')
+//                ->select('suppliers.*','purchases.id as p_id','purchases.product_details','purchases.total_amount','cash_purchase','credit_purchase','transaction_type')
+//                ->get();
 
+        $all = Supplier::all();
         return view('show_supplier',compact('all'));
     }
 
@@ -76,11 +79,8 @@ class SupplierController extends Controller
     public function update(Request $request, $id)
     {
         $new  = $request->all();
-
         $old  = Supplier::findorfail($id);
-
         $old->update($new);
-
         return redirect('supplier');
     }
 

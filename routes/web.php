@@ -30,6 +30,16 @@ Route::middleware('auth')->group(function (){
 
     Route::resource('/supplier', 'SupplierController');
     Route::resource('/products', 'ProductsController');
+    Route::resource('/users', 'UsersController');
+
+    Route::get('/my_account','UsersController@user_profile');
+    Route::post('/update_password','UsersController@update_password')->name('update_password');
+    Route::post('/update_profile','UsersController@user_update')->name('update_profile');
+
+    Route::get('/create_purchase','PurchaseController@show_purchase_form');
+    Route::post('/store_purchase_notes','PurchaseController@store_purchase_notes')->name('store_purchase_notes');
+    Route::get('/show_purchase_notes','PurchaseController@show_purchase_notes')->name('show_purchase_notes');
+
 
 
 });

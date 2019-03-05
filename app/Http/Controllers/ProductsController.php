@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Category;
+use App\Brand;
 use App\Product;
 use App\Supplier;
 use App\User;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,26 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+//      $products=DB::table('product')
+//      ->select('product.*','categories.category_name','brands.brand_name','suppliers.supplier_name')
+//      ->join('categories','product.category_id','=','categories.id')
+//      ->join('brands','product.brand_id','=','brands.id')
+//      ->join('suppliers','product.supplier_id','=','suppliers.id')->distinct('product_name')->get();
+//
+////        $product = $products->groupBy('product_name');
+//
+////        dd($products);
+//        return view('show_products',compact('products'));
+
+//        $products = DB::table('product')->distinct('product_name')->get();
+//        $prod = DB::table('product')->unique('product_name')->get();
+
+        $products = DB::table('product')->distinct()->select('product_name', 'id')->get();
+
+//        $product = $products->groupBy('product_name');
+        dd($products);
+        return view('show_products', compact('products'));
+
     }
 
     /**
@@ -30,10 +50,10 @@ class ProductsController extends Controller
     {
         $category = Category::where('parent_status','=',0)->get();
         $sub_category = Category::where('parent_status','=',1)->get();
-
+        $brands = Brand::all();
         $suppliers = Supplier::all();
 
-        return view('add_products', compact('category','sub_category','suppliers'));
+        return view('add_products', compact('category','sub_category','suppliers','brands'));
     }
 
     /**
@@ -107,9 +127,15 @@ class ProductsController extends Controller
      * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, products $products)
+    public function update(Request $request, $id)
     {
-        //
+        $all=$request->all();
+        $updateData=Product::findOrfail($id);
+        $updateData->update($all);
+        return redirect('products/create');
+
+
+
     }
 
     /**
@@ -118,8 +144,11 @@ class ProductsController extends Controller
      * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(products $products)
+    public function destroy(products $id)
     {
-        //
+        $deleteData=Product::findOrfail();
+        $deleteData->delete($id);
+        return redirect('products/create');
+
     }
 }

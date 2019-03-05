@@ -11,9 +11,7 @@
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a>
-                            </li>
-                            <li class="breadcrumb-item active">Product Category
-                            </li>
+                           
                         </ol>
                     </div>
                 </div>
@@ -90,7 +88,7 @@
                                             <tr>
                                                 <th>Serial</th>
                                                 <th>Category</th>
-                                                <th>Parent Status</th>
+                                                <th>Parent Category</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -109,10 +107,18 @@
                                             <tr>
                                                 <td>{{$id}}</td>
                                                 <td>{{$data->category_name}}</td>
-                                                <td id="{{$data->id}}">{{$data->parent_status}}</td>
+                                           <td>
+                                                {{-- {{$data->parent_status}} --}}
+                                               @if($data->parent_status == 0)
+                                               {{"Main Category"}}
+                                               @else
+                                             
+                                               {{ parent_cate_name($data->parent_status)}}
+                                               @endif
+                                           </td>
 
                                                 <td>
-                                                    <button type="button" class="btn btn-primary btn-circle pull-left" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
+                                                    <button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
                                                             <i class="fa fa-list"></i>
                                                         </button>
 
@@ -128,9 +134,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                         
                                                         </div>
                                                         <div class="modal-body">
 
@@ -152,8 +156,8 @@
                                                 <div class="modal-dialog modal-confirm">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <div class="icon-box">
-                                                                <i class="fas fa-times"></i>
+                                                            <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-times"></i>
                                                             </div>
                                                             <h4 class="modal-title">Are you sure?</h4>
 
@@ -166,7 +170,7 @@
 
                                                             <form action="{{route('brands.destroy',$data->id)}}" method="POST">
                                                                 {{ method_field('DELETE') }} @csrf
-                                                                <button type="button" class="btn btn-info">Cancel</button>
+                                                                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                                             </form>
                                                         </div>
@@ -178,6 +182,7 @@
                                             <tr>
                                                 <th>Serial</th>
                                                 <th>Brand Name</th>
+                                                <th>Parent Category</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>                    

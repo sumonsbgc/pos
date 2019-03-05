@@ -1,6 +1,6 @@
 @extends('Template_file.master')
 
-@section('title','Supplier')
+@section('title','All Suppliers')
 
 @section('content')
 
@@ -8,13 +8,12 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0">Horizontal Forms</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="#">Add Supplier</a>
+                                <li class="breadcrumb-item active"><a href="#">All Suppliers</a>
                                 </li>
                             </ol>
                         </div>
@@ -70,11 +69,11 @@
                                                     <td>{{$data->mobile_no}}</td>
 
                                                     <td>
-                                                        <button type="button" class="btn btn-primary btn-circle pull-left">
+                                                        <button type="button" class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModalf{{$data->id}}">
                                                             <i class="fa fa-search-plus"></i>
                                                         </button>
 
-                                                        <button type="button" class="btn btn-primary btn-circle pull-left" data-toggle="modal" data-target="#exampleModal{{$data->id}}">
+                                                        <button type="button" class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
                                                             <i class="fa fa-list"></i>
                                                         </button>
 
@@ -85,20 +84,101 @@
                                                 </tr>
                                             </tbody>
 
+                                            <div class="modal fade" id="exampleModalf{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title d-inline-block" id="myModalLabel19">Details</h4>
+                                                            <button type="button" class="close cls-btn" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @php
+                                                            $purchase_data = get_suppliers_data($data->id)
+
+                                                            @endphp
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <p>Present Address: </p>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <p>{{$data->present_add}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <p>Permanent Address: </p>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <p>{{$data->permanent_add}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <h5>Purchase History</h5>
+                                                                </div>
+                                                            </div>
+
+                                                            @if($purchase_data != null)
+                                                                <div class="custom-table p-1">
+
+                                                                <div class="row">
+                                                                    <div class="col-3 t-head align-self-center">
+                                                                        <p>Date</p>
+                                                                    </div>
+                                                                    <div class="col-3 t-head align-self-center">
+                                                                        <p>Total </p>
+                                                                    </div>
+                                                                    <div class="col-3 t-head align-self-center">
+                                                                        <p>Cash Paid</p>
+                                                                    </div>
+                                                                    <div class="col-3 t-head align-self-center">
+                                                                        <p>Due</p>
+                                                                    </div>
+                                                                </div>
+                                                                    @foreach($purchase_data as $datum)
+
+                                                                        <div class="row">
+                                                                            <div class="col-3 t-c">
+                                                                                @php
+                                                                                   $a= $datum->created_at;
+
+                                                                                    echo date_format($a,'d-M-Y');
+                                                                                @endphp
+                                                                            </div>
+                                                                            <div class="col-3 t-c">{{$datum->total_amount}}</div>
+                                                                            <div class="col-3 t-c">{{$datum->cash_purchase}}</div>
+                                                                            <div class="col-3 t-c">{{$datum->credit_purchase}}</div>
+                                                                        </div>
+
+                                                                    @endforeach
+
+                                                                </div>
+
+
+                                                            @else
+                                                                <div class="row">
+                                                                    <div class="col-12 t-c">There is nothing happening yet</div>
+                                                                </div>
+                                                            @endif
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="modal fade" id="exampleModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                     
                                                         </div>
                                                         <div class="modal-body">
 
                                                             <form class="form form-horizontal" action="{{route('supplier.update',$data->id)}}" method="post">
                                                                 @method('PATCH')
-
                                                                 @csrf
 
                                                                 <div class="form-body">
@@ -153,7 +233,7 @@
                                                                 </div>
 
                                                                 <div class="form-actions">
-                                                                    <button type="button" class="btn btn-warning mr-1">
+                                                                    <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">
                                                                         <i class="ft-x"></i> Cancel
                                                                     </button>
                                                                     <button type="submit" class="btn btn-primary">
