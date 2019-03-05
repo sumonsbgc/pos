@@ -42,54 +42,48 @@
                                             <thead>
                                             <tr>
                                                 <th>SL</th>
-                                                <th> Name</th>
+                                                <th>Name</th>
                                                 <th>Category</th>
                                                 <th>Brand</th>
-                                                <th>Purchase</th>
-                                                <th>Retail</th>
                                                 <th>quantity</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {{--@php --}}
-                                            {{--$id=0;--}}
-                                            {{--echo "<pre>";--}}
-                                            {{--print_r($product);--}}
-                                            {{--echo "</pre>";--}}
-                                            {{--die();--}}
-                                            {{--@endphp--}}
 
                                             @php
 
                                                 //dd($products);
                                                 $serial = 0;
-                                                $keys = array_keys($products->toArray());
                                             @endphp
-                                            @foreach($keys as $key)
-                                                @foreach($products["$key"] as $data)
-                                                    @php
-                                                        //$id++;
+                                            @foreach($products as $data)
+                                                @php
                                                     $serial++;
-                                                    @endphp
-                                                    {{--@if($data->product_name == $key)--}}
-                                                        <tr>
-                                                            <td>{{$serial}}</td>
-                                                            <td>{{$key}}</td>
-                                                            <td>{{$data->category_name}}</td>
-                                                            <td>{{$data->brand_name}}</td>
-                                                            <td>{{$data->purchase_rate}}</td>
-                                                            <td>{{$data->retail_rate}}</td>
-                                                            <td>
+                                                @endphp
+                                                    <tr>
+                                                        <td>{{$serial}}</td>
+                                                        <td>{{$data->product_name}}</td>
+                                                        <td>{{ App\Category::find($data->category_id)->category_name }}</td>
+                                                        <td>{{ App\Brand::find($data->brand_id)->brand_name }}</td>
+
+                                                        <td>
+                                                            @if($data->quantity == null)
                                                                 {{get_total_products($data->product_name)}}
-                                                            </td>
+                                                            @else
+                                                                {{$data->quantity}}
+                                                            @endif
+                                                        </td>
 
-                                                            <td>
-                                                                <button type="button"
-                                                                        class="btn btn-sm btn-primary btn-circle ">
-                                                                    <i class="fa fa-search-plus"></i>
-                                                                </button>
+                                                        <td>
 
+                                                            @if($data->quantity == null)
+
+                                                            <a href="{{url('/unique_items/'.$data->product_name)}}" type="button"
+                                                                    class="btn btn-sm btn-primary btn-circle ">
+                                                                <i class="fa fa-search-plus"></i>
+                                                            </a>
+
+                                                            @else
                                                                 <button type="button"
                                                                         class="btn btn-sm btn-primary btn-circle "
                                                                         data-toggle="modal"
@@ -103,9 +97,10 @@
                                                                         data-target="#deleteModal{{$data->id}}"><i
                                                                             class="fa fa-times"></i>
                                                                 </button>
-                                                            </td>
-                                                        </tr>
-                                                    {{--@endif--}}
+                                                            @endif
+
+                                                        </td>
+                                                    </tr>
                                             </tbody>
 
 
@@ -232,7 +227,6 @@
                                                 </div>
                                             </div>
                                             @endforeach
-                                            @endforeach
 
                                             <tfoot>
                                             <tr>
@@ -240,10 +234,10 @@
                                                 <th>Name</th>
                                                 <th>Category</th>
                                                 <th>Brand</th>
-                                                <th>Purchase</th>
-                                                <th>Retail</th>
+                                                {{--<th>Purchase</th>--}}
+                                                {{--<th>Retail</th>--}}
                                                 <th>quantity
-                                                </td>
+                                                </th>
                                                 <th>Action</th>
                                             </tr>
                                             </tfoot>
