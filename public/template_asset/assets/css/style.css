@@ -154,3 +154,14 @@ body {
 .table th, .table td {
     padding: 0.75rem .5rem;
 }
+
+.quantity_input{
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: unset;
+}
+.retail_price{
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: unset;
+}

@@ -21,236 +21,104 @@
                 </div>
             </div>
             <div class="content-body">
-                <section id="horizontal-form-layouts">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title" id="horz-layout-basic">Sales Entry</h4>
-                                    <a class="heading-elements-toggle"><i
-                                                class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
-                                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                            <li><a data-action="close"><i class="ft-x"></i></a></li>
-                                        </ul>
-                                    </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Borderless table</h4>
+                                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                    </ul>
                                 </div>
-                                <div class="card-content collpase show">
-                                    <div class="card-body">
-                                        <table class="table table-striped table-bordered zero-configuration" id="example">
-                                            <thead>
-                                            <tr>
-                                                <th>SL</th>
-                                                <th>Name</th>
-                                                <th>Category</th>
-                                                <th>Brand</th>
-                                                <th>quantity</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-responsive p-1">
+                                    <table class="table table-borderless mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>Sl</th>
+                                            <th>Product Name</th>
+                                            <th>Description</th>
+                                            <th>Quantity</th>
+                                            <th>Per Price</th>
+                                            <th>Total Price</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @php
+                                            $sl =0
+                                        @endphp
+
+                                        @if($products != null)
+                                        @foreach($products as $product)
 
                                             @php
-
-                                                //dd($products);
-                                                $serial = 0;
+                                                $sl++
                                             @endphp
-                                            @foreach($products as $data)
+
+                                        <tr>
+                                            <td>{{$sl}}</td>
+                                            <td>{{$product->product_name}}</td>
+                                            <td width="350px">
                                                 @php
-                                                    $serial++;
+
+                                                echo "Description: ". $product->product_description."<br>";
+
+                                                if ($product->color !=null){
+                                                    echo "Color :".$product->color."<br>";
+                                                }
+                                                if ($product->product_imei != null){
+                                                    echo "IMEI :".$product->product_imei."<br>";
+                                                }
                                                 @endphp
-                                                <tr>
-                                                    <td>{{$serial}}</td>
-                                                    <td>{{$data->product_name}}</td>
-                                                    <td>{{ App\Category::find($data->category_id)->category_name }}</td>
-                                                    <td>{{ App\Brand::find($data->brand_id)->brand_name }}</td>
+                                            </td>
+                                            <td width="80px">
+                                                <input type="number" class="form-control quantity_input" id="{{$product->id}}" value="1">
 
-                                                    <td>
-                                                        @if($data->quantity == null)
-                                                            {{get_total_products($data->product_name)}}
-                                                        @else
-                                                            {{$data->quantity}}
-                                                        @endif
-                                                    </td>
+                                            </td>
+                                            <td width="120px"><input type="number" id="retail_rate{{$product->id}}" class="form-control retail_price" value="{{$product->retail_rate}}"></td>
+                                            <td>
 
-                                                    <td>
+                                                <script>
+                                                    var i= document.getElementById('{{$product->id}}').value;
+                                                    var b= document.getElementById('retail_rate{{$product->id}}').value;
 
-                                                        @if($data->quantity == null)
+                                                    var total  = i*b;
 
-                                                            <a href="{{url('/unique_items/'.$data->product_name)}}" type="button"
-                                                               class="btn btn-sm btn-primary btn-circle ">
-                                                                <i class="fa fa-search-plus"></i>
-                                                            </a>
+                                                    window.document.write(total);
 
-                                                        @else
-                                                            <button type="button"
-                                                                    class="btn btn-sm btn-primary btn-circle "
-                                                                    data-toggle="modal"
-                                                                    data-target="#exampleModal{{$data->id}}">
-                                                                <i class="fa fa-list"></i>
-                                                            </button>
+                                                    console.log(total);
+                                                </script>
 
-                                                            <button type="button"
-                                                                    class="btn btn-sm btn-warning btn-circle "
-                                                                    data-toggle="modal"
-                                                                    data-target="#deleteModal{{$data->id}}"><i
-                                                                        class="fa fa-times"></i>
-                                                            </button>
-                                                        @endif
-
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-
-
-                                            <div class="modal fade" id="exampleModal{{$data->id}}" tabindex="-1"
-                                                 role="dialog"
-                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-
-                                                        </div>
-                                                        <div class="modal-body">
-
-                                                            <form class="form form-horizontal"
-                                                                  action="{{route('products.update',$data->id)}}"
-                                                                  method="post">
-                                                                @method('PATCH') @csrf
-
-                                                                <div class="form-body">
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3 label-control"
-                                                                               for="projectinput1">Product Name</label>
-                                                                        <div class="col-md-9">
-                                                                            <input type="text" id="projectinput1"
-                                                                                   class="form-control"
-                                                                                   placeholder="Prodcut Name"
-                                                                                   name="product_name"
-                                                                                   value="{{$data->product_name}}">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3 label-control"
-                                                                               for="projectinput2">Category </label>
-                                                                        <div class="col-md-9">
-                                                                            <input type="text" id="projectinput2"
-                                                                                   class="form-control"
-                                                                                   placeholder="Category Name"
-                                                                                   name="category_name"
-                                                                                   value="{{$data->category_name}}">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3 label-control"
-                                                                               for="projectinput2">Brand </label>
-                                                                        <div class="col-md-9">
-                                                                            <input type="text" id="projectinput2"
-                                                                                   class="form-control"
-                                                                                   name="brand_name"
-                                                                                   value="{{$data->brand_name}}">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3 label-control"
-                                                                               for="projectinput2">Purchase Rate</label>
-                                                                        <div class="col-md-9">
-                                                                            <input type="text" id="projectinput2"
-                                                                                   class="form-control"
-                                                                                   name="purchase_rate"
-                                                                                   value="{{$data->purchase_rate}}">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="form-group row">
-                                                                        <label class="col-md-3 label-control"
-                                                                               for="projectinput2">Retail Rate</label>
-                                                                        <div class="col-md-9">
-                                                                            <input type="text" id="projectinput2"
-                                                                                   class="form-control"
-                                                                                   name="retail_rate"
-                                                                                   value="{{$data->retail_rate}}">
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
-
-                                                                <div class="form-actions">
-                                                                    <button type="button" class="btn btn-warning mr-1">
-                                                                        <i class="ft-x"></i> Cancel
-                                                                    </button>
-                                                                    <button type="submit" class="btn btn-primary">
-                                                                        <i class="fa fa-check-square-o"></i> Save
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div id="deleteModal{{$data->id}}" class="modal fade">
-                                                <div class="modal-dialog modal-confirm">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <div class="icon-box" data-dismiss="modal"
-                                                                 aria-label="Close">
-                                                                <i class="fa fa-times"></i>
-                                                            </div>
-                                                            <h4 class="modal-title">Are you sure?</h4>
-
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Do you really want to delete these records? This process
-                                                                cannot be
-                                                                undone.</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-
-                                                            <form action="{{route('products.destroy',$data->id)}}"
-                                                                  method="POST">
-                                                                {{ method_field('DELETE') }} @csrf
-
-                                                                <button type="button" class="btn btn-dark"
-                                                                        data-dismiss="modal" aria-label="Close">Cancel
-                                                                </button>
-                                                                <button class="btn btn-danger" type="submit">Delete
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </td>
+                                        </tr>
                                             @endforeach
 
-                                            <tfoot>
-                                            <tr>
-                                                <th>Serial</th>
-                                                <th>Name</th>
-                                                <th>Category</th>
-                                                <th>Brand</th>
-                                                {{--<th>Purchase</th>--}}
-                                                {{--<th>Retail</th>--}}
-                                                <th>quantity
-                                                </th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="table-responsive p-1">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                        <td width="85%" class="text-right" style="font-weight: 700;">Total Amount :</td>
+                                        <td width="15%" class="text-right" style="font-weight: 700;">20000</td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-body-btn p-1 text-right">
+                                    <button class="btn btn-warning">Remove All</button>
+                                    <button class="btn btn-success">Sell</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-                <!-- // Basic form layout section end -->
+                </div>
             </div>
         </div>
     </div>
