@@ -42,12 +42,18 @@
                                     </div>
                                 </div>
                                 <div class="card-content collapse show">
-                                    @if ($errors->any())
+                                        @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
+                                                    @php
+                                                    $id=0;
+                                                    @endphp
+                                                    @foreach ($errors->all() as $error)
+                                                    @php
+                                                    $id++;
+                                                    @endphp
+                                                        <li>{{$id}}.{{ $error }}</li>
+                                                    @endforeach
                                             </ul>
                                         </div>
                                     @endif

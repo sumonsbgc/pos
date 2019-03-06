@@ -40,6 +40,12 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'supplier_name'=>'required',
+            'present_add'=>'required',
+            'mobile_no'=>'required',
+        ]);
         $all =$request->all();
 
         Supplier::create($all);
