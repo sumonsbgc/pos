@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function (){
     Route::resource('/supplier', 'SupplierController');
     Route::resource('/products', 'ProductsController');
     Route::resource('/users', 'UsersController');
+    Route::resource('/expenses','ExpensesCtrl');
 
     Route::get('/my_account','UsersController@user_profile');
     Route::post('/update_password','UsersController@update_password')->name('update_password');
