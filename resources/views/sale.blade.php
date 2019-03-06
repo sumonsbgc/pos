@@ -1,5 +1,7 @@
 @extends('Template_file.master')
-@section('title','Show Products')
+
+@section('title','Sales Entry')
+
 @section('content')
 
     <div class="app-content content">
@@ -11,7 +13,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active"><a href="#">SHow Products</a>
+                                <li class="breadcrumb-item active"><a href="#">Sales Entry</a>
                                 </li>
                             </ol>
                         </div>
@@ -24,7 +26,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="horz-layout-basic">Show Products</h4>
+                                    <h4 class="card-title" id="horz-layout-basic">Sales Entry</h4>
                                     <a class="heading-elements-toggle"><i
                                                 class="fa fa-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -60,53 +62,47 @@
                                                 @php
                                                     $serial++;
                                                 @endphp
-                                                    <tr>
-                                                        <td>{{$serial}}</td>
-                                                        <td>{{$data->product_name}}</td>
-                                                        <td>{{ App\Category::find($data->category_id)->category_name }}</td>
-                                                        <td>{{ App\Brand::find($data->brand_id)->brand_name }}</td>
+                                                <tr>
+                                                    <td>{{$serial}}</td>
+                                                    <td>{{$data->product_name}}</td>
+                                                    <td>{{ App\Category::find($data->category_id)->category_name }}</td>
+                                                    <td>{{ App\Brand::find($data->brand_id)->brand_name }}</td>
 
-                                                        <td>
-                                                            @if($data->quantity == null)
-                                                                {{get_total_products($data->product_name)}}
-                                                            @else
-                                                                {{$data->quantity}}
-                                                            @endif
-                                                        </td>
+                                                    <td>
+                                                        @if($data->quantity == null)
+                                                            {{get_total_products($data->product_name)}}
+                                                        @else
+                                                            {{$data->quantity}}
+                                                        @endif
+                                                    </td>
 
-                                                        <td>
+                                                    <td>
 
-                                                            @if($data->quantity == null)
+                                                        @if($data->quantity == null)
 
                                                             <a href="{{url('/unique_items/'.$data->product_name)}}" type="button"
-                                                                    class="btn btn-sm btn-primary btn-circle ">
-                                                                <i class="fa fa-folder-open"></i>
+                                                               class="btn btn-sm btn-primary btn-circle ">
+                                                                <i class="fa fa-search-plus"></i>
                                                             </a>
 
-                                                            @else
-                                                                <button type="button"
-                                                                        class="btn btn-sm btn-success btn-circle "
-                                                                        data-toggle="modal"
-                                                                        data-target="#exampleModal{{$data->id}}">
-                                                                    <i class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button type="button"
-                                                                        class="btn btn-sm btn-primary btn-circle "
-                                                                        data-toggle="modal"
-                                                                        data-target="#exampleModal{{$data->id}}">
-                                                                    <i class="fa fa-list"></i>
-                                                                </button>
+                                                        @else
+                                                            <button type="button"
+                                                                    class="btn btn-sm btn-primary btn-circle "
+                                                                    data-toggle="modal"
+                                                                    data-target="#exampleModal{{$data->id}}">
+                                                                <i class="fa fa-list"></i>
+                                                            </button>
 
-                                                                <button type="button"
-                                                                        class="btn btn-sm btn-warning btn-circle "
-                                                                        data-toggle="modal"
-                                                                        data-target="#deleteModal{{$data->id}}"><i
-                                                                            class="fa fa-times"></i>
-                                                                </button>
-                                                            @endif
+                                                            <button type="button"
+                                                                    class="btn btn-sm btn-warning btn-circle "
+                                                                    data-toggle="modal"
+                                                                    data-target="#deleteModal{{$data->id}}"><i
+                                                                        class="fa fa-times"></i>
+                                                            </button>
+                                                        @endif
 
-                                                        </td>
-                                                    </tr>
+                                                    </td>
+                                                </tr>
                                             </tbody>
 
 
@@ -258,4 +254,5 @@
             </div>
         </div>
     </div>
-@endsection
+
+    @endsection

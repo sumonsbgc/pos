@@ -55,6 +55,16 @@
                     </li>
                 </ul>
             </li>
+            <li class=" nav-item"><a href="#"><i class="ft-cast"></i><span class="menu-title" data-i18n=""> Sales</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{{url('/sales_entries_create')}}"><span class="menu-title" data-i18n="">Sales Entries</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/show_purchase_notes')}}"><span class="menu-title" data-i18n="">Show All Sale</span></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

@@ -21,14 +21,15 @@ class CreateSalesEntriesTable extends Migration
             $table->unsignedInteger('product_id');
             $table->string('product_imei')->nullable();
             $table->unsignedInteger('customer_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('sale_quantity');
             $table->string('retail_price');
             $table->string('total_price');
-            $table->string('discount');
-            $table->string('vat');
-            $table->string('net_amount');
-            $table->string('receive_amount');
-            $table->string('due_amount');
+            $table->string('discount')->nullable();
+            $table->string('vat')->nullable();
+            $table->string('net_amount')->nullable();
+            $table->string('receive_amount')->nullable();
+            $table->string('due_amount')->nullable();
             $table->timestamps();
 
 //            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

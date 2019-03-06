@@ -84,8 +84,8 @@
 
                                                     <td>
                                                         <button type="button"
-                                                                class="btn btn-sm btn-primary btn-circle ">
-                                                            <i class="fa fa-search-plus"></i>
+                                                                class="btn btn-sm btn-success btn-circle ">
+                                                            <i class="fa fa-shopping-cart"></i>
                                                         </button>
 
                                                         <button type="button"
