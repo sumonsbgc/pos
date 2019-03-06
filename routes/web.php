@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/unique_items/{name}','ProductsController@unique_items');
 
     Route::resource('/users', 'UsersController');
+    Route::resource('/expenses','ExpensesCtrl');
 
     Route::get('/my_account','UsersController@user_profile');
     Route::post('/update_password','UsersController@update_password')->name('update_password');
