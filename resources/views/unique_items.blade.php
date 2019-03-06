@@ -116,7 +116,7 @@
                                                             <div class="modal-body">
 
                                                                 <form class="form form-horizontal"
-                                                                      action="{{route('products.update',$data->id)}}"
+                                                                      action="{{route('products.unique_items_update',$data->id)}}"
                                                                       method="post">
                                                                     @method('PATCH') @csrf
 
@@ -272,7 +272,7 @@
                                                             </div>
                                                             <div class="modal-footer">
 
-                                                                <form action="{{route('products.destroy',$data->id)}}"
+                                                                <form action="{{route('products.unique_items_update',$data->id)}}"
                                                                       method="POST">
                                                                     {{ method_field('DELETE') }} @csrf
 

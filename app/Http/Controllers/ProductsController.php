@@ -88,9 +88,7 @@ class ProductsController extends Controller
         ]);
 
         $all =$request->except(['imei_1','imei_2']);
-
         Product::create($all);
-
         return redirect('products/create');
 
 
@@ -134,6 +132,21 @@ class ProductsController extends Controller
 
 
 
+    }
+
+    public function unique_items_update(Request $request, $id){
+      
+       $data=$request->all();
+       $updateData=Product::findOrfail($id);
+       $updateData->update($data);
+       return redirect('products/unique_items');
+    }
+
+    
+    public function unique_items_delete(products $id){
+        $deleteData=Product::findOrfail();
+        $deleteData->delete($id);
+        return redirect('products/unique_items');
     }
 
     /**
