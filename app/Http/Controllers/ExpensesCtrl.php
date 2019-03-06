@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Expenses;
 use Illuminate\Database\QueryException as Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExpensesCtrl extends Controller
 {
@@ -47,7 +48,27 @@ class ExpensesCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'purpose' => 'required',
+                'amount' => 'required'
+            ]);
+
+            $request['user_id'] = Auth::id();
+
+            $all = $request->all();
+
+            Expenses::create($all);
+
+            $message = 1;
+
+            return back()->with('message', $message);
+
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
     }
 
     /**
@@ -81,7 +102,27 @@ class ExpensesCtrl extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $request->validate([
+                'purpose' => 'required',
+                'amount' => 'required'
+            ]);
+
+            $id = Expenses::findorfail($id);
+
+            $request->user_id = Auth::id();
+
+            $id->update($request->toArray());
+
+            $me = 2;
+
+            return back()->with('update', $me);
+
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
     }
 
     /**
@@ -92,6 +133,19 @@ class ExpensesCtrl extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $id = Expenses::findorfail($id);
+
+            $id->delete();
+
+            $me = 2;
+
+            return back()->with('delete', $me);
+
+        } catch (Exception $e) {
+            report($e);
+
+            return false;
+        }
     }
 }
