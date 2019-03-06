@@ -236,7 +236,7 @@
 
                                             <tfoot>
                                             <tr>
-                                                <th>Serial</th>
+                                                <th>SL</th>
                                                 <th>Name</th>
                                                 <th>Category</th>
                                                 <th>Brand</th>
