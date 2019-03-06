@@ -38,6 +38,21 @@
                                 </div>
                             </div>
                             <div class="card-form-body">
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                                @php
+                                                $id=0;
+                                                @endphp
+                                                @foreach ($errors->all() as $error)
+                                                @php
+                                                $id++;
+                                                @endphp
+                                                    <li>{{$id}}.{{ $error }}</li>
+                                                @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <form class="form-simple brand-form" action="{{route('brands.store')}}" method="post">
                                     @csrf
 

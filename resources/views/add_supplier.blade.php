@@ -40,6 +40,21 @@
                                 </div>
                                 <div class="card-content collpase show">
                                     <div class="card-body">
+                                            @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                        @php
+                                                        $id=0;
+                                                        @endphp
+                                                        @foreach ($errors->all() as $error)
+                                                        @php
+                                                        $id++;
+                                                        @endphp
+                                                            <li>{{$id}}.{{ $error }}</li>
+                                                        @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <form class="form form-horizontal" action="{{route('supplier.store')}}" method="post">
                                             @csrf
 

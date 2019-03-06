@@ -12,7 +12,7 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_status');
     }
 
-    public function product()
+    public function products()
     {
         return $this->belongsTo('App\Product');
     }

@@ -44,8 +44,14 @@
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
+                                                @php
+                                                $id=0;
+                                                @endphp
                                                 @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
+                                                @php
+                                                $id++;
+                                                @endphp
+                                                    <li>{{$id}}.{{ $error }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -97,7 +103,7 @@
                                                             <label for="phoneNumber1">Select Supplier</label>
                                                             <select id="projectinput5" name="supplier_id" class="form-control">
                                                                 @foreach($suppliers as $supplier)
-                                                                    <option value="{{$supplier->id}}">{{$supplier->supplier_name}}</option>
+                                                                    <option                            value="{{$supplier->id}}">{{$supplier->supplier_name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>

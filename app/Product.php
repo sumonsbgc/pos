@@ -9,13 +9,18 @@ class Product extends Model
 
     protected $guarded=[];
 
-    public function category()
+    public function categories()
     {
-        return $this->hasOne('App\Catergory');
+        return $this->belongsTo('App\Catergory');
     }
 
-    public function brand()
+    public function brands()
     {
         return $this->hasOne('App\Brand');
+    }
+
+    public function supplier()
+    {
+        return $this->hasOne('App\Supplier');
     }
 }

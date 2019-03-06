@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Category;
 use App\Brand;
@@ -19,25 +18,22 @@ class ProductsController extends Controller
      */
     public function index()
     {
-//      $products=DB::table('product')
-//      ->select('product.*','categories.category_name','brands.brand_name','suppliers.supplier_name')
-//      ->join('categories','product.category_id','=','categories.id')
-//      ->join('brands','product.brand_id','=','brands.id')
-//      ->join('suppliers','product.supplier_id','=','suppliers.id')->distinct('product_name')->get();
-//
-////        $product = $products->groupBy('product_name');
-//
-////        dd($products);
-//        return view('show_products',compact('products'));
+        $products = Product::all()->unique('product_name');
 
-//        $products = DB::table('product')->distinct('product_name')->get();
-//        $prod = DB::table('product')->unique('product_name')->get();
-
-        $products = DB::table('product')->distinct()->select('product_name', 'id')->get();
-
-//        $product = $products->groupBy('product_name');
-        dd($products);
         return view('show_products', compact('products'));
+
+    }
+
+    public function unique_items($name){
+
+        $category = Category::where('parent_status','=',0)->get();
+        $sub_category = Category::where('parent_status','=',1)->get();
+        $brands = Brand::all();
+        $suppliers = Supplier::all();
+
+        $products = Product::where('product_name',$name)->get();
+
+        return view('unique_items',compact('products','category','sub_category','brands','suppliers'));
 
     }
 
@@ -51,9 +47,10 @@ class ProductsController extends Controller
         $category = Category::where('parent_status','=',0)->get();
         $sub_category = Category::where('parent_status','=',1)->get();
         $brands = Brand::all();
+
         $suppliers = Supplier::all();
 
-        return view('add_products', compact('category','sub_category','suppliers','brands'));
+        return view('add_products', compact('category','sub_category','brands','suppliers'));
     }
 
     /**
@@ -87,6 +84,7 @@ class ProductsController extends Controller
             'supplier_id' => 'required',
             'purchase_rate' => 'required',
             'retail_rate' => 'required',
+            'imei_1' => 'required',
         ]);
 
         $all =$request->except(['imei_1','imei_2']);
