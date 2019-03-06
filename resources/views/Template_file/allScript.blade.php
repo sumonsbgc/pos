@@ -60,4 +60,20 @@
 
     }
 
+    function addToSale(value) {
+
+        product_id = value;
+
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{url('/addToSale')}}"+"/"+product_id,
+            type:'GET',
+            success: function (response) {
+                console.log(response);
+                location.reload();
+            },
+        })
+
+    }
+
 </script>

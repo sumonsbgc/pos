@@ -87,7 +87,7 @@
                                                                 <button type="button"
                                                                         class="btn btn-sm btn-success btn-circle "
                                                                         data-toggle="modal"
-                                                                        data-target="#exampleModal{{$data->id}}">
+                                                                        data-target="#SaleModal{{$data->id}}">
                                                                     <i class="fa fa-shopping-cart"></i>
                                                                 </button>
                                                                 <button type="button"
@@ -108,6 +108,34 @@
                                                         </td>
                                                     </tr>
                                             </tbody>
+
+                                            <div class="modal fade" id="SaleModal{{$data->id}}" tabindex="-1"
+                                                 role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-confirm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="icon-box" data-dismiss="modal"
+                                                                 aria-label="Close">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </div>
+                                                            <h4 class="modal-title">Are you sure?</h4>
+
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Do you really want to sell these records?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                            <button type="button" class="btn btn-dark"
+                                                                    data-dismiss="modal" aria-label="Close">Cancel
+                                                            </button>
+                                                            <button class="btn btn-danger" id="{{$data->id}}" type="button" onclick="addToSale(this.id)">Add To Sale
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
                                             <div class="modal fade" id="exampleModal{{$data->id}}" tabindex="-1"
@@ -187,7 +215,8 @@
                                                                 </div>
 
                                                                 <div class="form-actions">
-                                                                    <button type="button" class="btn btn-warning mr-1">
+                                                                    <button type="button" class="btn btn-warning mr-1"
+                                                                            data-dismiss="modal" aria-label="Close">
                                                                         <i class="ft-x"></i> Cancel
                                                                     </button>
                                                                     <button type="submit" class="btn btn-primary">
