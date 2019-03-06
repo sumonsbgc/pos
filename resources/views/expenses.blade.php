@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
+
 @extends('Template_file.master')
 @section('title','All Users')
 @section('content')
@@ -38,54 +42,30 @@
             @endif
 
             @if(Session::has('message'))
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert bg-success alert-icon-left alert-dismissible mb-2"
-                             role="alert">
-                            <button type="button" class="close" data-dismiss="alert"
-                                    aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong>Hello {{Auth::user()->name}}
-                                !</strong> Your Information Added Successfully.
-                        </div>
-                    </div>
+                <div class="alert alert-warning alert-dismissible fade show notification" role="alert">
+                    <strong>Hello {{Auth::user()->name}}!</strong> Expenses Created Successfully.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-
             @endif
 
             @if(Session::has('update'))
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert bg-success alert-icon-left alert-dismissible mb-2"
-                             role="alert">
-                            <button type="button" class="close" data-dismiss="alert"
-                                    aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong>Hello {{Auth::user()->name}}
-                                !</strong> Your Information Updated Successfully.
-                        </div>
-                    </div>
+                <div class="alert alert-warning alert-dismissible fade show notification" role="alert">
+                    <strong>Hello {{Auth::user()->name}}!</strong> Expenses Updated Successfully.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-
             @endif
 
             @if(Session::has('delete'))
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert bg-success alert-icon-left alert-dismissible mb-2"
-                             role="alert">
-                            <button type="button" class="close" data-dismiss="alert"
-                                    aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong>Hello {{Auth::user()->name}}
-                                !</strong> Your Information Deleted Successfully.
-                        </div>
-                    </div>
+                <div class="alert alert-warning alert-dismissible fade show notification" role="alert">
+                    <strong>Hello {{Auth::user()->name}}!</strong> Expenses Deleted Successfully.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-
             @endif
 
             <div class="modal fade" id="exampleModal" tabindex="-1"
