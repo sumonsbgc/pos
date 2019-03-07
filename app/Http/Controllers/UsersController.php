@@ -121,8 +121,8 @@ class UsersController extends Controller
         Auth::user()->birth_certificate_no = $request->birth_certificate_no;
 
         Auth::user()->save();
-
-        return back();
+        $message=1;
+        return redirect('users/create');
 
     }
 }

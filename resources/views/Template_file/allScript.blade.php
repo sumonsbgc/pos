@@ -17,12 +17,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#product_details').summernote({
             placeholder: 'Add Some Notes Here',
             tabsize: 2,
             height: 300
         });
+
+        
         // table = $('#example').DataTable();
         // table.column(1).data().unique();
     });
@@ -31,12 +33,12 @@
 
 <script>
 
-    function goToSubCategory(value){
+    function goToSubCategory(value) {
         var parentsCategory = value;
         $.ajax({
-            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            url: "{{url('/finding_sub_categories')}}"+"/"+parentsCategory,
-            type:'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{url('/finding_sub_categories')}}" + "/" + parentsCategory,
+            type: 'POST',
             success: function (response) {
                 $("#subCategory").html(response[0]);
                 $("#product_brand").html(response[1]);
@@ -44,19 +46,36 @@
 
         })
     }
-    function goToBrands(value){
+
+    function goToBrands(value) {
 
         var Category = value;
 
         $.ajax({
-            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            url: "{{url('/finding_brands')}}"+"/"+Category,
-            type:'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{url('/finding_brands')}}" + "/" + Category,
+            type: 'POST',
             success: function (response) {
                 $("#product_brand").html(response);
             },
         })
 
+
+    }
+
+    function addToSale(value) {
+
+        product_id = value;
+
+        $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "{{url('/addToSale')}}"+"/"+product_id,
+            type:'GET',
+            success: function (response) {
+                console.log(response);
+                location.reload();
+            },
+        })
 
     }
 

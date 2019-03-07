@@ -15,6 +15,7 @@
     <meta name="author" content="PIXINVENT">
     <title>@yield('title')</title>
 
+    @yield('css')
     @include('Template_file.allCss')
 
 </head>
@@ -37,6 +38,7 @@
 
 
 @include('Template_file.allScript')
+@yield('scripts')
 
 </body>
 

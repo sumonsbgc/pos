@@ -60,6 +60,8 @@
                                             </fieldset>
                                             <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="ft-unlock"></i> Register</button>
                                         </form>
+
+                           
                                     </div>
                                     <p class="text-center">Already have an account ? <a href="{{route('login')}}" class="card-link">Login</a></p>
                                 </div>
@@ -71,3 +73,4 @@
         </div>
     </div>
 @endsection
+

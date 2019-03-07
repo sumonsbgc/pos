@@ -38,51 +38,72 @@
                                 </div>
                             </div>
                             <div class="card-form-body">
-                                    @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                                @php
-                                                $id=0;
-                                                @endphp
-                                                @foreach ($errors->all() as $error)
-                                                @php
-                                                $id++;
-                                                @endphp
-                                                    <li>{{$id}}.{{ $error }}</li>
-                                                @endforeach
-                                        </ul>
-                                    </div>
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @php $id=0; 
+@endphp @foreach ($errors->all() as $error) @php $id++; 
+@endphp
+                                        <li>{{$id}}.{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                                 @endif
                                 <form class="form-simple brand-form" action="{{route('brands.store')}}" method="post">
                                     @csrf
 
                                     <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="phoneNumber1">Select Category</label>
-                                                    <select id="projectinput5" name="category_id" class="form-control" onchange="goToSubCategory(this.value)">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phoneNumber1">Select Category</label>
+                                                <select id="projectinput5" name="category_id" class="form-control" onchange="goToSubCategory(this.value)">
                                                         @foreach($category as $mainCategory)
                                                         <option value="{{$mainCategory->id}}">{{$mainCategory->category_name}}</option>
                                                         @endforeach
                                                     </select>
-                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="phoneNumber1">Select Sub-Category</label>
-                                                    <select id="subCategory" name="category_id" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phoneNumber1">Select Sub-Category</label>
+                                                <select id="subCategory" name="category_id" class="form-control">
                                                         @foreach($sub_category as $sub)
                                                         <option value="{{$sub->id}}">{{$sub->category_name}}</option>
                                                         @endforeach
                                                     </select>
-                                                </div>
                                             </div>
                                         </div>
+                                    </div>
                                     <fieldset class="form-group">
                                         <input type="text" class="form-control form-control-lg" id="user-name" name="brand_name" placeholder="Brand Name">
                                     </fieldset>
                                     <button type="submit" class="btn btn-primary btn-lg">Add</button>
+
+
                                 </form>
+
+                                @if(Session::has('message'))
+
+                                <div id="successModal" class="modal fade show">
+                                    <div class="modal-dialog modal-upload">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                    <i class="fa fa-check"></i>
+                                                </div>
+                                                <h4 class="modal-title">Great!</h4>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Your data has been uploaded successfully</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body card-dashboard">
@@ -95,25 +116,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                            @php 
-                                                $id=0; 
-                                            @endphp
 
-                                     @foreach($all as $data) 
-                                            @php
-                                                $id++; 
-                                            @endphp 
+                                            @php $id=0; 
+@endphp @foreach($all as $data) @php $id++; 
+@endphp
 
                                             <tr class="text-center">
                                                 <td>{{$id}}</td>
                                                 <td>{{$data->brand_name}}</td>
                                                 <td class="text-center action_data">
-                                                    <button type="button"  class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
+                                                    <button type="button" class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
                                                         <i class="fa fa-list"></i>
                                                     </button>
 
-                                                    <button type="button" class="btn btn-warning btn-circle" data-toggle="modal" data-target="#deleteModal{{$data->id}}" ><i
+                                                    <button type="button" class="btn btn-warning btn-circle" data-toggle="modal" data-target="#deleteModal{{$data->id}}"><i
                                                             class="fa fa-times"></i>
                                                     </button>
                                                 </td>
@@ -124,7 +140,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-                                                           
+
                                                         </div>
                                                         <div class="modal-body">
 
@@ -160,14 +176,14 @@
 
                                                             <form action="{{route('brands.destroy',$data->id)}}" method="POST">
                                                                 {{ method_field('DELETE') }} @csrf
-                                                                <button type="button" class="btn btn-info" data-dismiss="modal" >Cancel</button>
+                                                                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                     @endforeach
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -188,4 +204,17 @@
         </div>
     </div>
 </div>
+@endsection
+ 
+@section('scripts')
+<script>
+    @if(Session::has('message'))
+            $('#successModal').modal('show');
+        @endif
+        $('#successModal').delay(2000).fadeOut('slow') 
+        setTimeout(function(){
+          $('#successModal').modal('hide')
+}, 2500);
+// $('#successModal').delay(2000).fadeOut('slow');
+</script>
 @endsection

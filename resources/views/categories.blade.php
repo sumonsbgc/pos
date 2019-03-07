@@ -78,6 +78,30 @@
                                                 </button>
                                         </div>
                                     </form>
+
+                                    
+                                @if(Session::has('message'))
+
+                                <div id="successModal" class="modal fade show">
+                                    <div class="modal-dialog modal-upload">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                    <i class="fa fa-check"></i>
+                                                </div>
+                                                <h4 class="modal-title">Great!</h4>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Your data has been uploaded successfully</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -213,4 +237,17 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    @if(Session::has('message'))
+            $('#successModal').modal('show');
+        @endif
+        $('#successModal').delay(2000).fadeOut('slow') 
+        setTimeout(function(){
+          $('#successModal').modal('hide')
+}, 2500);
+// $('#successModal').delay(2000).fadeOut('slow');
+</script>
 @endsection

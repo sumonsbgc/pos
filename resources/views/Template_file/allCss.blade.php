@@ -13,6 +13,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/charts/morris.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/forms/icheck/icheck.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/forms/icheck/custom.css')}}">
+<link rel="stylesheet" type="text/css"
+      href="{{asset('template_asset/app-assets/vendors/css/extensions/sweetalert.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
 <!-- END VENDOR CSS-->
 <!-- BEGIN STACK CSS-->
@@ -32,7 +34,6 @@
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/pages/login-register.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/pages/invoice.css')}}">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css">
-
 <!-- END Page Level CSS-->
 <!-- BEGIN Custom CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/assets/css/style.css')}}">
