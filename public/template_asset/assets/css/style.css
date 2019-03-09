@@ -155,17 +155,16 @@ body {
     padding: 0.75rem .5rem;
 }
 
-<<<<<<< HEAD
 .quantity_input{
     border: none;
     border-bottom: 1px solid #ddd;
     border-radius: unset;
 }
-.retail_price{
+.retail_price {
     border: none;
     border-bottom: 1px solid #ddd;
     border-radius: unset;
-=======
+}
 
 /*Notification*/
 
@@ -182,5 +181,11 @@ body {
     background: transparent;
     border: none;
     margin-top: 10px;
->>>>>>> 8f3a6bb9e066de6d9e6bf07494e4a7a7084b8cb7
+}
+
+
+.select2-container{
+
+    width: 100% !important;
+
 }

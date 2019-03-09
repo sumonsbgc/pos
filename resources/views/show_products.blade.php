@@ -85,12 +85,6 @@
 
                                                             @else
                                                                 <button type="button"
-                                                                        class="btn btn-sm btn-success btn-circle "
-                                                                        data-toggle="modal"
-                                                                        data-target="#SaleModal{{$data->id}}">
-                                                                    <i class="fa fa-shopping-cart"></i>
-                                                                </button>
-                                                                <button type="button"
                                                                         class="btn btn-sm btn-primary btn-circle "
                                                                         data-toggle="modal"
                                                                         data-target="#exampleModal{{$data->id}}">
@@ -130,7 +124,7 @@
                                                             <button type="button" class="btn btn-dark"
                                                                     data-dismiss="modal" aria-label="Close">Cancel
                                                             </button>
-                                                            <button class="btn btn-danger" id="{{$data->id}}" type="button" onclick="addToSale(this.id)">Add To Sale
+                                                            <button class="btn btn-danger" id="{{$data->id}}" type="button" onclick="">Add To Sale
                                                             </button>
                                                         </div>
                                                     </div>
@@ -170,11 +164,18 @@
                                                                         <label class="col-md-3 label-control"
                                                                                for="projectinput2">Category </label>
                                                                         <div class="col-md-9">
-                                                                            <input type="text" id="projectinput2"
-                                                                                   class="form-control"
-                                                                                   placeholder="Category Name"
-                                                                                   name="category_name"
-                                                                                   value="{{$data->category_name}}">
+                                                                            <select id="subCategory" name="category_id" class="form-control" onclick="goToBrands(this.value)">
+                                                                                @foreach($sub_category as $sub)
+                                                                                    <option value="
+{{$sub->id}}"
+                                                                                            @if($data->category_id == $sub->id)
+
+                                                                                            selected
+
+                                                                                            @endif
+                                                                                    >{{$sub->category_name}}</option>
+                                                                                @endforeach
+                                                                            </select>
                                                                         </div>
                                                                     </div>
 
@@ -182,12 +183,36 @@
                                                                         <label class="col-md-3 label-control"
                                                                                for="projectinput2">Brand </label>
                                                                         <div class="col-md-9">
-                                                                            <input type="text" id="projectinput2"
-                                                                                   class="form-control"
-                                                                                   name="brand_name"
-                                                                                   value="{{$data->brand_name}}">
+                                                                            <select id="product_brand" name="brand_id" class="form-control">
+                                                                                @foreach($brands as $brand)
+                                                                                    <option value="{{$brand->id}}"
+                                                                                            @if($data->brand_id == $brand->id)
+
+                                                                                            selected
+
+                                                                                            @endif
+                                                                                    >{{$brand->brand_name}}</option>
+                                                                                @endforeach
+                                                                            </select>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-md-3 label-control"
+                                                                               for="projectinput2">Supplier </label>
+                                                                        <div class="col-md-9">
+                                                                            <select id="supplier_id" name="supplier_id" class="form-control">                                                                                        @foreach($suppliers as $supplier)
+                                                                                    <option value="{{$supplier->id}}"
+
+                                                                                            @if($data->supplier_id == $supplier->id)
+                                                                                            selected
+
+                                                                                            @endif
+                                                                                    >{{$supplier->supplier_name}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
 
                                                                     <div class="form-group row">
                                                                         <label class="col-md-3 label-control"
@@ -210,7 +235,36 @@
                                                                                    value="{{$data->retail_rate}}">
                                                                         </div>
                                                                     </div>
-
+                                                                    <div class="form-group row">
+                                                                        <label class="col-md-3 label-control"
+                                                                               for="projectinput2">Product Description</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" id="projectinput2"
+                                                                                   class="form-control"
+                                                                                   name="product_description"
+                                                                                   value="{{$data->product_description}}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-md-3 label-control"
+                                                                               for="projectinput2">product imei </label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" id="projectinput2"
+                                                                                   class="form-control"
+                                                                                   name="product_imei"
+                                                                                   value="{{$data->product_imei}}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-md-3 label-control"
+                                                                               for="projectinput2">Color </label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" id="projectinput2"
+                                                                                   class="form-control"
+                                                                                   name="color"
+                                                                                   value="{{$data->color}}">
+                                                                        </div>
+                                                                    </div>
 
                                                                 </div>
 

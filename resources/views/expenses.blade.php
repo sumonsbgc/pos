@@ -148,7 +148,7 @@
                                                 $serial = 0;
                                             @endphp
 
-                                            @if($all->toArray() != null)
+                                            @if(!is_null($all))
 
                                                 @foreach($all as $data)
                                                     @php

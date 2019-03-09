@@ -44,7 +44,9 @@ Route::middleware('auth')->group(function (){
     Route::get('/show_purchase_notes','PurchaseController@show_purchase_notes')->name('show_purchase_notes');
 
     Route::get('/sales_entries_create','SalesController@show_sales_form');
-    Route::get('/addToSale/{id}','SalesController@addToSale');
+
+    Route::post('/sale','SalesController@store')->name('sale_store');
+    Route::get('/saleProduct/{id}','SalesController@saleProduct');
 
 
 

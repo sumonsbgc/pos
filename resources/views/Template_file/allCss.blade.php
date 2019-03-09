@@ -7,6 +7,7 @@
       rel="stylesheet">
 <!-- BEGIN VENDOR CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/css/vendors.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/forms/selects/select2.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/extensions/unslider.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/vendors/css/weather-icons/climacons.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('template_asset/app-assets/fonts/meteocons/style.css')}}">
