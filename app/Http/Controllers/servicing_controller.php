@@ -13,7 +13,7 @@ class servicing_controller extends Controller
      */
     public function index()
     {
-        //
+        return view('add_servicing_product');
     }
 
     /**
@@ -43,7 +43,8 @@ class servicing_controller extends Controller
         ]);
         $store=$request->all();
         servicing::create($store);
-        return view('add_servicing_product');
+        $message=1;
+        return redirect('servicing')->with('message',$message);
     }
 
     /**

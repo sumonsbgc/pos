@@ -26,9 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //testing//
-//       $profileData=User::where('user_role','=','owner')->first();
-//       return view('edit_profile',compact('profileData'));
+     return view('create_user');
 
     }
 
@@ -77,7 +75,7 @@ class UsersController extends Controller
         $newData=$request->all();
         $updateData=user::findOrfail($id);
         $updateData->update($newData);
-        return redirect('users');
+        return back();
     }
 
     /**
@@ -90,7 +88,7 @@ class UsersController extends Controller
     {
         $deleteData=user::findOrfail($id);
         $deleteData->delete($deleteData);
-        return redirect('users/create');
+        return back();
     }
 
     public function user_profile(){
@@ -121,8 +119,7 @@ class UsersController extends Controller
         Auth::user()->birth_certificate_no = $request->birth_certificate_no;
 
         Auth::user()->save();
-        $message=1;
-        return redirect('users/create');
+        return back();
 
     }
 }
