@@ -17,14 +17,12 @@ class CreateSalesEntriesTable extends Migration
     {
         Schema::create('sales_entries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('receipt_no');
+            $table->string('receipt_no')->unique();
             $table->unsignedInteger('product_id');
-            $table->string('product_imei')->nullable();
             $table->unsignedInteger('customer_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->string('sale_quantity');
-            $table->string('retail_price');
-            $table->string('total_price');
+            $table->string('retail_rate');
             $table->string('discount')->nullable();
             $table->string('vat')->nullable();
             $table->string('net_amount')->nullable();

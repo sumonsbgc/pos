@@ -84,13 +84,6 @@
 
                                                     <td>
                                                         <button type="button"
-                                                                class="btn btn-sm btn-success btn-circle "
-                                                                data-toggle="modal"
-                                                                data-target="#SaleModal{{$data->id}}">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </button>
-
-                                                        <button type="button"
                                                                 class="btn btn-sm btn-primary btn-circle "
                                                                 data-toggle="modal"
                                                                 data-target="#exampleModal{{$data->id}}">
@@ -128,7 +121,7 @@
                                                                 <button type="button" class="btn btn-dark"
                                                                         data-dismiss="modal" aria-label="Close">Cancel
                                                                 </button>
-                                                                <button class="btn btn-danger" id="{{$data->id}}" type="button" onclick="addToSale(this.id)">Add To Sale
+                                                                <button class="btn btn-danger" id="{{$data->id}}" type="button">Add To Sale
                                                                 </button>
                                                             </div>
                                                         </div>

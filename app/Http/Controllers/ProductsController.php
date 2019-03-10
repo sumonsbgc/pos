@@ -20,7 +20,13 @@ class ProductsController extends Controller
     {
         $products = Product::all()->unique('product_name');
 
-        return view('show_products', compact('products'));
+        $category = Category::where('parent_status','=',0)->get();
+        $sub_category = Category::where('parent_status','=',1)->get();
+        $brands = Brand::all();
+        $suppliers = Supplier::all();
+
+
+        return view('show_products', compact('products','category','sub_category','brands','suppliers'));
 
     }
 
@@ -162,9 +168,9 @@ class ProductsController extends Controller
      * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(products $id)
+    public function destroy($id)
     {
-        $deleteData=Product::findOrfail();
+        $deleteData=Product::findorfail($id);
         $deleteData->delete($id);
         return back();
 
