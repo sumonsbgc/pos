@@ -20,6 +20,23 @@
                     </div>
                 </div>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @php
+                            $id=0;
+                        @endphp
+                        @foreach ($errors->all() as $error)
+                            @php
+                                $id++;
+                            @endphp
+                            <li>{{$id}}.{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="content-body">
                 <div class="row">
                     <div class="col-12">
@@ -46,7 +63,7 @@
                                                 <div class="text-bold-600 font-medium-2">
                                                     Single Placeholder
                                                 </div>
-                                                <select class="select2-placeholder form-control" id="single-placeholder" onchange="pullProduct(this.value)" name="select">
+                                                <select class="select2-placeholder form-control" id="single-placeholder" onchange="pullProduct(this.value)">
                                                     <option value="#">Select Or Search Product</option>
 
                                                     @foreach($products as $product)
@@ -99,9 +116,6 @@
                                                 <textarea type="text" name="customer_add"
                                                           class="form-control"></textarea>
                                             </div>
-
-                                            <input type="hidden" id="p_id" name="p_id[]">
-                                            <input type="hidden" id="p_d" name="p_d[]">
                                         </div>
 
                                         <button type="submit">Sell</button>
@@ -123,12 +137,6 @@
 
             id = value;
             console.log(id);
-
-            p_id = [];
-            p_id.push(id);
-
-            $('[name="p_id[]"]').val(p_id);
-            $('[name="p_d[]"]').val(id);
 
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
