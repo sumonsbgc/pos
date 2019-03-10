@@ -8,7 +8,7 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0">Add Products</h3>
+                    <h3 class="content-header-title mb-0">Create Purchase</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -30,7 +30,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add Products Form</h4>
+                                  
                                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-h font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -85,24 +85,24 @@
                                                             <input type="text" class="form-control" id="date1" name="transaction_type">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="date1">Total Amount</label>
                                                             <input type="text" class="form-control" id="date1" name="total_amount">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="date1">Paid Amount</label>
                                                             <input type="text" class="form-control" id="date1" name="cash_purchase">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2">
+                                                    {{-- <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="date1">Due Amount</label>
                                                             <input type="text" class="form-control" id="date1" name="credit_purchase">
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="col-md-12 text-right">
                                                         <button type="submit" class="btn btn-primary">ADD</button>
                                                     </div>
