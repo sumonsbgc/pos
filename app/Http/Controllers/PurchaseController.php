@@ -35,8 +35,8 @@ class PurchaseController extends Controller
         $all = $request->except('files');
 
         Purchase::create($all);
-
-        return redirect('create_purchase');
+     $message=1;
+        return redirect('create_purchase')->with('message',$message);
 
     }
 

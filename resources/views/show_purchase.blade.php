@@ -95,7 +95,14 @@
                                             </tr>
                                             <tr>
                                                 <td class="text-bold-800">Due Amount</td>
-                                                <td class="text-bold-800 text-right">{{$single->credit_purchase}}</td>
+                                                <td class="text-bold-800 text-right">
+                                                    @php
+                                                    $due = $single->total_amount - $single->cash_purchase;
+                                                    echo $due;
+                                                    @endphp
+
+                                                    {{-- {{$single->credit_purchase}} --}}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Payment Transaction By</td>

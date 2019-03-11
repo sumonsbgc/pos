@@ -1,6 +1,5 @@
 @extends('Template_file.master')
-
-@section('title','Create Purchase')
+@section('title','Add Servicing Products')
 
 @section('content')
 
@@ -8,7 +7,7 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0">Create Purchase</h3>
+                    {{-- <h3 class="content-header-title mb-0">Add Products</h3> --}}
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
@@ -16,7 +15,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a href="#">Page</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create Purchase
+                                <li class="breadcrumb-item active">Add Servicing Products
                                 </li>
                             </ol>
                         </div>
@@ -30,7 +29,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                  
+                                    <h4 class="card-title">Add Servicing Product Form</h4>
                                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-h font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -42,68 +41,66 @@
                                     </div>
                                 </div>
                                 <div class="card-content collapse show">
-                                        @if ($errors->any())
+                                    @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
-                                                    @php
-                                                    $id=0;
-                                                    @endphp
-                                                    @foreach ($errors->all() as $error)
-                                                    @php
-                                                    $id++;
-                                                    @endphp
-                                                        <li>{{$id}}.{{ $error }}</li>
-                                                    @endforeach
+                                                @php
+                                                $id=0;
+                                                @endphp
+                                                @foreach ($errors->all() as $error)
+                                                @php
+                                                $id++;
+                                                @endphp
+                                                    <li>{{$id}}.{{ $error }}</li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     @endif
 
                                     <div class="card-body">
-                                        <form action="{{route('store_purchase_notes')}}" method="post" class="number-tab-steps wizard-circle" enctype="multipart/form-data">
+                                        <form action="{{route('servicing.store')}}" method="post" class="number-tab-steps wizard-circle">
                                             @csrf
                                             <fieldset>
                                                 <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="date1">Product Details</label>
-                                                            <textarea type="text" class="form-control" id="product_details" name="product_details"></textarea>
+                                                            <label for="date1">Customer Name</label>
+                                                            <input type="text" class="form-control" id="date1" name="customer_name">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="phoneNumber1">Select Supplier</label>
-                                                            <select id="projectinput5" name="supplier_id" class="form-control">
-                                                                @foreach($allSupplier as $supplier)
-                                                                    <option value="{{$supplier->id}}">{{$supplier->supplier_name}}</option>
-                                                                @endforeach
-                                                            </select>
+                                                            <label for="date1">Address</label>
+                                                            <input type="text" class="form-control" id="date1" name="address">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="date1">Transaction Type</label>
-                                                            <input type="text" class="form-control" id="date1" name="transaction_type">
+                                                            <label for="date1">Mobile</label>
+                                                            <input type="text" class="form-control" id="date1" name="mobile">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="date1">Total Amount</label>
-                                                            <input type="text" class="form-control" id="date1" name="total_amount">
+                                                            <label for="date1">Product Name</label>
+                                                            <input type="text" class="form-control" id="date1" name="product_name">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="date1">Paid Amount</label>
-                                                            <input type="text" class="form-control" id="date1" name="cash_purchase">
+                                                            <label for="date1">Service Charge</label>
+                                                            <input type="text" class="form-control" id="date1" name="service_charge">
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="col-md-2">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="date1">Due Amount</label>
-                                                            <input type="text" class="form-control" id="date1" name="credit_purchase">
+                                                            <label for="date1">Paid</label>
+                                                            <input type="text" class="form-control" id="date1" name="paid">
                                                         </div>
-                                                    </div> --}}
-                                                    <div class="col-md-12 text-right">
+                                                    </div>
+                                                 
+                                                  
+                                                    <div class="col-md-12 ">
                                                         <button type="submit" class="btn btn-primary">ADD</button>
                                                     </div>
                                                 </div>
@@ -144,20 +141,17 @@
         </div>
     </div>
 
-    @endsection
+@endsection
 
-    @section('scripts')
-    <script>
+@section('scripts')
+<script>
+    @if(Session::has('message'))
+            $('#successModal').modal('show');
+        @endif
+        $('#successModal').delay(2000).fadeOut('slow') 
+        setTimeout(function(){
+          $('#successModal').modal('hide')
+}, 2500);
 
-@if(Session::has('message'))
-$('successModal').modal('show');
-
-@endif
-$('successModal').delay(4000).fadeOut('slow');
-setTimeout(function()){
-    $('$successModal').modal('hide')
-},2500);
-
-    </script>
-
-    @endsection
+</script>
+@endsection

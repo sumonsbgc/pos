@@ -78,6 +78,19 @@
                     </li>
                 </ul>
             </li>
+
+            <li class=" nav-item"><a href="#"><i class="ft-cast"></i><span class="menu-title" data-i18n="">Servicing</span></a>
+                <ul class="menu-content">
+                    <li>
+                        <a href="{{url('/servicing/create')}}"><span class="menu-title"
+                                                                         data-i18n="">Add Servicing Product</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/servicing/{servicing}')}}"><span class="menu-title"
+                                                                        data-i18n="">Show Servicing Products</span></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

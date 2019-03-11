@@ -125,6 +125,94 @@ body {
   }
 
 
+
+  .modal-upload {		
+    color: #636363;
+    width: 400px;
+  }
+  .modal-upload .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+        text-align: center;
+    font-size: 14px;
+  }
+  .modal-upload .modal-title {
+    border-bottom: none;   
+        position: relative;
+       
+  }
+  .modal-upload h4 {
+    text-align: center;
+    font-size: 40px;
+    margin: 30px 0 -10px;
+  }
+  .modal-upload .close {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+  }
+  .modal-upload .modal-body {
+    color: #999;
+  }
+  .modal-upload .modal-footer{
+    border: none;
+    text-align: center;		
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 10px 15px 25px;
+  }
+  .modal-upload .modal-footer a {
+    color: #999;
+  }		
+  .modal-upload .icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    border: 3px solid #a0f15e;
+    background-color:#a0f15e;
+  }
+  .modal-upload .icon-box i {
+    color: #fff;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+  }
+    .modal-upload .btn {
+        color: #fff;
+        border-radius: 4px;
+    background: #60c7c1;
+    text-decoration: none;
+    transition: all 0.4s;
+        line-height: normal;
+    min-width: 120px;
+        border: none;
+    min-height: 40px;
+    border-radius: 3px;
+    margin: 0 5px;
+    outline: none !important;
+    }
+  .modal-upload .btn-info {
+        background: #c1c1c1;
+    }
+    .modal-upload .btn-info:hover, .modal-upload .btn-info:focus {
+        background: #a8a8a8;
+    }
+    .modal-upload .btn-danger {
+        background: #f15e5e;
+    }
+    .modal-upload .btn-danger:hover, .modal-upload .btn-danger:focus {
+        background: #ee3535;
+    }
+  .trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+  }
+
+
   /*============
 
   supplier purchase css
@@ -155,12 +243,22 @@ body {
     padding: 0.75rem .5rem;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/shakhawat
 .quantity_input{
     border: none;
     border-bottom: 1px solid #ddd;
     border-radius: unset;
 }
+<<<<<<< HEAD
 .retail_price{
+=======
+.retail_price {
+>>>>>>> origin/shakhawat
     border: none;
     border-bottom: 1px solid #ddd;
     border-radius: unset;
@@ -181,4 +279,16 @@ body {
     background: transparent;
     border: none;
     margin-top: 10px;
+<<<<<<< HEAD
 }
+=======
+}
+
+
+.select2-container{
+
+    width: 100% !important;
+
+}
+>>>>>>> fb3a5ce27e08c64954181349a67f0cb781b3b2db
+>>>>>>> origin/shakhawat

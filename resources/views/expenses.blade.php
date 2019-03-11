@@ -148,7 +148,7 @@
                                                 $serial = 0;
                                             @endphp
 
-                                            @if($all->toArray() != null)
+                                            @if(!is_null($all))
 
                                                 @foreach($all as $data)
                                                     @php
@@ -294,4 +294,12 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+    $("#exampleModal").on("hidden.bs.modal", function () {
+            $(".modal-body input").val("");
+        });
+    </script>
 @endsection

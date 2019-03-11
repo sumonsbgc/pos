@@ -13,6 +13,10 @@
 <script src="{{asset('template_asset/app-assets/vendors/js/forms/validation/jqBootstrapValidation.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/forms/form-login-register.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/modal/components-modal.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/js/scripts/forms/select/form-select2.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/js/scripts/forms/form-repeater.js')}}"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
@@ -24,9 +28,7 @@
             height: 300
         });
 
-        $(".modal").on("hidden.bs.modal", function () {
-            $(".modal-body input").val("");
-        });
+        
         // table = $('#example').DataTable();
         // table.column(1).data().unique();
     });
@@ -65,20 +67,8 @@
 
     }
 
-    function addToSale(value) {
 
-        product_id = value;
 
-        $.ajax({
-            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            url: "{{url('/addToSale')}}"+"/"+product_id,
-            type:'GET',
-            success: function (response) {
-                console.log(response);
-                location.reload();
-            },
-        })
 
-    }
 
 </script>

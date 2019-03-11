@@ -20,7 +20,13 @@ class ProductsController extends Controller
     {
         $products = Product::all()->unique('product_name');
 
-        return view('show_products', compact('products'));
+        $category = Category::where('parent_status','=',0)->get();
+        $sub_category = Category::where('parent_status','=',1)->get();
+        $brands = Brand::all();
+        $suppliers = Supplier::all();
+
+
+        return view('show_products', compact('products','category','sub_category','brands','suppliers'));
 
     }
 
@@ -36,6 +42,8 @@ class ProductsController extends Controller
         return view('unique_items',compact('products','category','sub_category','brands','suppliers'));
 
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -53,6 +61,10 @@ class ProductsController extends Controller
         return view('add_products', compact('category','sub_category','brands','suppliers'));
     }
 
+
+    public function servicing_store(Request $request){
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -88,10 +100,9 @@ class ProductsController extends Controller
         ]);
 
         $all =$request->except(['imei_1','imei_2']);
-
         Product::create($all);
-
-        return redirect('products/create');
+        $message=1;
+        return redirect('products/create')->with('message',$message);
 
 
     }
@@ -136,17 +147,32 @@ class ProductsController extends Controller
 
     }
 
+    public function unique_items_update(Request $request, $id){
+      
+       $data=$request->all();
+;       $updateData=Product::findOrfail($id);
+       $updateData->update($data);
+       return back();
+    }
+
+    
+    public function unique_items_delete(products $id){
+        $deleteData=Product::findOrfail();
+        $deleteData->delete($id);
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(products $id)
+    public function destroy($id)
     {
-        $deleteData=Product::findOrfail();
+        $deleteData=Product::findorfail($id);
         $deleteData->delete($id);
-        return redirect('products/create');
+        return back();
 
     }
 }

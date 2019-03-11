@@ -20,6 +20,23 @@
                     </div>
                 </div>
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @php
+                            $id=0;
+                        @endphp
+                        @foreach ($errors->all() as $error)
+                            @php
+                                $id++;
+                            @endphp
+                            <li>{{$id}}.{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="content-body">
                 <div class="row">
                     <div class="col-12">
@@ -37,83 +54,72 @@
                                 </div>
                             </div>
                             <div class="card-content">
-                                <div class="table-responsive p-1">
-                                    <table class="table table-borderless mb-0">
-                                        <thead>
-                                        <tr>
-                                            <th>Sl</th>
-                                            <th>Product Name</th>
-                                            <th>Description</th>
-                                            <th>Quantity</th>
-                                            <th>Per Price</th>
-                                            <th>Total Price</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @php
-                                            $sl =0
-                                        @endphp
+                                <div class="card-body">
 
-                                        @if($products != null)
-                                        @foreach($products as $product)
+                                    <form action="{{route('sale_store')}}" method="post">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <div class="text-bold-600 font-medium-2">
+                                                    Single Placeholder
+                                                </div>
+                                                <select class="select2-placeholder form-control" id="single-placeholder" onchange="pullProduct(this.value)">
+                                                    <option value="#">Select Or Search Product</option>
 
-                                            @php
-                                                $sl++
-                                            @endphp
+                                                    @foreach($products as $product)
+                                                        <option value="{{$product->id}}"
+                                                                style="border-bottom: 1px dotted #ccc">
+                                                            <p>{{$product->product_name}}</p>
+                                                            <p>{{$product->product_description}}</p>
+                                                            <p>; Color : {{$product->color}}</p>
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table  mb-0">
+                                                        <thead>
+                                                        <tr class="border-solid">
+                                                            <th>Product Name</th>
+                                                            <th>Description</th>
+                                                            <th>Quantity</th>
+                                                            <th>Price</th>
+                                                            <th>Total Price</th>
+                                                            <th></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="t-body" class="product-list">
+                                                        </tbody>
+                                                    </table>
+                                                    <table class="table  mb-0">
+                                                        <tr class="border-solid">
+                                                            <th class="text-bold-700 text-right" width="85%">Total
+                                                                Amount
+                                                            </th>
+                                                            <th id="total_amount" class="text-bold-700 text-left"
+                                                                width="15%"></th>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Customer Name</label>
+                                                <input type="text" name="customer_name" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Customer Contact No</label>
+                                                <input type="text" name="customer_contact_no" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Customer Address</label>
+                                                <textarea type="text" name="customer_add"
+                                                          class="form-control"></textarea>
+                                            </div>
+                                        </div>
 
-                                        <tr>
-                                            <td>{{$sl}}</td>
-                                            <td>{{$product->product_name}}</td>
-                                            <td width="350px">
-                                                @php
-
-                                                echo "Description: ". $product->product_description."<br>";
-
-                                                if ($product->color !=null){
-                                                    echo "Color :".$product->color."<br>";
-                                                }
-                                                if ($product->product_imei != null){
-                                                    echo "IMEI :".$product->product_imei."<br>";
-                                                }
-                                                @endphp
-                                            </td>
-                                            <td width="80px">
-                                                <input type="number" class="form-control quantity_input" id="{{$product->id}}" value="1">
-
-                                            </td>
-                                            <td width="120px"><input type="number" id="retail_rate{{$product->id}}" class="form-control retail_price" value="{{$product->retail_rate}}"></td>
-                                            <td>
-
-                                                <script>
-                                                    var i= document.getElementById('{{$product->id}}').value;
-                                                    var b= document.getElementById('retail_rate{{$product->id}}').value;
-
-                                                    var total  = i*b;
-
-                                                    window.document.write(total);
-
-                                                    console.log(total);
-                                                </script>
-
-                                            </td>
-                                        </tr>
-                                            @endforeach
-
-                                        @endif
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="table-responsive p-1">
-                                    <table class="table mb-0">
-                                        <tbody>
-                                        <td width="85%" class="text-right" style="font-weight: 700;">Total Amount :</td>
-                                        <td width="15%" class="text-right" style="font-weight: 700;">20000</td>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="card-body-btn p-1 text-right">
-                                    <button class="btn btn-warning">Remove All</button>
-                                    <button class="btn btn-success">Sell</button>
+                                        <button type="submit">Sell</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -123,4 +129,77 @@
         </div>
     </div>
 
-    @endsection
+@endsection
+
+@section('scripts')
+    <script>
+        function pullProduct(value) {
+
+            id = value;
+            console.log(id);
+
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{url('/saleProduct')}}" + "/" + id,
+                type: 'GET',
+                success: function (response) {
+
+                    $('#t-body').append(response);
+
+                    get_total();
+                },
+            });
+
+        }
+
+        function get_total() {
+            sum=0;
+
+            var a= $('.sell_total_price');
+            //console.log(a);
+            a.each(function (inx, cv) {
+                //console.log(cv);
+                sum+=parseInt($(cv).text());
+                //console.log(sum);
+                $('#total_amount').text(sum);
+            });
+        }
+
+        function total_price(val) {
+
+            var idName = val;
+            var num = idName.charAt(idName.length - 1);
+
+            var quantity = $('#quantity_'+num).val();
+
+            var price = $('#price_'+num).val();
+            var total = parseInt(quantity) * parseInt(price);
+            $('#total_price_'+num).text(total);
+
+            $('#total'+num).val(total);
+
+            var a= $('.sell_total_price');
+            //console.log(a);
+
+            get_total();
+        }
+
+
+        function remove_row(val) {
+            var idName = val;
+            var num = idName.charAt(idName.length - 1);
+
+            //console.log(idName);
+
+            var remove_btn = $('#'+idName);
+
+            $('#product_row_'+num).remove();
+
+            get_total();
+        }
+
+
+
+
+    </script>
+@endsection

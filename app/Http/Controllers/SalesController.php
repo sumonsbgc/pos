@@ -3,28 +3,126 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Sales_entry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class SalesController extends Controller
 {
+    public function store(Request $request){
 
-    public function addToSale($id){
+        $current_date = date('ym');
 
-        $product = Product::where('id',$id)->first();
+        $generate_num = $current_date. '00';
 
-        session()->push('select_product',$product);
+        $single_data = Sales_entry::all();
 
-        return session('select_product');
+
+        if (isset($single_data->last()->receipt_no)){
+            $receipt_no = $single_data->last()->receipt_no;
+            $receipt_first_four = $receipt_no[0] . $receipt_no[1] . $receipt_no[2] . $receipt_no[3];
+
+            if ($receipt_first_four != $current_date){
+                $receipt_num = $generate_num . 1;
+            }
+            else{
+                $receipt_num = $receipt_no + 1;
+            }
+        }else{
+            $receipt_num = $generate_num . 1;
+        }
+
+
+
+
+        $products_id = $request->pro_id;
+        $quantity = $request->qty;
+        $rate = $request->rate;
+
+        $count_p_id = count($products_id);
+
+        if ($count_p_id > 1){
+
+            for ($i = 0; $i < $count_p_id; $i++){
+
+                $request->validate([
+                    'pro_id' =>'required',
+                    'qty' =>'required',
+                    'rate' =>'required',
+                    'customer_name'=>'required',
+                    'customer_contact_no'=>'required',
+                    'customer_add'=>'required'
+                ]);
+
+                $request['receipt_no'] = $receipt_num;
+                $request['user_id'] = Auth::user()->id;
+
+                $request['product_id'] = $products_id[$i];
+                $request['sale_quantity'] = $quantity[$i];
+                $request['retail_rate'] = $rate[$i];
+
+                $all = $request->except('pro_id','qty','rate');
+
+                Sales_entry::create($all);
+
+            }
+
+        }
+        else{
+            $request->validate([
+                'pro_id' =>'required',
+                'qty' =>'required',
+                'rate' =>'required',
+                'customer_name'=>'required',
+                'customer_contact_no'=>'required',
+                'customer_add'=>'required'
+            ]);
+
+            $request['receipt_no'] = $receipt_num;
+            $request['user_id'] = Auth::user()->id;
+
+            $request['product_id'] = $products_id[0];
+            $request['sale_quantity'] = $quantity[0];
+            $request['retail_rate'] = $rate[0];
+
+            $all = $request->except('pro_id','qty','rate');
+
+            Sales_entry::create($all);
+        }
+
+        return view('invoice',compact('receipt_num'));
 
 
     }
 
     public function show_sales_form(){
 
-        $products= session('select_product');
+        $products= Product::all();
 
         return view('sale',compact('products'));
     }
+
+    public function saleProduct($id){
+
+        $products = Product::where('id',$id)->first();
+
+        $html = "
+                <tr id='product_row_$products->id'>
+                    <input type='hidden' name='pro_id[]' value='$products->id'>
+                    <td>$products->product_name</td>
+                    <td>$products->product_description</td>
+                    <td><input type='number' name='qty[]' class='quantity $products->id' id='quantity_$products->id' value='1' onkeyup='total_price(this.id)'></td>
+                    <td><input type='number' name='rate[]' value='$products->retail_rate' class='sell_price $products->id' id='price_$products->id' onkeyup='total_price(this.id)'></td>
+                    <td class='sell_total_price' id='total_price_$products->id'>$products->retail_rate</td>
+                    <td><button class='btn btn-sm btn-outline-danger remove' id='remove_$products->id' type='button' onclick='remove_row(this.id)'>x</button></td>
+                </tr>
+        
+        ";
+
+        return $html;
+
+    }
+
 
 }
