@@ -72,6 +72,9 @@
                                                             <p>{{$product->product_name}}</p>
                                                             <p>{{$product->product_description}}</p>
                                                             <p>; Color : {{$product->color}}</p>
+                                                            @if($product->product_imei != null)
+                                                                <p>; IMEI : {{$product->product_imei}}</p>
+                                                            @endif
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -118,7 +121,64 @@
                                             </div>
                                         </div>
 
-                                        <button type="submit">Sell</button>
+                                        <div class="row">
+                                            <div class="col-lg-12 text-right">
+                                                <button type="button" class="btn btn-danger text-bold-700" data-toggle="modal" data-target="#by_bkash">By bKash</button>
+                                                <button type="button" class="btn btn-primary text-bold-700" data-toggle="modal" data-target="#by_cash">By Cash</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="by_bkash" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">By B-Kash</h5>
+
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div class="form-group">
+                                                            <input type="text" placeholder="Transction Id" value="" name="transaction_id" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Paid</label>
+                                                            <input type="text" id="receive_amount" placeholder="receive_amount" value="" name="receive_amount" class="form-control" onkeyup="paid(this.value)">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Due</label>
+                                                            <input type="text" id="due" placeholder="" value="" name="due_amount" class="form-control">
+                                                        </div>
+
+                                                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                                                        <button class="btn btn-primary" type="submit"><strong>SELL</strong></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="by_cash" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">By Cash</h5>
+
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>Paid</label>
+                                                            <input type="text" id="receive_amount_1" placeholder="receive_amount" value="" name="receive_amount" class="form-control" onkeyup="paid(this.value)">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Due</label>
+                                                            <input type="text" id="due_1" placeholder="" value="" name="due_amount" class="form-control">
+                                                        </div>
+
+                                                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                                                        <button class="btn btn-primary" type="submit"><strong>SELL</strong></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -147,8 +207,24 @@
                     $('#t-body').append(response);
 
                     get_total();
+
+                    $('#receive_amount').val(get_total());
+                    $('#receive_amount_1').val(get_total());
                 },
             });
+
+        }
+
+        function paid(value) {
+
+            var paid = value;
+
+            var total = get_total();
+
+            var due = total - paid;
+
+            $('#due').val(due);
+            $('#due_1').val(due);
 
         }
 
@@ -163,6 +239,8 @@
                 //console.log(sum);
                 $('#total_amount').text(sum);
             });
+
+            return sum;
         }
 
         function total_price(val) {

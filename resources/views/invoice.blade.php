@@ -49,11 +49,7 @@
                             </div>
                             <div class="col-md-6 col-sm-12 text-center text-md-right">
                                 <h2>INVOICE</h2>
-                                <p class="pb-3"># {{$receipt_num}}</p>
-                                <ul class="px-0 list-unstyled">
-                                    <li>Balance Due</li>
-                                    <li class="lead text-bold-800">$ 12,000.00</li>
-                                </ul>
+                                <p class="pb-3">#{{$receipt_no}}</p>
                             </div>
                         </div>
                         <!--/ Invoice Company Details -->
@@ -65,16 +61,23 @@
                             </div>
                             <div class="col-md-6 col-sm-12 text-center text-md-left">
                                 <ul class="px-0 list-unstyled">
-                                    <li class="text-bold-800">Mr. Bret Lezama</li>
-                                    <li>4879 Westfall Avenue,</li>
-                                    <li>Albuquerque,</li>
-                                    <li>New Mexico-87102.</li>
+                                    <li class="text-bold-800">Customer Name : {{$all[0]->customer_name}}</li>
+                                    <li>Contact No : {{$all[0]->customer_contact_no}}</li>
+                                    <li>Address : {{$all[0]->customer_add}}</li>
                                 </ul>
                             </div>
                             <div class="col-md-6 col-sm-12 text-center text-md-right">
-                                <p><span class="text-muted">Invoice Date :</span> 06/05/2016</p>
-                                <p><span class="text-muted">Terms :</span> Due on Receipt</p>
-                                <p><span class="text-muted">Due Date :</span> 10/05/2016</p>
+                                <p><span class="text-muted">Invoice Date :</span>
+
+                                    @php
+
+                                        $date = date_create($all[0]->created_at);
+
+                                        echo date_format($date,'d-M-Y');
+
+                                    @endphp
+
+                                </p>
                             </div>
                         </div>
                         <!--/ Invoice Customer Details -->
@@ -88,42 +91,33 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Item & Description</th>
-                                            <th class="text-right">Rate</th>
-                                            <th class="text-right">Hours</th>
+                                            <th class="text-right">Quantity</th>
+                                            <th class="text-right">Price</th>
                                             <th class="text-right">Amount</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+
+                                        @foreach($all as $one)
+
                                         <tr>
                                             <th scope="row">1</th>
                                             <td>
-                                                <p>Create PSD for mobile APP</p>
-                                                <p class="text-muted">Simply dummy text of the printing and typesetting industry.</p>
+                                                <p>{{$one->product_name}}</p>
+                                                <p class="text-muted">{{$one->product_description}}</p>
+
+                                                @if($one->imei != null)
+                                                    <p class="text-muted">IMEI : {{$one->imei}}</p>
+                                                @endif
+                                                @if($one->color != null)
+                                                    <p class="text-muted">Color : {{$one->color}}</p>
+                                                @endif
                                             </td>
-                                            <td class="text-right">$ 20.00/hr</td>
-                                            <td class="text-right">120</td>
-                                            <td class="text-right">$ 2400.00</td>
+                                            <td class="text-right">{{$one->sale_quantity}}</td>
+                                            <td class="text-right">{{$one->retail_rate}}</td>
+                                            <td class="text-right">{{$one->sale_quantity * $one->retail_rate}}</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>
-                                                <p>iOS Application Development</p>
-                                                <p class="text-muted">Pellentesque maximus feugiat lorem at cursus.</p>
-                                            </td>
-                                            <td class="text-right">$ 25.00/hr</td>
-                                            <td class="text-right">260</td>
-                                            <td class="text-right">$ 6500.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>
-                                                <p>WordPress Template Development</p>
-                                                <p class="text-muted">Vestibulum euismod est eu elit convallis.</p>
-                                            </td>
-                                            <td class="text-right">$ 20.00/hr</td>
-                                            <td class="text-right">300</td>
-                                            <td class="text-right">$ 6000.00</td>
-                                        </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -135,51 +129,43 @@
                                         <div class="col-md-8">
                                             <table class="table table-borderless table-sm">
                                                 <tbody>
-                                                <tr>
-                                                    <td>Bank name:</td>
-                                                    <td class="text-right">ABC Bank, USA</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Acc name:</td>
-                                                    <td class="text-right">Amanda Orton</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>IBAN:</td>
-                                                    <td class="text-right">FGS165461646546AA</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>SWIFT code:</td>
-                                                    <td class="text-right">BTNPP34</td>
-                                                </tr>
+
+                                                @if($all[0]->transaction_id != null)
+                                                    <tr>
+                                                        <td>Payment By :</td>
+                                                        <td class="text-right">bKash</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Transaction : </td>
+                                                        <td class="text-right">{{$all[0]->transaction_id}}</td>
+                                                    </tr>
+                                                @else
+                                                    <tr>
+                                                        <td>Payment By :</td>
+                                                        <td class="text-right">Cash</td>
+                                                    </tr>
+                                                @endif
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-sm-12">
-                                    <p class="lead">Total due</p>
+                                    <p class="lead">Total</p>
                                     <div class="table-responsive">
                                         <table class="table">
                                             <tbody>
                                             <tr>
-                                                <td>Sub Total</td>
-                                                <td class="text-right">$ 14,900.00</td>
+                                                <td>Total</td>
+                                                <td class="text-right">{{round($total_amount)}}</td>
                                             </tr>
                                             <tr>
-                                                <td>TAX (12%)</td>
-                                                <td class="text-right">$ 1,788.00</td>
+                                                <td>Paid</td>
+                                                <td class="text-right">{{$all[0]->receive_amount}}</td>
                                             </tr>
                                             <tr>
-                                                <td class="text-bold-800">Total</td>
-                                                <td class="text-bold-800 text-right"> $ 16,688.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Payment Made</td>
-                                                <td class="pink text-right">(-) $ 4,688.00</td>
-                                            </tr>
-                                            <tr class="bg-grey bg-lighten-4">
-                                                <td class="text-bold-800">Balance Due</td>
-                                                <td class="text-bold-800 text-right">$ 12,000.00</td>
+                                                <td class="text-bold-800">Due</td>
+                                                <td class="text-bold-800 text-right">{{$all[0]->due_amount}}</td>
                                             </tr>
                                             </tbody>
                                         </table>

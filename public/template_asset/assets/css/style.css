@@ -189,3 +189,6 @@ body {
     width: 100% !important;
 
 }
+.t-column input{
+    width: 90px;
+}

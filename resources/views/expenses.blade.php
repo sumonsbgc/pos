@@ -295,3 +295,12 @@
         </div>
     </div>
 @endsection
+
+
+@section('scripts')
+    <script>
+        $(".modal").on("hidden.bs.modal", function () {
+            $(".modal-body input").val("");
+        });
+    </script>
+    @endsection

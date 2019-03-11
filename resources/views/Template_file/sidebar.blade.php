@@ -76,6 +76,10 @@
                         <a href="{{url('/show_purchase_notes')}}"><span class="menu-title"
                                                                         data-i18n="">Show All Sale</span></a>
                     </li>
+                    <li>
+                        <a href="{{url('/sales_history')}}"><span class="menu-title"
+                                                                        data-i18n="">Sales History</span></a>
+                    </li>
                 </ul>
             </li>
         </ul>

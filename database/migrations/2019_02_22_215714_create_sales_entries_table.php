@@ -26,6 +26,7 @@ class CreateSalesEntriesTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->string('sale_quantity');
             $table->string('retail_rate');
+            $table->string('transaction_id')->nullable();
             $table->string('discount')->nullable();
             $table->string('vat')->nullable();
             $table->string('net_amount')->nullable();

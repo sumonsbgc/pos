@@ -12,6 +12,8 @@ class SalesController extends Controller
 {
     public function store(Request $request){
 
+//        dd($request);
+
         $current_date = date('ym');
 
         $generate_num = $current_date. '00';
@@ -20,17 +22,17 @@ class SalesController extends Controller
 
 
         if (isset($single_data->last()->receipt_no)){
-            $receipt_no = $single_data->last()->receipt_no;
-            $receipt_first_four = $receipt_no[0] . $receipt_no[1] . $receipt_no[2] . $receipt_no[3];
+            $receipt = $single_data->last()->receipt_no;
+            $receipt_first_four = $receipt[0] . $receipt[1] . $receipt[2] . $receipt[3];
 
             if ($receipt_first_four != $current_date){
-                $receipt_num = $generate_num . 1;
+                $receipt_no = $generate_num . 1;
             }
             else{
-                $receipt_num = $receipt_no + 1;
+                $receipt_no = $receipt + 1;
             }
         }else{
-            $receipt_num = $generate_num . 1;
+            $receipt_no = $generate_num . 1;
         }
 
 
@@ -55,7 +57,7 @@ class SalesController extends Controller
                     'customer_add'=>'required'
                 ]);
 
-                $request['receipt_no'] = $receipt_num;
+                $request['receipt_no'] = $receipt_no;
                 $request['user_id'] = Auth::user()->id;
 
                 $request['product_id'] = $products_id[$i];
@@ -79,7 +81,7 @@ class SalesController extends Controller
                 'customer_add'=>'required'
             ]);
 
-            $request['receipt_no'] = $receipt_num;
+            $request['receipt_no'] = $receipt_no;
             $request['user_id'] = Auth::user()->id;
 
             $request['product_id'] = $products_id[0];
@@ -91,7 +93,7 @@ class SalesController extends Controller
             Sales_entry::create($all);
         }
 
-        return view('invoice',compact('receipt_num'));
+        return redirect('product_invoice/'.$receipt_no);
 
 
     }
@@ -112,8 +114,8 @@ class SalesController extends Controller
                     <input type='hidden' name='pro_id[]' value='$products->id'>
                     <td>$products->product_name</td>
                     <td>$products->product_description</td>
-                    <td><input type='number' name='qty[]' class='quantity $products->id' id='quantity_$products->id' value='1' onkeyup='total_price(this.id)'></td>
-                    <td><input type='number' name='rate[]' value='$products->retail_rate' class='sell_price $products->id' id='price_$products->id' onkeyup='total_price(this.id)'></td>
+                    <td class='t-column'><input type='number' name='qty[]' class='quantity $products->id' id='quantity_$products->id' value='1' onkeyup='total_price(this.id)'></td>
+                    <td class='t-column'><input type='number' name='rate[]' value='$products->retail_rate' class='sell_price $products->id' id='price_$products->id' onkeyup='total_price(this.id)'></td>
                     <td class='sell_total_price' id='total_price_$products->id'>$products->retail_rate</td>
                     <td><button class='btn btn-sm btn-outline-danger remove' id='remove_$products->id' type='button' onclick='remove_row(this.id)'>x</button></td>
                 </tr>
@@ -124,5 +126,11 @@ class SalesController extends Controller
 
     }
 
+    public function sales_history(){
 
+        $all  = Sales_entry::all()->unique('receipt_no');
+
+        return view('sales_history',compact('all'));
+
+    }
 }

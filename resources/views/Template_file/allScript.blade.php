@@ -28,9 +28,6 @@
             height: 300
         });
 
-        $(".modal").on("hidden.bs.modal", function () {
-            $(".modal-body input").val("");
-        });
         // table = $('#example').DataTable();
         // table.column(1).data().unique();
     });
