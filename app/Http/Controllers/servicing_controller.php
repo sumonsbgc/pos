@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Brand;
-use App\Category;
+use App\servicing;
 use Illuminate\Http\Request;
 
-class BrandsController extends Controller
+class servicing_controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,7 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        $all=Brand::all();
-        $category = Category::where('parent_status','=',0)->get();
-        $sub_category = Category::where('parent_status','=',1)->get();
-        return view('brands',compact('all', 'category', 'sub_category'));
+        return view('add_servicing_product');
     }
 
     /**
@@ -27,7 +23,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        return redirect('brands');
+        return view('add_servicing_product');
     }
 
     /**
@@ -38,16 +34,19 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $this->validate($request,[
-            'brand_name'=>'required'
+            'customer_name'=>'required',
+            'product_name'=>'required',
+            'address'=>'required',
+            'mobile'=>'required'
+
         ]);
         $store=$request->all();
-        Brand::create($store);  
-       $message=1;
-        return redirect('brands')->with('message',$message);
+        servicing::create($store);
+        $message=1;
+        return redirect('servicing')->with('message',$message);
     }
+
     /**
      * Display the specified resource.
      *
@@ -56,7 +55,8 @@ class BrandsController extends Controller
      */
     public function show($id)
     {
-        
+        $all=servicing::all();
+        return view('show_servicing_products',compact('all'));
     }
 
     /**
@@ -78,15 +78,17 @@ class BrandsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $newData=$request->all();
-
-        $updateData=Brand::findorfail($id);
-
-        $updateData->update($newData);
-
-        return redirect('brands');
-
+    {    
+        $updataData=servicing::findOrfail($id);
+        $updataData->customer_name=$request->customer_name;
+        $updataData->address=$request->address;
+        $updataData->mobile=$request->mobile;
+        $updataData->product_name=$request->product_name;
+        $updataData->service_charge=$request->service_charge;
+        $updataData->paid=$request->paid;
+        $updataData->due=$request->due;
+        $updataData->save();
+        return back();
     }
 
     /**
@@ -97,8 +99,8 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        $deletaData=brand::findorfail($id);
-        $deletaData->delete($deletaData);
-        return redirect('brands');
+        $deleteData=servicing::findOrfail($id);
+        $deleteData->delete();
+        return back();
     }
 }

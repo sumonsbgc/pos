@@ -28,6 +28,10 @@
             height: 300
         });
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> bb18717d530fa68596a780c406f3aa72ab65e952
         // table = $('#example').DataTable();
         // table.column(1).data().unique();
     });

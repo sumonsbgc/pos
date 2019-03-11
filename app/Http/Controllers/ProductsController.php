@@ -43,6 +43,8 @@ class ProductsController extends Controller
 
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -59,6 +61,10 @@ class ProductsController extends Controller
         return view('add_products', compact('category','sub_category','brands','suppliers'));
     }
 
+
+    public function servicing_store(Request $request){
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -94,10 +100,9 @@ class ProductsController extends Controller
         ]);
 
         $all =$request->except(['imei_1','imei_2']);
-
         Product::create($all);
-
-        return redirect('products/create');
+        $message=1;
+        return redirect('products/create')->with('message',$message);
 
 
     }
@@ -140,6 +145,21 @@ class ProductsController extends Controller
 
 
 
+    }
+
+    public function unique_items_update(Request $request, $id){
+      
+       $data=$request->all();
+;       $updateData=Product::findOrfail($id);
+       $updateData->update($data);
+       return back();
+    }
+
+    
+    public function unique_items_delete(products $id){
+        $deleteData=Product::findOrfail();
+        $deleteData->delete($id);
+        return back();
     }
 
     /**

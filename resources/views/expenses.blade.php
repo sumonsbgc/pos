@@ -296,6 +296,7 @@
     </div>
 @endsection
 
+<<<<<<< HEAD
 
 @section('scripts')
     <script>
@@ -304,3 +305,12 @@
         });
     </script>
     @endsection
+=======
+@section('scripts')
+    <script>
+    $("#exampleModal").on("hidden.bs.modal", function () {
+            $(".modal-body input").val("");
+        });
+    </script>
+@endsection
+>>>>>>> bb18717d530fa68596a780c406f3aa72ab65e952

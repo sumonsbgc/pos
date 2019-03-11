@@ -49,8 +49,8 @@ class SupplierController extends Controller
         $all =$request->all();
 
         Supplier::create($all);
-
-        return redirect('supplier/create');
+$message=1;
+        return redirect('supplier/create')->with('message',$message);
     }
 
     /**

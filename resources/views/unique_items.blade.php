@@ -140,9 +140,9 @@
                                                             <div class="modal-body">
 
                                                                 <form class="form form-horizontal"
-                                                                      action="{{route('products.update',$data->id)}}"
+                                                                      action="{{url('update_data',$data->id)}}"
                                                                       method="post">
-                                                                    @method('PATCH') @csrf
+                                                                    @csrf
 
                                                                     <div class="form-body">
                                                                         <div class="form-group row">
@@ -297,7 +297,7 @@
                                                             </div>
                                                             <div class="modal-footer">
 
-                                                                <form action="{{route('products.destroy',$data->id)}}"
+                                                                <form action="{{url('delete_data',$data->id)}}"
                                                                       method="POST">
                                                                     {{ method_field('DELETE') }} @csrf
 

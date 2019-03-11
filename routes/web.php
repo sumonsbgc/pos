@@ -31,9 +31,13 @@ Route::middleware('auth')->group(function (){
     Route::resource('/supplier', 'SupplierController');
     Route::resource('/products', 'ProductsController');
     Route::get('/unique_items/{name}','ProductsController@unique_items');
+    Route::post('/update_data/{id}','ProductsController@unique_items_update');
+    Route::post('/delete_data/{id}','ProductsController@unique_items_delete');
 
     Route::resource('/users', 'UsersController');
     Route::resource('/expenses','ExpensesCtrl');
+
+    Route::resource('/servicing', 'servicing_controller');
 
     Route::get('/my_account','UsersController@user_profile');
     Route::post('/update_password','UsersController@update_password')->name('update_password');
