@@ -14,6 +14,7 @@ class SalesController extends Controller
 
 //        dd($request);
 
+
         $current_date = date('ym');
 
         $generate_num = $current_date. '00';
@@ -36,6 +37,9 @@ class SalesController extends Controller
         }
 
 
+        
+
+
 
 
         $products_id = $request->pro_id;
@@ -43,6 +47,8 @@ class SalesController extends Controller
         $rate = $request->rate;
 
         $count_p_id = count($products_id);
+
+   
 
         if ($count_p_id > 1){
 
@@ -81,19 +87,40 @@ class SalesController extends Controller
                 'customer_add'=>'required'
             ]);
 
+           
+
             $request['receipt_no'] = $receipt_no;
             $request['user_id'] = Auth::user()->id;
 
             $request['product_id'] = $products_id[0];
             $request['sale_quantity'] = $quantity[0];
             $request['retail_rate'] = $rate[0];
+            
 
             $all = $request->except('pro_id','qty','rate');
-
+         
             Sales_entry::create($all);
+     
         }
+        // var_dump($quantity);
+        // dd($products_id);
+        $count = 0;
 
-        return redirect('product_invoice/'.$receipt_no);
+        // foreach($quantity as $q){
+            // $count++;
+            foreach($products_id as $p_id){
+               
+
+                // if($count ==1 || $count / 2 == 0){
+                    $p_quantity=Product::where('id',$p_id)->select('quantity')->first();
+                // $p_quantity = $p_quantity->quantity - $q;
+                
+                Product::where('id',$p_id)->update(['status'=>1]);
+                }
+            
+      
+        
+     return redirect('product_invoice/'.$receipt_no);
 
 
     }
