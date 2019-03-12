@@ -102,19 +102,11 @@ class SalesController extends Controller
             Sales_entry::create($all);
      
         }
-        // var_dump($quantity);
-        // dd($products_id);
-        $count = 0;
-
-        // foreach($quantity as $q){
-            // $count++;
+     
+      
+        
             foreach($products_id as $p_id){
-               
-
-                // if($count ==1 || $count / 2 == 0){
-                    $p_quantity=Product::where('id',$p_id)->select('quantity')->first();
-                // $p_quantity = $p_quantity->quantity - $q;
-                
+                $p_quantity=Product::where('id',$p_id)->select('quantity')->first();     
                 Product::where('id',$p_id)->update(['status'=>1]);
                 }
             
