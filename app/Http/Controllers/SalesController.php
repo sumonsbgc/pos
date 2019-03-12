@@ -68,12 +68,13 @@ class SalesController extends Controller
             $p_quan = Product::where('id',$products_id[$i])->select('quantity')->first();
 
             if ($p_quan->quantity == null){
+
                 Product::where('id',$products_id[$i])->update(['status'=>1]);
             }else{
                 $total_quantity = $p_quan->quantity - $quantity[$i];
                 Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
             }
-
+          
         }
 
 

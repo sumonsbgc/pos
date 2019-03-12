@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Sales_entry;
-use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

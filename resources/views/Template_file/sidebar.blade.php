@@ -23,6 +23,9 @@
             <li class=" nav-item"><a href="{{url('/brands/create')}}"><i class="ft-star"></i><span class="menu-title"
                                                                                                    data-i18n="">Product Brand</span></a>
             </li>
+            <li class=" nav-item"><a href="{{url('/reports')}}"><i class="ft-star"></i><span class="menu-title"
+                                                                                                   data-i18n="">Reports</span></a>
+            </li>
             <li class=" nav-item"><a href="{{url('/categories/create')}}"><i class="ft-navigation"></i><span
                             class="menu-title" data-i18n="">Product Category</span></a>
             </li>

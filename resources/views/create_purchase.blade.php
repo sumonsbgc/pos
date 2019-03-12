@@ -85,24 +85,24 @@
                                                             <input type="text" class="form-control" id="date1" name="transaction_type">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="date1">Total Amount</label>
-                                                            <input type="text" class="form-control" id="date1" name="total_amount">
+                                                            <input type="number" class="form-control" id="total_amount" name="total_amount">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="date1">Paid Amount</label>
-                                                            <input type="text" class="form-control" id="date1" name="cash_purchase">
+                                                            <input type="number" class="form-control" id="cash_purchase" name="cash_purchase" onkeyup="for_due(this.value)">
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="col-md-2">
+                                                    <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="date1">Due Amount</label>
-                                                            <input type="text" class="form-control" id="date1" name="credit_purchase">
+                                                            <input type="number" class="form-control" id="credit_purchase" name="credit_purchase" disabled>
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
                                                     <div class="col-md-12 text-right">
                                                         <button type="submit" class="btn btn-primary">ADD</button>
                                                     </div>
@@ -149,14 +149,27 @@
     @section('scripts')
     <script>
 
-@if(Session::has('message'))
-$('successModal').modal('show');
+    @if(Session::has('message'))
+    $('successModal').modal('show');
 
-@endif
-$('successModal').delay(4000).fadeOut('slow');
-setTimeout(function()){
-    $('$successModal').modal('hide')
-},2500);
+    @endif
+    $('successModal').delay(4000).fadeOut('slow');
+    // setTimeout(function()){
+    //     $('$successModal').modal('hide')
+    // },2500);
+
+    function for_due(value) {
+
+        var cash = value;
+
+        var total = $('#total_amount').val();
+
+        var due = total - cash;
+
+        $('#credit_purchase').val(due);
+
+    }
+
 
     </script>
 
