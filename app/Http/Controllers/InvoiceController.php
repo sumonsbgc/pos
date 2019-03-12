@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sales_entry;
+use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,8 +17,6 @@ class InvoiceController extends Controller
             ->where('sales_entries.receipt_no','=',$receipt_no)->get();
 
 //            dd($all);
-
-        $total_amount =Sales_entry::where('receipt_no',$receipt_no)->sum('retail_rate');
 
 
         return view('invoice', compact('all','receipt_no','total_amount'));

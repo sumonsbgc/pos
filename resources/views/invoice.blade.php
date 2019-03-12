@@ -115,7 +115,7 @@
                                             </td>
                                             <td class="text-right">{{$one->sale_quantity}}</td>
                                             <td class="text-right">{{$one->retail_rate}}</td>
-                                            <td class="text-right">{{$one->sale_quantity * $one->retail_rate}}</td>
+                                            <td class="text-right invoice-amount">{{$one->sale_quantity * $one->retail_rate}}</td>
                                         </tr>
                                         @endforeach
                                         </tbody>
@@ -157,7 +157,7 @@
                                             <tbody>
                                             <tr>
                                                 <td>Total</td>
-                                                <td class="text-right">{{round($total_amount)}}</td>
+                                                <td class="text-right" id="total_amount"></td>
                                             </tr>
                                             <tr>
                                                 <td>Paid</td>
@@ -199,5 +199,25 @@
             </div>
         </div>
     </div>
+
+    @endsection
+
+
+@section('scripts')
+
+    <script>
+
+        sum=0;
+
+        var a= $('.invoice-amount');
+        //console.log(a);
+        a.each(function (inx, cv) {
+            //console.log(cv);
+            sum+=parseInt($(cv).text());
+            //console.log(sum);
+            $('#total_amount').text(sum);
+        });
+
+    </script>
 
     @endsection

@@ -44,34 +44,7 @@ class SalesController extends Controller
 
         $count_p_id = count($products_id);
 
-        if ($count_p_id > 1){
-
-            for ($i = 0; $i < $count_p_id; $i++){
-
-                $request->validate([
-                    'pro_id' =>'required',
-                    'qty' =>'required',
-                    'rate' =>'required',
-                    'customer_name'=>'required',
-                    'customer_contact_no'=>'required',
-                    'customer_add'=>'required'
-                ]);
-
-                $request['receipt_no'] = $receipt_no;
-                $request['user_id'] = Auth::user()->id;
-
-                $request['product_id'] = $products_id[$i];
-                $request['sale_quantity'] = $quantity[$i];
-                $request['retail_rate'] = $rate[$i];
-
-                $all = $request->except('pro_id','qty','rate');
-
-                Sales_entry::create($all);
-
-            }
-
-        }
-        else{
+        for ($i = 0; $i < $count_p_id; $i++){
             $request->validate([
                 'pro_id' =>'required',
                 'qty' =>'required',
@@ -84,14 +57,25 @@ class SalesController extends Controller
             $request['receipt_no'] = $receipt_no;
             $request['user_id'] = Auth::user()->id;
 
-            $request['product_id'] = $products_id[0];
-            $request['sale_quantity'] = $quantity[0];
-            $request['retail_rate'] = $rate[0];
+            $request['product_id'] = $products_id[$i];
+            $request['sale_quantity'] = $quantity[$i];
+            $request['retail_rate'] = $rate[$i];
 
             $all = $request->except('pro_id','qty','rate');
 
             Sales_entry::create($all);
+
+            $p_quan = Product::where('id',$products_id[$i])->select('quantity')->first();
+
+            if ($p_quan->quantity == null){
+                Product::where('id',$products_id[$i])->update(['status'=>1]);
+            }else{
+                $total_quantity = $p_quan->quantity - $quantity[$i];
+                Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
+            }
+
         }
+
 
         return redirect('product_invoice/'.$receipt_no);
 
@@ -100,7 +84,7 @@ class SalesController extends Controller
 
     public function show_sales_form(){
 
-        $products= Product::all();
+        $products= Product::where('status','0')->get();
 
         return view('sale',compact('products'));
     }
