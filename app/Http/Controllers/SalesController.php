@@ -74,10 +74,10 @@ class SalesController extends Controller
                 $total_quantity = $p_quan->quantity - $quantity[$i];
                 Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
             }
-          
+
         }
 
-
+//        Product::where('id',$products_id)->delete(['product_id'=>$products_id]);
         return redirect('product_invoice/'.$receipt_no);
 
 
