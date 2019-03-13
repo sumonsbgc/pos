@@ -123,8 +123,8 @@
 
                                         <div class="row">
                                             <div class="col-lg-12 text-right">
-                                                <button type="button" class="btn btn-danger text-bold-700" data-toggle="modal" data-target="#by_bkash">By bKash</button>
-                                                <button type="button" class="btn btn-primary text-bold-700" data-toggle="modal" data-target="#by_cash">By Cash</button>
+                                                <button type="button" class="btn btn-danger text-bold-700" data-toggle="modal" data-target="#by_bkash" onclick="this_total()">By bKash</button>
+                                                <button type="button" class="btn btn-primary text-bold-700" data-toggle="modal" data-target="#by_cash" onclick="this_total()">By Cash</button>
                                             </div>
                                         </div>
 
@@ -208,8 +208,7 @@
 
                     get_total();
 
-                    $('#receive_amount').val(get_total());
-                    $('#receive_amount_1').val(get_total());
+
                 },
             });
 
@@ -241,6 +240,10 @@
             });
 
             return sum;
+        }
+        function this_total() {
+            $('#receive_amount').val(get_total());
+            $('#receive_amount_1').val(get_total());
         }
 
         function total_price(val) {
@@ -275,9 +278,6 @@
 
             get_total();
         }
-
-
-
 
     </script>
 @endsection

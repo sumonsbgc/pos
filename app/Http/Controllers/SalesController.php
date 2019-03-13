@@ -92,23 +92,28 @@ class SalesController extends Controller
             $request['receipt_no'] = $receipt_no;
             $request['user_id'] = Auth::user()->id;
 
-            $request['product_id'] = $products_id[0];
-            $request['sale_quantity'] = $quantity[0];
-            $request['retail_rate'] = $rate[0];
+            $request['product_id'] = $products_id[$i];
+            $request['sale_quantity'] = $quantity[$i];
+            $request['retail_rate'] = $rate[$i];
             
 
             $all = $request->except('pro_id','qty','rate');
          
             Sales_entry::create($all);
      
+            $p_quan = Product::where('id',$products_id[$i])->select('quantity')->first();
+      
         }
      
-      
         
-            foreach($products_id as $p_id){
-                $p_quantity=Product::where('id',$p_id)->select('quantity')->first();     
-                Product::where('id',$p_id)->update(['status'=>1]);
-                }
+            // foreach($products_id as $p_id){
+            //     $p_quantity=Product::where('id',$p_id)->select('quantity')->first();     
+            //     Product::where('id',$p_id)->update(['status'=>1]);
+            //     }
+
+
+
+
             
       
         

@@ -17,8 +17,6 @@ class InvoiceController extends Controller
 
 //            dd($all);
 
-        $total_amount =Sales_entry::where('receipt_no',$receipt_no)->sum('retail_rate');
-
 
         return view('invoice', compact('all','receipt_no','total_amount'));
 

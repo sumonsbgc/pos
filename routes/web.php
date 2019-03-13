@@ -55,6 +55,9 @@ Route::middleware('auth')->group(function (){
     Route::get('/product_invoice/{receipt_no}','InvoiceController@product_invoice');
 
 
+    Route::get('/reports','ReportsController@default');
+
+
 
 });
 

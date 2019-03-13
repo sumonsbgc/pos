@@ -96,12 +96,12 @@
                                             <tr>
                                                 <td class="text-bold-800">Due Amount</td>
                                                 <td class="text-bold-800 text-right">
-                                                    @php
-                                                    $due = $single->total_amount - $single->cash_purchase;
-                                                    echo $due;
-                                                    @endphp
+                                                    {{--@php--}}
+                                                    {{--$due = $single->total_amount - $single->cash_purchase;--}}
+                                                    {{--echo $due;--}}
+                                                    {{--@endphp--}}
 
-                                                    {{-- {{$single->credit_purchase}} --}}
+                                                     {{$single->credit_purchase}}
                                                 </td>
                                             </tr>
                                             <tr>
