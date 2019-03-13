@@ -112,12 +112,26 @@ class SalesController extends Controller
             //     }
 
 
+<<<<<<< HEAD
+=======
+                Product::where('id',$products_id[$i])->update(['status'=>1]);
+            }else{
+                $total_quantity = $p_quan->quantity - $quantity[$i];
+                Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
+            }
+>>>>>>> fd1f92e6cd9063681f291886a4ca19f10f5de489
 
+        }
 
+<<<<<<< HEAD
             
       
         
      return redirect('product_invoice/'.$receipt_no);
+=======
+//        Product::where('id',$products_id)->delete(['product_id'=>$products_id]);
+        return redirect('product_invoice/'.$receipt_no);
+>>>>>>> fd1f92e6cd9063681f291886a4ca19f10f5de489
 
 
     }
