@@ -13,6 +13,7 @@
     <meta name="keywords"
           content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     @yield('css')
