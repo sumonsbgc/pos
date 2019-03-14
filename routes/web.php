@@ -56,6 +56,10 @@ Route::middleware('auth')->group(function (){
     Route::get('/product_invoice/{receipt_no}','InvoiceController@product_invoice');
 
 
+    Route::view('account','account_filter');
+    Route::post('accountfilter/{days?}','Accounts@search_account');
+
+
     Route::get('/reports','ReportsController@default');
 
 
