@@ -18,6 +18,9 @@
 <script src="{{asset('template_asset/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/forms/form-repeater.js')}}"></script>
 
+<script src="{{asset('template_asset/app-assets/vendors/js/forms/extended/inputmask/jquery.inputmask.bundle.min.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/js/scripts/forms/extended/form-inputmask.js')}}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 
 <script>

@@ -69,6 +69,11 @@
 
             <li class="nav-item"><a href="{{url('/expenses')}}"><i class="fa fa-rupee"></i><span class="menu-title"
                                                                                                  data-i18n="">Expenses</span></a>
+
+            <li class="nav-item"><a href="{{url('/account')}}"><i class="fa fa-rupee"></i><span class="menu-title"
+                                                                                                 data-i18n="">Account</span></a>
+
+
             <li class=" nav-item"><a href="#"><i class="ft-cast"></i><span class="menu-title" data-i18n=""> Sales</span></a>
                 <ul class="menu-content">
                     <li>
