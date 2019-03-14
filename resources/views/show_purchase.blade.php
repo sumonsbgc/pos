@@ -8,34 +8,27 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title mb-0">Invoice Template</h3>
+                    <h3 class="content-header-title mb-0">All Sales</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Product Purchase</a>
+                                <li class="breadcrumb-item"><a href="#">Sales</a>
                                 </li>
-                                <li class="breadcrumb-item active">All Purchase List
+                                <li class="breadcrumb-item active">Show All Sale
                                 </li>
                             </ol>
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-outline-primary dropdown-toggle dropdown-menu-right" id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ft-settings icon-left"></i> Settings</button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"><a class="dropdown-item" href="card-bootstrap.html">Bootstrap Cards</a><a class="dropdown-item" href="component-buttons-extended.html">Buttons Extended</a></div>
-                        </div><a class="btn btn-outline-primary" href="full-calender-basic.html"><i class="ft-mail"></i></a><a class="btn btn-outline-primary" href="timeline-center.html"><i class="ft-pie-chart"></i></a>
-                    </div>
-                </div>
+        
             </div>
-            @foreach($all as $single)
+         
 
             <div class="content-body"><section class="card">
                     <div class="card-header">
-                        <h4 class="card-title">All Purchase Notes</h4>
+                        <h4 class="card-title">Show All Sales</h4>
                         <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
@@ -46,80 +39,92 @@
                             </ul>
                         </div>
                     </div>
-                    <div id="invoice-template" class="card-body">
-                        <!-- Invoice Customer Details -->
-                        <div id="invoice-customer-details" class="row pt-2">
-                            <div class="col-sm-12 text-center text-md-left">
-                                <p class="text-muted">Bill From</p>
-                            </div>
-                            <div class="col-md-6 col-sm-12 text-center text-md-left">
-                                <ul class="px-0 list-unstyled">
-                                    <li class="text-bold-800">{{$single->supplier_name}}</li>
-                                    <li>{{$single->company_name}},</li>
-                                    <li>{{$single->present_add}},</li>
-                                    <li>{{$single->mobile_no}}</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 col-sm-12 text-center text-md-right">
-                                <p><span class="text-muted">Invoice Date :</span>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
 
-                                    {{$single->created_at}}
+                            <table class="table table-striped table-bordered zero-configuration">
+                                <thead>
+                                <tr>
+                                    <th>SL</th>                          
+                                    <th>Product Name</th>
+                                    <th>Product Description</th>
+                                    <th>Product IMEI</th>
+                                    <th>Color</th>                          
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
 
-                                </p>
-                            </div>
-                        </div>
-                        <!--/ Invoice Customer Details -->
-
-                        <!-- Invoice Items Details -->
-                        <div id="invoice-items-details" class="pt-2">
-                            <div class="row">
-
+                                <tbody>
                                 @php
-                                printf(html_entity_decode($single->product_details));
+                                    $id=0;
                                 @endphp
 
-                            </div>
-                            <div class="row">
-                                <div class="offset-md-7 col-md-5 col-sm-12">
-                                    <p class="lead">Total Amount</p>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <tbody>
-                                            <tr>
-                                                <td>Total</td>
-                                                <td class="text-right">{{$single->total_amount}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Paid Amount</td>
-                                                <td class="text-right">{{$single->cash_purchase}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-bold-800">Due Amount</td>
-                                                <td class="text-bold-800 text-right">
-                                                    {{--@php--}}
-                                                    {{--$due = $single->total_amount - $single->cash_purchase;--}}
-                                                    {{--echo $due;--}}
-                                                    {{--@endphp--}}
+                                @foreach($all as $data)
+                                    @php
+                                        $id++;
+                                    @endphp
 
-                                                     {{$single->credit_purchase}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Payment Transaction By</td>
-                                                <td class="pink text-right">{{$single->transaction_type}}</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                    <tr>
+                               
+                                    <td>{{$id}}</td>
+                                    <td>{{$data->product_name}}</td>
+                                    <td>{{$data->product_description}}</td>
+                                    <td>{{$data->product_imei}}</td>
+                                    <td>{{$data->color}}</td>
+                                   
+
+                                        <td>                  
+                                            <button type="button" class="btn btn-warning btn-circle" data-toggle="modal" data-target="#deleteModal{{$data->id}}"><i
+                                                        class="fa fa-times"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                                <div id="deleteModal{{$data->id}}" class="modal fade">
+                                    <div class="modal-dialog modal-confirm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                                <h4 class="modal-title">Are you sure?</h4>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Do you really want to delete these records? This process cannot
+                                                    be undone.</p>
+                                            </div>
+                                            <div class="modal-footer">
+
+                                                <form action="{{url('show_sales_destroy',$data->id)}}" method="POST">
+                                                    {{ method_field('DELETE') }} @csrf
+
+                                                    <button type="button" class="btn btn-dark" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div> 
+                                @endforeach
+                                <tfoot>
+                                <tr>
+                                    <th>SL</th>                          
+                                    <th>Product Name</th>
+                                    <th>Product Description</th>
+                                    <th>Product IMEI</th>
+                                    <th>Color</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </section>
             </div>
-            @endforeach
+          
 
-            {{$all->links()}}
         </div>
     </div>
 

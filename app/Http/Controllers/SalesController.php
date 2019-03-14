@@ -12,129 +12,78 @@ class SalesController extends Controller
 {
     public function store(Request $request){
 
-//        dd($request);
-
-
-        $current_date = date('ym');
-
-        $generate_num = $current_date. '00';
-
-        $single_data = Sales_entry::all();
-
-
-        if (isset($single_data->last()->receipt_no)){
-            $receipt = $single_data->last()->receipt_no;
-            $receipt_first_four = $receipt[0] . $receipt[1] . $receipt[2] . $receipt[3];
-
-            if ($receipt_first_four != $current_date){
-                $receipt_no = $generate_num . 1;
-            }
-            else{
-                $receipt_no = $receipt + 1;
-            }
-        }else{
-            $receipt_no = $generate_num . 1;
-        }
-
-
+        // dd($request);
         
-
-
-
-
+        $current_date = date('ym');
+        
+        $generate_num = $current_date. '00';
+        
+        $single_data = Sales_entry::all();
+        
+        
+        if (isset($single_data->last()->receipt_no)){
+        $receipt = $single_data->last()->receipt_no;
+        $receipt_first_four = $receipt[0] . $receipt[1] . $receipt[2] . $receipt[3];
+        
+        if ($receipt_first_four != $current_date){
+        $receipt_no = $generate_num . 1;
+        }
+        else{
+        $receipt_no = $receipt + 1;
+        }
+        }else{
+        $receipt_no = $generate_num . 1;
+        }
+        
+        
+        
+        
         $products_id = $request->pro_id;
         $quantity = $request->qty;
         $rate = $request->rate;
-
+        
         $count_p_id = count($products_id);
-
-   
-
-        if ($count_p_id > 1){
-
-            for ($i = 0; $i < $count_p_id; $i++){
-
-                $request->validate([
-                    'pro_id' =>'required',
-                    'qty' =>'required',
-                    'rate' =>'required',
-                    'customer_name'=>'required',
-                    'customer_contact_no'=>'required',
-                    'customer_add'=>'required'
-                ]);
-
-                $request['receipt_no'] = $receipt_no;
-                $request['user_id'] = Auth::user()->id;
-
-                $request['product_id'] = $products_id[$i];
-                $request['sale_quantity'] = $quantity[$i];
-                $request['retail_rate'] = $rate[$i];
-
-                $all = $request->except('pro_id','qty','rate');
-
-                Sales_entry::create($all);
-
-            }
-
+        
+        for ($i = 0; $i < $count_p_id; $i++){
+        $request->validate([
+        'pro_id' =>'required',
+        'qty' =>'required',
+        'rate' =>'required',
+        'customer_name'=>'required',
+        'customer_contact_no'=>'required',
+        'customer_add'=>'required'
+        ]);
+        
+        $request['receipt_no'] = $receipt_no;
+        $request['user_id'] = Auth::user()->id;
+        
+        $request['product_id'] = $products_id[$i];
+        $request['sale_quantity'] = $quantity[$i];
+        $request['retail_rate'] = $rate[$i];
+        
+        $all = $request->except('pro_id','qty','rate');
+        
+        Sales_entry::create($all);
+        
+        $p_quan = Product::where('id',$products_id[$i])->select('quantity')->first();
+        
+        if ($p_quan->quantity == null){
+        
+        Product::where('id',$products_id[$i])->update(['status'=>1]);
         }
         else{
-            $request->validate([
-                'pro_id' =>'required',
-                'qty' =>'required',
-                'rate' =>'required',
-                'customer_name'=>'required',
-                'customer_contact_no'=>'required',
-                'customer_add'=>'required'
-            ]);
-
-           
-
-            $request['receipt_no'] = $receipt_no;
-            $request['user_id'] = Auth::user()->id;
-
-            $request['product_id'] = $products_id[$i];
-            $request['sale_quantity'] = $quantity[$i];
-            $request['retail_rate'] = $rate[$i];
             
-
-            $all = $request->except('pro_id','qty','rate');
-         
-            Sales_entry::create($all);
-     
-            $p_quan = Product::where('id',$products_id[$i])->select('quantity')->first();
-      
+        $total_quantity = $p_quan->quantity - $quantity[$i];
+        Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
         }
-     
         
-            // foreach($products_id as $p_id){
-            //     $p_quantity=Product::where('id',$p_id)->select('quantity')->first();     
-            //     Product::where('id',$p_id)->update(['status'=>1]);
-            //     }
-
-
-<<<<<<< HEAD
-=======
-                Product::where('id',$products_id[$i])->update(['status'=>1]);
-            }else{
-                $total_quantity = $p_quan->quantity - $quantity[$i];
-                Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
-            }
->>>>>>> fd1f92e6cd9063681f291886a4ca19f10f5de489
-
         }
-
-<<<<<<< HEAD
-            
-      
         
-     return redirect('product_invoice/'.$receipt_no);
-=======
-//        Product::where('id',$products_id)->delete(['product_id'=>$products_id]);
+        // Product::where('id',$products_id)->delete(['product_id'=>$products_id]);
         return redirect('product_invoice/'.$receipt_no);
->>>>>>> fd1f92e6cd9063681f291886a4ca19f10f5de489
-
-
-    }
+        
+        
+        }
 
     public function show_sales_form(){
 
@@ -170,5 +119,16 @@ class SalesController extends Controller
 
         return view('sales_history',compact('all'));
 
+    }
+
+    public function show_sales_product(){
+        $all=Product::where('status','=',1)->latest()->get();
+        return view('show_purchase',compact('all'));
+    }
+
+    public function sales_destroy($id){
+    $deleteData=Product::findOrfail();
+    $deleteData->delete($id);
+    return back();
     }
 }

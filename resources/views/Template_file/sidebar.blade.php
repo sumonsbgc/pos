@@ -76,7 +76,7 @@
                                                                          data-i18n="">Sales Entries</span></a>
                     </li>
                     <li>
-                        <a href="{{url('/show_purchase_notes')}}"><span class="menu-title"
+                        <a href="{{url('/show_sales')}}"><span class="menu-title"
                                                                         data-i18n="">Show All Sale</span></a>
                     </li>
                     <li>
