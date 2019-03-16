@@ -108,16 +108,16 @@
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Customer Name</label>
-                                                <input type="text" name="customer_name" class="form-control">
+                                                <input type="text" name="customer_name" id="customer_name" class="form-control" onkeyup="get_customer_data()">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>Customer Contact No</label>
-                                                <input type="text" name="customer_contact_no" class="form-control">
+                                                <input type="text" name="customer_contact_no" id="customer_contact_no" class="form-control" onkeyup="get_customer_data()">
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label>Customer Address</label>
-                                                <textarea type="text" name="customer_add"
-                                                          class="form-control"></textarea>
+                                                <textarea type="text" id="customer_add" name="customer_add"
+                                                          class="form-control" onkeyup="get_customer_data()"></textarea>
                                             </div>
                                         </div>
 
@@ -148,6 +148,40 @@
                                                             <label>Due</label>
                                                             <input type="text" id="due" placeholder="" value="" name="due_amount" class="form-control">
                                                         </div>
+                                                        <div class="or display-hidden" id="or1">
+                                                            <div class="form-group">
+                                                                <label>Select Customer</label>
+                                                                <select type="select" id="customer_id" placeholder="" value="" name="customer_id" class="form-control">
+                                                                    @foreach($customers as $customer)
+                                                                        <option value="{{$customer->id}}">{{$customer->customer_name}}</option>
+                                                                    @endforeach
+
+                                                                </select>
+                                                            </div>
+
+                                                            <h5>Or Create Customer</h5>
+
+                                                            <div class="form-group">
+                                                                <label>Customer Name</label>
+                                                                <input type="text" placeholder="" value="" name="customer_name" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Customer Mobile No</label>
+                                                                <input type="text" placeholder="" value="" name="mobile_no" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Customer Phone No</label>
+                                                                <input type="text" placeholder="" value="" name="phone_no" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Customer Mail</label>
+                                                                <input type="text" placeholder="" value="" name="mail" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Customer Address</label>
+                                                                <textarea class="form-control" name="address"></textarea>
+                                                            </div>
+                                                        </div>
 
                                                         <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
                                                         <button class="btn btn-primary" type="submit"><strong>SELL</strong></button>
@@ -171,6 +205,42 @@
                                                         <div class="form-group">
                                                             <label>Due</label>
                                                             <input type="text" id="due_1" placeholder="" value="" name="due_amount" class="form-control">
+                                                        </div>
+
+                                                        <div class="or display-hidden" id="or">
+                                                            <div class="form-group">
+                                                                <label>Select Customer</label>
+                                                                <select type="select" id="customer_id" placeholder="" value="" name="customer_id" class="form-control">
+                                                                    <option value="">Select Customer</option>
+                                                                    @foreach($customers as $customer)
+                                                                        <option value="{{$customer->id}}">{{$customer->customer_name}}</option>
+                                                                    @endforeach
+
+                                                                </select>
+                                                            </div>
+
+                                                            <h5>Or Create Customer</h5>
+
+                                                            <div class="form-group">
+                                                                <label>Customer Name</label>
+                                                                <input type="text" id="c_name" placeholder="" value="" name="customer_name" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Customer Mobile No</label>
+                                                                <input type="text" id=m_number placeholder="" value="" name="mobile_no" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Customer Phone No</label>
+                                                                <input type="text" id="" placeholder="" value="" name="phone_no" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Customer Mail</label>
+                                                                <input type="text" id="c_mail" placeholder="" value="" name="mail" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Customer Address</label>
+                                                                <textarea class="form-control" id="c_add" name="address"></textarea>
+                                                            </div>
                                                         </div>
 
                                                         <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
@@ -214,6 +284,18 @@
 
         }
 
+        function get_customer_data() {
+
+            var customer_name = $('#customer_name').val();
+            var phone = $('#customer_contact_no').val();
+            var address = $('#customer_add').val();
+
+            $('#c_name').val(customer_name);
+            $('#m_number').val(phone);
+            $('#c_add').val(address)
+
+        }
+
         function paid(value) {
 
             var paid = value;
@@ -221,6 +303,14 @@
             var total = get_total();
 
             var due = total - paid;
+
+            if (due > 0){
+                $('#or').removeClass('display-hidden');
+                $('#or1').removeClass('display-hidden');
+            }else{
+                $('#or').addClass('display-hidden');
+                $('#or1').addClass('display-hidden');
+            }
 
             $('#due').val(due);
             $('#due_1').val(due);
@@ -249,8 +339,10 @@
         function total_price(val) {
 
             var idName = val;
-            var num = idName.charAt(idName.length - 1);
 
+            var arr = idName.split('_');
+
+            var num = arr[1];
             var quantity = $('#quantity_'+num).val();
 
             var price = $('#price_'+num).val();
@@ -268,10 +360,8 @@
 
         function remove_row(val) {
             var idName = val;
-            var num = idName.charAt(idName.length - 1);
-
-            //console.log(idName);
-
+            var arr = idName.split('_');
+            var num = arr[1];
             var remove_btn = $('#'+idName);
 
             $('#product_row_'+num).remove();

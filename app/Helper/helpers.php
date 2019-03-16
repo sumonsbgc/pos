@@ -1,6 +1,9 @@
 <?php
 use App\Category as Category;
 use App\Purchase;
+use App\Sales_entry;
+use Illuminate\Support\Facades\DB;
+use App\Purchase_history;
 use App\Product as Product;
 
 
@@ -20,6 +23,29 @@ if(!function_exists('get_suppliers_data')){
         $data = Purchase::where('supplier_id', $supplier_id)->get();
         return $data;
     }  
+}
+
+if (!function_exists('get_suppliers_history')){
+    function get_suppliers_history($supplier_id){
+        $histories = Purchase_history::where('supplier_id',$supplier_id)->paginate(10);
+        return $histories;
+    }
+}
+
+if (!function_exists('get_customers_data')){
+    function get_customers_data($customer_id){
+        $data = Sales_entry::where('customer_id',$customer_id)->paginate(10);
+        return $data;
+    }
+}
+
+if (!function_exists('get_suppliers_purchase_date')){
+
+    function get_suppliers_purchase_date($purchase_id){
+        $data = DB::table('purchases')->select('created_at')->where('id',$purchase_id)->first();
+        return $data;
+    }
+
 }
 
 

@@ -264,10 +264,79 @@
                                                     <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-
+                                                                <h4 class="modal-title d-inline-block" id="myModalLabel19">Details</h4>
+                                                                <button type="button" class="close cls-btn" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
                                                             </div>
                                                             <div class="modal-body">
+
+                                                                @php
+
+                                                                    $histories = get_suppliers_history($data->id);
+
+                                                                @endphp
+
+                                                                @if($histories != null)
+
+
+
+                                                                    <div class="custom-table p-1">
+
+                                                                        <div class="row">
+                                                                            <div class="col-4 t-head align-self-center">
+                                                                                <p>Date</p>
+                                                                            </div>
+                                                                            <div class="col-4 t-head align-self-center">
+                                                                                <p>Cash Paid</p>
+                                                                            </div>
+                                                                            <div class="col-4 t-head align-self-center">
+                                                                                <p>Purchase Date</p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        @foreach($histories as $datum)
+
+
+                                                                            <div class="row">
+                                                                                <div class="col-4 t-c">
+                                                                                    @php
+                                                                                        $a= $datum->created_at;
+
+                                                                                         echo date_format($a,'d-M-Y');
+                                                                                    @endphp
+                                                                                </div>
+                                                                                <div class="col-4 t-c">{{$datum->paid}}</div>
+                                                                                <div class="col-4 t-c">
+
+                                                                                    @php
+
+                                                                                        $purchase_date = get_suppliers_purchase_date($datum->purchase_id);
+                                                                                        $p_date = date_create($purchase_date->created_at);
+
+                                                                                        echo date_format($p_date, 'd-M-Y')
+
+
+                                                                                    @endphp
+
+                                                                                </div>
+                                                                                {{--<div class="col-2 t-c" id="credit_purchase{{$datum->id}}">{{$datum->credit_purchase}}</div>--}}
+                                                                                {{--<div class="col-2 t-c">--}}
+                                                                                    {{--<input type="number" class="form-control" name="paid" id="paid{{$datum->id}}">--}}
+                                                                                {{--</div>--}}
+                                                                                {{--<div class="col-2 t-c">--}}
+
+                                                                                    {{--@if($datum->credit_purchase != 0)--}}
+
+                                                                                        {{--<button type="submit" class="btn btn-primary" id="{{$datum->id}}" onclick="change_credit(this.id)">Add</button>--}}
+                                                                                    {{--@endif--}}
+                                                                                {{--</div>--}}
+                                                                            </div>
+
+                                                                        @endforeach
+                                                                    </div>
+
+                                                                @endif
 
                                                             </div>
                                                         </div>

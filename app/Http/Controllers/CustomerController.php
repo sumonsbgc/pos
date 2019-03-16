@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Purchase_history;
-use App\Supplier;
+use App\Customer;
 use Illuminate\Http\Request;
 
-class SupplierController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,13 +14,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-//        $all = Supplier::leftJoin('purchases','suppliers.id','=','purchases.supplier_id')
-//                ->select('suppliers.*','purchases.id as p_id','purchases.product_details','purchases.total_amount','cash_purchase','credit_purchase','transaction_type')
-//                ->get();
+        $allCustomer = Customer::all();
 
-        $all = Supplier::all();
-
-        return view('show_supplier',compact('all'));
+        return view('customers',compact('allCustomer'));
     }
 
     /**
@@ -31,7 +26,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('add_supplier');
+
     }
 
     /**
@@ -42,17 +37,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request,[
-            'supplier_name'=>'required',
-            'present_add'=>'required',
-            'mobile_no'=>'required',
-        ]);
-        $all =$request->all();
-
-        Supplier::create($all);
-$message=1;
-        return redirect('supplier/create')->with('message',$message);
+        //
     }
 
     /**
@@ -86,10 +71,7 @@ $message=1;
      */
     public function update(Request $request, $id)
     {
-        $new  = $request->all();
-        $old  = Supplier::findorfail($id);
-        $old->update($new);
-        return redirect('supplier');
+        //
     }
 
     /**
@@ -100,9 +82,6 @@ $message=1;
      */
     public function destroy($id)
     {
-        $target = Supplier::findorfail($id);
-        $target->delete();
-
-        return redirect('supplier');
+        //
     }
 }

@@ -56,11 +56,15 @@ Route::middleware('auth')->group(function (){
     Route::get('/product_invoice/{receipt_no}','InvoiceController@product_invoice');
 
 
-    Route::view('account','account_filter');
-    Route::post('accountfilter/{days?}','Accounts@search_account');
+    Route::get('/account','Accounts@index');
+    Route::post('/account_search','Accounts@index')->name('account_search');
+    Route::get('/accountfilter_days/{days}','Accounts@filter_account');
+    Route::post('/accountsearch','Accounts@search_account');
 
 
     Route::get('/reports','ReportsController@default');
+
+    Route::resource('/customers','CustomerController');
 
 
 
