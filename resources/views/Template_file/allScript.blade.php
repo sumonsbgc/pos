@@ -1,9 +1,12 @@
 <script src="{{asset('template_asset/app-assets/vendors/js/vendors.min.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/vendors/js/charts/raphael-min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/vendors/js/charts/morris.min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/vendors/js/extensions/unslider-min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/vendors/js/timeline/horizontal-timeline.js')}}"></script>
-<script src="{{asset('template_asset/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/vendors/js/extensions/sweetalert.min.js')}}"></script>
+
 <script src="{{asset('template_asset/app-assets/js/core/app-menu.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/core/app.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/customizer.js')}}"></script>
@@ -17,6 +20,7 @@
 <script src="{{asset('template_asset/app-assets/js/scripts/forms/select/form-select2.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/vendors/js/forms/repeater/jquery.repeater.min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/forms/form-repeater.js')}}"></script>
+<script src="{{asset('template_asset/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
 
 <script src="{{asset('template_asset/app-assets/vendors/js/forms/extended/inputmask/jquery.inputmask.bundle.min.js')}}"></script>
 <script src="{{asset('template_asset/app-assets/js/scripts/forms/extended/form-inputmask.js')}}"></script>

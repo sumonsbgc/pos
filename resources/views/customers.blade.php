@@ -40,32 +40,25 @@
                 </div>
             @endif
 
-            @if(Session::has('message'))
-                <div class="alert alert-primary alert-dismissible fade show notification" role="alert">
-                    <strong>Hello {{Auth::user()->name}}!</strong> Expenses Created Successfully.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+            {{--@if(Session::has('message'))--}}
+                {{--<div class="alert alert-primary alert-dismissible fade show notification" role="alert">--}}
+                    {{--<strong>Hello {{Auth::user()->name}}!</strong> Customer Created Successfully.--}}
+                    {{--<button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
+                        {{--<span aria-hidden="true">&times;</span>--}}
+                    {{--</button>--}}
+                {{--</div>--}}
+            {{--@endif--}}
 
-            @if(Session::has('update'))
-                <div class="alert alert-primary alert-dismissible fade show notification" role="alert">
-                    <strong>Hello {{Auth::user()->name}}!</strong> Expenses Updated Successfully.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+            {{--@if(Session::has('update'))--}}
+                {{--<div class="alert alert-primary alert-dismissible fade show notification" role="alert">--}}
+                    {{--<strong>Hello {{Auth::user()->name}}!</strong> Expenses Updated Successfully.--}}
+                    {{--<button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
+                        {{--<span aria-hidden="true">&times;</span>--}}
+                    {{--</button>--}}
+                {{--</div>--}}
+            {{--@endif--}}
 
-            @if(Session::has('delete'))
-                <div class="alert alert-warning alert-dismissible fade show notification" role="alert">
-                    <strong>Hello {{Auth::user()->name}}!</strong> Expenses Deleted Successfully.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
+
 
             <div class="modal fade" id="exampleModal" tabindex="-1"
                  role="dialog"
@@ -74,21 +67,44 @@
                     <div class="modal-content">
                         <div class="modal-body">
 
-                            <form class="form form-horizontal" action="{{route('expenses.store')}}" method="post">
+                            <form class="form form-horizontal" action="{{route('customers.store')}}" method="post">
                                 @csrf
 
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Purpose
-                                        <span class="danger"> *</span>
-                                    </label>
-                                    <input class="form-control" name="purpose" placeholder="Purpose">
-                                </div>
+                                <div class="form-body">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput1">Customer Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="projectinput1" class="form-control" placeholder="Customer Name" name="customer_name" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput2">Mobile No</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="projectinput2" class="form-control" name="mobile_no" value="">
+                                        </div>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Amount
-                                        <span class="danger"> *</span>
-                                    </label>
-                                    <input type="number" class="form-control" name="amount" placeholder="Amount">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput2">Phone No</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="projectinput2" class="form-control" name="phone_no" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput2">Mail</label>
+                                        <div class="col-md-9">
+                                            <input type="email" id="projectinput2" class="form-control" name="mail" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-3 label-control" for="projectinput2">Address</label>
+                                        <div class="col-md-9">
+                                            <input type="text" id="projectinput2" class="form-control" name="address" value="">
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="form-actions">
@@ -155,7 +171,11 @@
                                                     <td>{{$customer->customer_name}}</td>
                                                     <td>{{$customer->mobile_no}}</td>
                                                     <td>{{$customer->mail}}</td>
-                                                    <td>{{$customer->mail}}</td>
+                                                    <td>
+                                                        @php
+                                                            echo $due = customer_total_due($customer->id);
+                                                        @endphp
+                                                    </td>
                                                     <td>
                                                         @php
 
@@ -169,9 +189,9 @@
                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-backdrop="false"
                                                                  data-target="#pay{{$customer->id}}">Pay</button>
                                                         <button type="button" class="btn btn-success" data-toggle="modal" data-backdrop="false"
-                                                                data-target="#exampleModal"><i class="fa fa-edit"></i></button>
+                                                                data-target="#update{{$customer->id}}"><i class="fa fa-edit"></i></button>
                                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-backdrop="false"
-                                                                data-target="#exampleModal"><i class="fa fa-remove"></i></button>
+                                                                data-target="#del{{$customer->id}}"><i class="fa fa-remove"></i></button>
                                                     </td>
                                                 </tr>
 
@@ -187,7 +207,6 @@
                                                             <div class="modal-body">
                                                                 @php
                                                                     $customers_info = get_customers_data($customer->id);
-
                                                                 @endphp
                                                                 <div class="row">
                                                                     <div class="col-12">
@@ -196,6 +215,8 @@
                                                                 </div>
 
                                                                 @if($customers_info != null)
+
+
                                                                     <div class="custom-table p-1">
 
                                                                         <div class="row">
@@ -221,8 +242,6 @@
 
                                                                         @foreach($customers_info as $datum)
 
-
-
                                                                             <div class="row">
                                                                                 <div class="col-2 t-c">
                                                                                     @php
@@ -238,9 +257,9 @@
                                                                                 </div>
                                                                                 <div class="col-2 t-c">
 
-                                                                                    @if($datum->credit_purchase != 0)
+                                                                                    @if($datum->due_amount != 0)
 
-                                                                                        <button type="submit" class="btn btn-primary" id="{{$datum->id}}" onclick="change_credit(this.id)">Add</button>
+                                                                                        <button type="button" class="btn btn-primary" id="{{$datum->id}}" onclick="sale_due(this.id)">Add</button>
                                                                                     @endif
                                                                                 </div>
                                                                             </div>
@@ -254,6 +273,96 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="modal fade" id="update{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+
+                                                            </div>
+                                                            <div class="modal-body">
+
+                                                                <form class="form form-horizontal" action="{{route('customers.update',$customer->id)}}" method="post">
+                                                                    @method('PATCH')
+                                                                    @csrf
+
+                                                                    <div class="form-body">
+                                                                        <div class="form-group row">
+                                                                            <label class="col-md-3 label-control" for="projectinput1">Customer Name</label>
+                                                                            <div class="col-md-9">
+                                                                                <input type="text" id="projectinput1" class="form-control" placeholder="Supplier Name" name="customer_name" value="{{$customer->customer_name}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="col-md-3 label-control" for="projectinput2">Mobile No</label>
+                                                                            <div class="col-md-9">
+                                                                                <input type="text" id="projectinput2" class="form-control" placeholder="Company Name" name="mobile_no" value="{{$customer->mobile_no}}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group row">
+                                                                            <label class="col-md-3 label-control" for="projectinput2">Phone No</label>
+                                                                            <div class="col-md-9">
+                                                                                <input type="text" id="projectinput2" class="form-control" name="phone_no" value="{{$customer->phone_no}}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group row">
+                                                                            <label class="col-md-3 label-control" for="projectinput2">Mail</label>
+                                                                            <div class="col-md-9">
+                                                                                <input type="email" id="projectinput2" class="form-control" name="mail" value="{{$customer->mail}}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group row">
+                                                                            <label class="col-md-3 label-control" for="projectinput2">Address</label>
+                                                                            <div class="col-md-9">
+                                                                                <input type="text" id="projectinput2" class="form-control" name="address" value="{{$customer->address}}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="form-actions">
+                                                                        <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">
+                                                                            <i class="ft-x"></i> Cancel
+                                                                        </button>
+                                                                        <button type="submit" class="btn btn-primary">
+                                                                            <i class="fa fa-check-square-o"></i> Save
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="del{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-confirm">
+                                                        <div class="modal-content modal-lg">
+                                                            <div class="modal-header">
+                                                                <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                                    <i class="fa fa-times"></i>
+                                                                </div>
+                                                                <h4 class="modal-title">Are you sure?</h4>
+
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Do you really want to delete these records? This process cannot
+                                                                    be undone.</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+
+                                                                <form action="{{route('customers.destroy',$customer->id)}}" method="POST">
+                                                                    {{ method_field('DELETE') }} @csrf
+
+                                                                    <button type="button" class="btn btn-dark" data-dismiss="modal" aria-label="Close">Cancel</button>
+                                                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endforeach
 
 
@@ -281,5 +390,54 @@
             </div>
         </div>
     </div>
+
+    @endsection
+
+
+@section('scripts')
+
+    @if(Session::has('deleted'))
+        <script>swal("Good job!", "You clicked the button!", "success")</script>
+        {{--@php session()->flash('delete') @endphp--}}
+    @elseif(Session::has('delete'))
+        <script>swal("Warning!", "This Customer Have some records in sell list. You Cannot delete this customer","warning")</script>
+        {{--@php session()->flash('deleted') @endphp--}}
+    @elseif(Session::has('update'))
+        <script>swal("Success!", "Customer Updated Successfully!", "info")</script>
+    @elseif(Session::has('message'))
+        <script>swal("Success!", "Customer Created Successfully!", "success")</script>
+    @endif
+
+
+    <script>
+
+        function sale_due(id) {
+
+            var sale_id = id;
+
+            var paid = $('#paid'+id).val();
+
+            var cash = $('#receive_amount'+id);
+
+            var credit = $('#due_amount'+id);
+
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "{{url('/pay_due_amount')}}",
+                type: 'POST',
+                data :{
+                    'sale_id' : sale_id,
+                    'paid' : paid
+                },
+                success: function (response) {
+                    cash.text(response[0]);
+                    credit.text(response[1]);
+                },
+
+            })
+
+        }
+
+    </script>
 
     @endsection

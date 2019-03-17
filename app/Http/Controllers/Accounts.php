@@ -89,7 +89,9 @@ class Accounts extends Controller
             }
         }elseif ($request->filter !=null){
 
-            $days = today()->subDays($request->filter);
+
+            $days = today()->subDays($request->filter - 1);
+
 
             $all_sale = Sales_entry::where('created_at', '>=', $days)->get();
             $all_expense = Expenses::where('created_at', '>=', $days)->get();
@@ -127,120 +129,5 @@ class Accounts extends Controller
         return view('account_filter', compact('all_sale','all_purchase','all_expense','expense_quantity','total_expense_amount','purchase_quantity','total_purchase_amount','sale_quantity','total_sale','loss','profit','paid_purchase','due_purchase','paid_sale','due_sale'));
     }
 
-    public function search_account(Request $request)
-    {
-        $request_to = date("Y-m-d", strtotime($request->to));
-        $from = date("Y-m-d", strtotime($request->from));
-
-        $all_sale = DB::table('sales_entries')
-            ->select('sales_entries.*')->whereBetween('created_at',[$from,$request_to])->get();
-
-        $all_purchase = DB::table('purchases')
-            ->select('purchases.*')->whereBetween('created_at',[$from,$request_to])->get();
-
-        $all_expenses = DB::table('expenses')
-            ->select('expenses.*')->whereBetween('created_at',[$from,$request_to])->get();
-
-
-        $expense_quantity = DB::table('expenses')->whereBetween('created_at',[$from,$request_to])->count('id');
-        $total_expense_amount = DB::table('expenses')->whereBetween('created_at',[$from,$request_to])->sum('amount');
-
-        $purchase_quantity = DB::table('purchases')->whereBetween('created_at',[$from,$request_to])->count('id');
-        $total_purchase_amount = DB::table('purchases')->whereBetween('created_at',[$from,$request_to])->sum('total_amount');
-        $paid_purchase = DB::table('purchases')->whereBetween('created_at',[$from,$request_to])->sum('cash_purchase');
-        $due_purchase = DB::table('purchases')->whereBetween('created_at',[$from,$request_to])->sum('credit_purchase');
-
-        $sale_quantity = DB::table('sales_entries')->whereBetween('created_at',[$from,$request_to])->sum('sale_quantity');
-        $total_sale = DB::table('sales_entries')->whereBetween('created_at',[$from,$request_to])->sum('retail_rate');
-        $paid_sale = DB::table('sales_entries')->whereBetween('created_at',[$from,$request_to])->sum('receive_amount');
-        $due_sale = DB::table('sales_entries')->whereBetween('created_at',[$from,$request_to])->sum('due_amount');
-
-
-        $cost = $total_expense_amount + $total_purchase_amount;
-
-        $total_cost = $cost - $total_sale;
-
-        $loss = 0;
-
-        $profit = 0;
-
-        if ($total_cost > 0){
-            $loss = abs($total_cost);
-        }else{
-            $profit = abs($total_cost);
-        }
-
-        $summery = [];
-        $purchase_history = [];
-        $html3 = [];
-        $html4 = [];
-
-        $summery[]= "
-                    <tr>
-                        <td>Total Expense</td>
-                        <td>{{$expense_quantity}}</td>
-                        <td>{{$total_expense_amount}}</td>
-                    </tr>
-                    <tr>
-                        <td>Total Purchase</td>
-                        <td>{{$purchase_quantity}}</td>
-                        <td>{{$total_purchase_amount}}</td>
-                    </tr>
-                    <tr>
-                        <td>Total Sale</td>
-                        <td>{{$sale_quantity}}</td>
-                        <td>{{$total_sale}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td class=\"font-weight-bold\">Loss : {{$loss}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td class=\"font-weight-bold\">Profit : {{$profit}}</td>
-                    </tr>
-        
-        ";
-        $p_id=0;
-        $supplier_name='';
-        $purchase_date='';
-
-        foreach ($all_purchase as $purchase){
-
-            $purchase_history[]="
-
-                <tr>
-                    <td>
-                        $p_id++
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>{{$purchase->purpose}}</td>
-                    <td>{{$purchase->total_amount}}</td>
-                    <td>{{$purchase->cash_purchase}}</td>
-                    <td>{{$purchase->credit_purchase}}</td>
-                    <td>
-                      
-                    </td>
-                </tr>
-
-            ";
-
-        }
-
-
-
-        return array($summery,$purchase_history,$all_expenses,$total_sale);
-
-    }
-
-    public function filter_account($days){
-        $all_sell = Sales_entry::where('created_at', '>=', today()->subDays($days))->get();
-        $all_expenses = Expenses::where('created_at', '>=', today()->subDays($days))->get();
-        $all_purchases = Purchase::where('created_at', '>=', today()->subDays($days))->get();
-        return array($all_sell,$all_expenses,$all_purchases);
-    }
+    
 }

@@ -61,10 +61,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/accountfilter_days/{days}','Accounts@filter_account');
     Route::post('/accountsearch','Accounts@search_account');
 
-
-    Route::get('/reports','ReportsController@default');
-
     Route::resource('/customers','CustomerController');
+    Route::post('/pay_due_amount','CustomerController@pay_due_amount');
 
 
 

@@ -135,4 +135,5 @@ class SalesController extends Controller
         return view('sales_history',compact('all'));
 
     }
+
 }

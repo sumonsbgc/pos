@@ -40,13 +40,19 @@ if (!function_exists('get_customers_data')){
 }
 
 if (!function_exists('get_suppliers_purchase_date')){
-
     function get_suppliers_purchase_date($purchase_id){
         $data = DB::table('purchases')->select('created_at')->where('id',$purchase_id)->first();
         return $data;
     }
-
 }
+
+if (!function_exists('customer_total_due')){
+    function customer_total_due($customer_id){
+        $data = DB::table('sales_entries')->where('customer_id','=',$customer_id)->sum('due_amount');
+        return $data;
+    }
+}
+
 
 
 if(!function_exists('get_total_products')){

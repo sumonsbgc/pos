@@ -320,17 +320,6 @@
                                                                                     @endphp
 
                                                                                 </div>
-                                                                                {{--<div class="col-2 t-c" id="credit_purchase{{$datum->id}}">{{$datum->credit_purchase}}</div>--}}
-                                                                                {{--<div class="col-2 t-c">--}}
-                                                                                    {{--<input type="number" class="form-control" name="paid" id="paid{{$datum->id}}">--}}
-                                                                                {{--</div>--}}
-                                                                                {{--<div class="col-2 t-c">--}}
-
-                                                                                    {{--@if($datum->credit_purchase != 0)--}}
-
-                                                                                        {{--<button type="submit" class="btn btn-primary" id="{{$datum->id}}" onclick="change_credit(this.id)">Add</button>--}}
-                                                                                    {{--@endif--}}
-                                                                                {{--</div>--}}
                                                                             </div>
 
                                                                         @endforeach
