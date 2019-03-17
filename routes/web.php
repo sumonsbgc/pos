@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function (){
     Route::post('/store_purchase_notes','PurchaseController@store_purchase_notes')->name('store_purchase_notes');
 
     Route::get('/show_sales','SalesController@show_sales_product')->name('show_sales_product');
-    Route::post('/show_sales_destroy/{id}','SalesController@sales_destroy');
+    Route::post('/show_sales_destroy','SalesController@sales_destroy')->name('sales_destroy');
     
     Route::post('/purchase_history','PurchaseHistoryController@purchase_history_store')->name('p_history_store');
 
@@ -59,11 +59,15 @@ Route::middleware('auth')->group(function (){
     Route::get('/product_invoice/{receipt_no}','InvoiceController@product_invoice');
 
 
-    Route::view('account','account_filter');
-    Route::post('accountfilter/{days?}','Accounts@search_account');
+    Route::get('/account','Accounts@index');
+    Route::post('/account_search','Accounts@index')->name('account_search');
+    Route::get('/accountfilter_days/{days}','Accounts@filter_account');
+    Route::post('/accountsearch','Accounts@search_account');
 
 
     Route::get('/reports','ReportsController@default');
+
+    Route::resource('/customers','CustomerController');
 
 
 

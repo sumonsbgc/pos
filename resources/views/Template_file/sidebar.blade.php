@@ -30,6 +30,11 @@
                             class="menu-title" data-i18n="">Product Category</span></a>
             </li>
 
+            <li class=" nav-item"><a href="{{url('/customers')}}"><i class="ft-navigation"></i><span
+                            class="menu-title" data-i18n="">Customers</span></a>
+            </li>
+
+
             <li class=" nav-item"><a href="#"><i class="ft-cast"></i><span class="menu-title" data-i18n=""> Product Supplier</span></a>
                 <ul class="menu-content">
                     <li>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Purchase_history;
 use App\Supplier;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,7 @@ class SupplierController extends Controller
 //                ->get();
 
         $all = Supplier::all();
+
         return view('show_supplier',compact('all'));
     }
 
@@ -87,7 +89,8 @@ $message=1;
         $new  = $request->all();
         $old  = Supplier::findorfail($id);
         $old->update($new);
-        return redirect('supplier');
+        $message=0;
+        return redirect('supplier')->with('message',$message);
     }
 
     /**
@@ -100,7 +103,7 @@ $message=1;
     {
         $target = Supplier::findorfail($id);
         $target->delete();
-
-        return redirect('supplier');
+        $message=0;
+        return redirect('supplier')->with('message',$message);
     }
 }

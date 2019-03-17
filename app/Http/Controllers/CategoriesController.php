@@ -83,8 +83,9 @@ class CategoriesController extends Controller
     {
         $newData=$request->all();
         $updateData=Category::findorfail($id);
-        $updateData->update($newData);       
-        return redirect('categories');
+        $updateData->update($newData);  
+        $message=1;     
+        return redirect('categories')->with('message',$message);
 
     }
 
@@ -98,7 +99,8 @@ class CategoriesController extends Controller
     {
         $deleteData=Category::findOrfail($id);
         $deleteData->delete();
-        return redirect('categories');
+        $message=1;     
+        return redirect('categories')->with('message',$message);
 
     }
 

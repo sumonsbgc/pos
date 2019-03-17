@@ -97,7 +97,7 @@
                                             </div>
                                             <div class="modal-footer">
 
-                                                <form action="{{url('show_sales_destroy',$data->id)}}" method="POST">
+                                                <form action="{{route('sales_destroy',$data->id)}}" method="POST">
                                                     {{ method_field('DELETE') }} @csrf
 
                                                     <button type="button" class="btn btn-dark" data-dismiss="modal" aria-label="Close">Cancel</button>

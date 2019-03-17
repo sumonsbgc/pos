@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Brand;
-use App\Category;
+
+use App\Customer;
 use Illuminate\Http\Request;
 
-class BrandsController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,9 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        $all=Brand::all();
-        $category = Category::where('parent_status','=',0)->get();
-        $sub_category = Category::where('parent_status','=',1)->get();
-        return view('brands',compact('all', 'category', 'sub_category'));
+        $allCustomer = Customer::all();
+
+        return view('customers',compact('allCustomer'));
     }
 
     /**
@@ -27,7 +26,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        return redirect('brands');
+
     }
 
     /**
@@ -38,16 +37,9 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        $this->validate($request,[
-            'brand_name'=>'required'
-        ]);
-        $store=$request->all();
-        Brand::create($store);  
-       $message=1;
-        return redirect('brands')->with('message',$message);
+        //
     }
+
     /**
      * Display the specified resource.
      *
@@ -56,7 +48,7 @@ class BrandsController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -79,14 +71,7 @@ class BrandsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $newData=$request->all();
-
-        $updateData=Brand::findorfail($id);
-
-        $updateData->update($newData);
-       $message=1;
-        return redirect('brands')->with('message',$message);
-
+        //
     }
 
     /**
@@ -97,9 +82,6 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        $deletaData=brand::findorfail($id);
-        $deletaData->delete($deletaData);
-        $message=0;
-        return redirect('brands')->with('message',$message);
+        //
     }
 }

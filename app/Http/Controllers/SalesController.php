@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Product;
 use App\Sales_entry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class SalesController extends Controller
 {
     public function store(Request $request){
-
-        // dd($request);
-        
-        $current_date = date('ym');
+          $current_date = date('ym');
         
         $generate_num = $current_date. '00';
         
@@ -41,10 +40,26 @@ class SalesController extends Controller
         $products_id = $request->pro_id;
         $quantity = $request->qty;
         $rate = $request->rate;
+
         
+
+
+
+        if ($request->customer_id == null){
+            $insert_customer = $request->only('customer_name','mobile_no','phone_no','mail','address');
+
+            Customer::create($insert_customer);
+            $id = Customer::all()->last()->id;
+            $customer_id = $id;
+
+        }else{
+            $customer_id = $request->customer_id;
+        }
+
         $count_p_id = count($products_id);
         
         for ($i = 0; $i < $count_p_id; $i++){
+
         $request->validate([
         'pro_id' =>'required',
         'qty' =>'required',
@@ -70,6 +85,40 @@ class SalesController extends Controller
         if ($p_quan->quantity == null){
         
         Product::where('id',$products_id[$i])->update(['status'=>1]);
+
+            $request->validate([
+                'pro_id' =>'required',
+                'qty' =>'required',
+                'rate' =>'required',
+                'customer_name'=>'required',
+                'customer_contact_no'=>'required',
+                'customer_add'=>'required'
+            ]);
+
+            $request['receipt_no'] = $receipt_no;
+            $request['user_id'] = Auth::user()->id;
+
+            $request['product_id'] = $products_id[$i];
+            $request['sale_quantity'] = $quantity[$i];
+            $request['retail_rate'] = $rate[$i];
+
+            $request['customer_id'] = $customer_id;
+
+            $all = $request->except('pro_id','qty','rate','mobile_no','phone_no','mail','address');
+
+            Sales_entry::create($all);
+
+            $p_quan = Product::where('id',$products_id[$i])->select('quantity')->first();
+
+            if ($p_quan->quantity == null){
+
+                Product::where('id',$products_id[$i])->update(['status'=>1]);
+            }else{
+                $total_quantity = $p_quan->quantity - $quantity[$i];
+                Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
+            }
+
+
         }
         else{
             
@@ -88,8 +137,11 @@ class SalesController extends Controller
     public function show_sales_form(){
 
         $products= Product::all();
+        $products= Product::where('status','0')->get();
+        $customers =Customer::all();
 
-        return view('sale',compact('products'));
+
+        return view('sale',compact('products','customers'));
     }
 
     public function saleProduct($id){
