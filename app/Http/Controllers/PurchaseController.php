@@ -44,7 +44,7 @@ class PurchaseController extends Controller
 
         $all = DB::table('purchases')
             ->select('purchases.*','suppliers.supplier_name','suppliers.company_name','suppliers.present_add', 'suppliers.mobile_no')
-            ->join('suppliers','purchases.supplier_id','=','suppliers.id')->paginate(5);
+            ->join('suppliers','purchases.supplier_id','=','suppliers.id')->orderByDesc('id')->get();
 
         return view('show_purchase',compact('all'));
 

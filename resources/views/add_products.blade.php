@@ -71,7 +71,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="phoneNumber1">Select Category</label>
-                                                            <select id="projectinput5" name="category_id" class="form-control" onclick="goToSubCategory(this.value)">
+                                                            <select id="projectinput5" name="category_id" class="form-control" onclick="goToSubCategory(this.value);goToBrands(this.value)">
                                                                 @foreach($category as $mainCategory)
                                                                     <option value="{{$mainCategory->id}}">{{$mainCategory->category_name}}</option>
                                                                 @endforeach
@@ -141,7 +141,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="date1">Product Quantity</label>
-                                                            <input type="text" class="form-control" id="date1" name="quantity">
+                                                            <input type="text" class="form-control" id="date1" name="quantity" value="1">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">

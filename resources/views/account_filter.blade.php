@@ -7,7 +7,7 @@
 @endphp
 
 @extends('Template_file.master')
-@section('title','All Users')
+@section('title','Accounts')
 @section('content')
 
     <div class="app-content content">

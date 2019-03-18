@@ -53,20 +53,17 @@ class SalesController extends Controller
 
         }else{
             $customer_id = $request->customer_id;
+
+            $customer_info = Customer::where('id',$customer_id)->first();
+            $customer_name = $customer_info->customer_name;
+            $customer_mobile_no = $customer_info->mobile_no;
+            $customer_address = $customer_info->address;
         }
 
 
         $count_p_id = count($products_id);
 
         for ($i = 0; $i < $count_p_id; $i++){
-            $request->validate([
-                'pro_id' =>'required',
-                'qty' =>'required',
-                'rate' =>'required',
-                'customer_name'=>'required',
-                'customer_contact_no'=>'required',
-                'customer_add'=>'required'
-            ]);
 
             $request['receipt_no'] = $receipt_no;
             $request['user_id'] = Auth::user()->id;
@@ -77,7 +74,24 @@ class SalesController extends Controller
 
             $request['customer_id'] = $customer_id;
 
+            if ($request->customer_name == null && $request->mobile_no == null && $request->customer_id != null){
+
+                $request['customer_name'] = $customer_name;
+                $request['customer_contact_no']  = $customer_mobile_no;
+                $request['customer_add']  = $customer_address;
+            }
+
+
             $all = $request->except('pro_id','qty','rate','mobile_no','phone_no','mail','address');
+
+            $request->validate([
+                'pro_id' =>'required',
+                'qty' =>'required',
+                'rate' =>'required',
+//                'customer_name'=>'required',
+//                'customer_contact_no'=>'required',
+//                'customer_add'=>'required'
+            ]);
 
             Sales_entry::create($all);
 
@@ -101,7 +115,8 @@ class SalesController extends Controller
 
     public function show_sales_form(){
 
-        $products= Product::where('status','0')->get();
+        $products= Product::where('status','0')->orwhere('quantity','>','0')->get();
+
         $customers =Customer::all();
 
         return view('sale',compact('products','customers'));
@@ -130,9 +145,19 @@ class SalesController extends Controller
 
     public function sales_history(){
 
-        $all  = Sales_entry::all()->unique('receipt_no');
+        $all  = Sales_entry::all()->unique('receipt_no')->sortByDesc('receipt_no');
 
         return view('sales_history',compact('all'));
+
+    }
+
+    public function sold(){
+        $all = DB::table('sales_entries')
+            ->join('product','sales_entries.product_id','=','product.id')
+            ->select('sales_entries.product_id','sales_entries.receipt_no','sales_entries.sale_quantity','sales_entries.retail_rate','sales_entries.created_at','product.product_name','product.quantity')->orderBy('sales_entries.id','desc')->get();
+
+
+        return view('sold_product',compact('all'));
 
     }
 

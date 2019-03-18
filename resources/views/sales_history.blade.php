@@ -63,6 +63,7 @@
                                                         $id ++;
 
                                                     @endphp
+
                                                     <tr>
                                                         <td>{{$id}}</td>
                                                         <td>{{$one->receipt_no}}</td>

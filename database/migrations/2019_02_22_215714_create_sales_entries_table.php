@@ -20,9 +20,9 @@ class CreateSalesEntriesTable extends Migration
             $table->string('receipt_no')->unique();
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('customer_id')->nullable();
-            $table->string('customer_name');
-            $table->string('customer_contact_no');
-            $table->text('customer_add');
+            $table->string('customer_name')->nullable();
+            $table->string('customer_contact_no')->nullable();
+            $table->text('customer_add')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->string('sale_quantity');
             $table->string('retail_rate');

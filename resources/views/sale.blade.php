@@ -67,13 +67,18 @@
                                                     <option value="#">Select Or Search Product</option>
 
                                                     @foreach($products as $product)
-                                                        <option value="{{$product->id}}"
-                                                                style="border-bottom: 1px dotted #ccc">
+                                                        <option value="{{$product->id}}">
                                                             <p>{{$product->product_name}}</p>
                                                             <p>{{$product->product_description}}</p>
-                                                            <p>; Color : {{$product->color}}</p>
+                                                            @if($product->color != null)
+                                                                <p>; Color : {{$product->color}}</p>
+                                                            @endif
+
                                                             @if($product->product_imei != null)
                                                                 <p>; IMEI : {{$product->product_imei}}</p>
+                                                            @endif
+                                                            @if($product->quantity == '0')
+                                                                <p>; Out Of Stock</p>
                                                             @endif
                                                         </option>
                                                     @endforeach

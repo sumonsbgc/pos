@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function (){
 
     Route::post('/sale','SalesController@store')->name('sale_store');
     Route::get('/saleProduct/{id}','SalesController@saleProduct');
+    Route::get('/sold','SalesController@sold');
     Route::get('/sales_history','SalesController@sales_history');
     Route::get('/product_invoice/{receipt_no}','InvoiceController@product_invoice');
 

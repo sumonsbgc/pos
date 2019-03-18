@@ -52,7 +52,7 @@ class SupplierController extends Controller
 
         Supplier::create($all);
 $message=1;
-        return redirect('supplier/create')->with('message',$message);
+        return redirect('supplier/create')->with('message1',$message);
     }
 
     /**
@@ -89,7 +89,8 @@ $message=1;
         $new  = $request->all();
         $old  = Supplier::findorfail($id);
         $old->update($new);
-        return redirect('supplier');
+        $message=1;
+        return redirect('supplier')->with('message2',$message);
     }
 
     /**
@@ -103,6 +104,7 @@ $message=1;
         $target = Supplier::findorfail($id);
         $target->delete();
 
-        return redirect('supplier');
+        $message=1;
+        return redirect('supplier')->with('message3',$message);
     }
 }

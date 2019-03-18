@@ -18,7 +18,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all()->unique('product_name');
+        $products = Product::where('status','=','0')->get()->unique('product_name')->sortByDesc('id');
 
         $category = Category::where('parent_status','=',0)->get();
         $sub_category = Category::where('parent_status','=',1)->get();
@@ -140,7 +140,8 @@ class ProductsController extends Controller
         $all=$request->all();
         $updateData=Product::findOrfail($id);
         $updateData->update($all);
-        return redirect('products/create');
+        $message=1;
+        return redirect('products/create')->with('message2',$message);
 
 
 
@@ -171,7 +172,8 @@ class ProductsController extends Controller
     {
         $deleteData=Product::findorfail($id);
         $deleteData->delete($id);
-        return back();
+        $message=1;
+        return redirect('products/create')->with('message3',$message);
 
     }
 }

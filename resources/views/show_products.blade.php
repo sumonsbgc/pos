@@ -64,8 +64,10 @@
                                                         <td>{{$serial}}</td>
                                                         <td>{{$data->product_name}}</td>
                                                         <td>{{ App\Category::find($data->category_id)->category_name }}</td>
-                                                        <td>{{ App\Brand::find($data->brand_id)->brand_name }}</td>
-
+                                                        <td>
+                                                            @if($data->brand_id != null)
+                                                            {{ App\Brand::find($data->brand_id)->brand_name }}</td>
+                                                            @endif
                                                         <td>
                                                             @if($data->quantity == null)
                                                                 {{get_total_products($data->product_name)}}
@@ -101,7 +103,6 @@
 
                                                         </td>
                                                     </tr>
-                                            </tbody>
 
                                             <div class="modal fade" id="SaleModal{{$data->id}}" tabindex="-1"
                                                  role="dialog"
@@ -160,6 +161,26 @@
                                                                                    value="{{$data->product_name}}">
                                                                         </div>
                                                                     </div>
+
+                                                                    <div class="form-group row">
+                                                                        <label class="col-md-3 label-control"
+                                                                               for="projectinput2">Category </label>
+                                                                        <div class="col-md-9">
+                                                                            <select id="subCategory" name="category_id" class="form-control" onclick="goToBrands(this.value)">
+                                                                                @foreach($category as $sub)
+                                                                                    <option value="
+{{$sub->id}}"
+                                                                                            @if($data->category_id == $sub->id)
+
+                                                                                            selected
+
+                                                                                            @endif
+                                                                                    >{{$sub->category_name}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
                                                                     <div class="form-group row">
                                                                         <label class="col-md-3 label-control"
                                                                                for="projectinput2">Category </label>
@@ -184,6 +205,7 @@
                                                                                for="projectinput2">Brand </label>
                                                                         <div class="col-md-9">
                                                                             <select id="product_brand" name="brand_id" class="form-control">
+                                                                                @if($data->brand_id != null)
                                                                                 @foreach($brands as $brand)
                                                                                     <option value="{{$brand->id}}"
                                                                                             @if($data->brand_id == $brand->id)
@@ -193,6 +215,7 @@
                                                                                             @endif
                                                                                     >{{$brand->brand_name}}</option>
                                                                                 @endforeach
+                                                                                    @endif
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -316,6 +339,7 @@
                                                 </div>
                                             </div>
                                             @endforeach
+                                            </tbody>
 
                                             <tfoot>
                                             <tr>

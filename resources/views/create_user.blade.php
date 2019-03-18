@@ -25,7 +25,6 @@
 
                                             <fieldset class="form-group position-relative has-icon-left">
                                                 <select class="form-control form-control-lg" name="user_role" id="basicSelect">
-                                                    <option value="accountant">Accountant</option>
                                                     <option value="stuff">Stuff</option>
                                                 </select>
                                                 <div class="form-control-position">

@@ -120,7 +120,7 @@
                                         </form>
 
                                         
-                                @if(Session::has('message'))
+                                @if(Session::has('message1'))
 
                                 <div id="successModal" class="modal fade show">
                                     <div class="modal-dialog modal-upload">
@@ -157,7 +157,7 @@
 
 @section('scripts')
 <script>
-    @if(Session::has('message'))
+    @if(Session::has('message1'))
             $('#successModal').modal('show');
         @endif
         $('#successModal').delay(2000).fadeOut('slow') 

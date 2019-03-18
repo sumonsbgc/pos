@@ -16,7 +16,8 @@ class CategoriesController extends Controller
     public function index()
     {
         $category=Category::where('parent_status','=',0)->get();
-        $all=Category::all();
+        $all=Category::all()->sortByDesc('id');
+
         return view('categories',compact('all','category'));
     }
 
@@ -47,7 +48,7 @@ class CategoriesController extends Controller
             // 'category_name' => $request->category_name,
             // 'parent_status' =>$request->parent_name
             $message=0;
-            return redirect('categories')->with('message',$message);
+            return redirect('categories')->with('message1',$message);
     }
 
     /**
@@ -83,8 +84,9 @@ class CategoriesController extends Controller
     {
         $newData=$request->all();
         $updateData=Category::findorfail($id);
-        $updateData->update($newData);       
-        return redirect('categories');
+        $updateData->update($newData);
+        $message=0;
+        return redirect('categories')->with('message2',$message);
 
     }
 
@@ -98,7 +100,8 @@ class CategoriesController extends Controller
     {
         $deleteData=Category::findOrfail($id);
         $deleteData->delete();
-        return redirect('categories');
+        $message=0;
+        return redirect('categories')->with('message3',$message);
 
     }
 
