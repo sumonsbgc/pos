@@ -88,7 +88,8 @@ class servicing_controller extends Controller
         $updataData->paid=$request->paid;
         $updataData->due=$request->due;
         $updataData->save();
-        return back();
+        $message=1;
+        return redirect('servicing/{servicing}')->with('message1',$message);
     }
 
     /**
@@ -101,6 +102,7 @@ class servicing_controller extends Controller
     {
         $deleteData=servicing::findOrfail($id);
         $deleteData->delete();
-        return back();
+        $message=1;
+        return redirect('servicing/{servicing}')->with('message2',$message);
     }
 }

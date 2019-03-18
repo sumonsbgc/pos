@@ -82,7 +82,7 @@
 
                                 </form>
 
-                                @if(Session::has('message'))
+                                @if(Session::has('message1'))
 
                                 <div id="successModal" class="modal fade show">
                                     <div class="modal-dialog modal-upload">
@@ -162,7 +162,7 @@
                                                 </div>
                                             </div>
 
-                                            @if(Session::has('message'))
+                                            @if(Session::has('message2'))
 
                                             <div id="updateModal" class="modal fade show">
                                                 <div class="modal-dialog modal-upload">
@@ -216,9 +216,9 @@
                                             </div>
                                             @endforeach
 
-                                            @if(Session::has('message'))
+                                            @if(Session::has('message3'))
 
-                                            <div id="deleteeModal" class="modal fade show">
+                                            <div id="deleteModal" class="modal fade show">
                                                 <div class="modal-dialog modal-upload">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -262,7 +262,7 @@
  
 @section('scripts')
 <script>
-    @if(Session::has('message'))
+    @if(Session::has('message1'))
             $('#successModal').modal('show');
         @endif
         $('#successModal').delay(2000).fadeOut('slow') 
@@ -274,7 +274,7 @@
 </script>
 
 <script>
-    @if(Session::has('message'))
+    @if(Session::has('message2'))
             $('#updateModal').modal('show');
         @endif
         $('#updateModal').delay(2000).fadeOut('slow') 
@@ -286,10 +286,10 @@
 </script>
 
 <script>
-    @if(Session::has('message'))
+    @if(Session::has('message3'))
     $('#deleteModal').modal('show');
     @endif
-    $(#deleteModal).delay(2000).fadeOut('slow')
+    $('#deleteModal').delay(2000).fadeOut('slow')
     setTimeout(function(){
         $('#deleteModal').modal('hide')
     },2500);

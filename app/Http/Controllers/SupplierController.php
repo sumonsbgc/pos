@@ -90,7 +90,7 @@ $message=1;
         $old  = Supplier::findorfail($id);
         $old->update($new);
         $message=0;
-        return redirect('supplier')->with('message',$message);
+        return redirect('supplier')->with('message1',$message);
     }
 
     /**
@@ -104,6 +104,6 @@ $message=1;
         $target = Supplier::findorfail($id);
         $target->delete();
         $message=0;
-        return redirect('supplier')->with('message',$message);
+        return redirect('supplier')->with('message2',$message);
     }
 }

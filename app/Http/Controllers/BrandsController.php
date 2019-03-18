@@ -46,7 +46,7 @@ class BrandsController extends Controller
         $store=$request->all();
         Brand::create($store);  
        $message=1;
-        return redirect('brands')->with('message',$message);
+        return redirect('brands')->with('message1',$message);
     }
     /**
      * Display the specified resource.
@@ -85,7 +85,7 @@ class BrandsController extends Controller
 
         $updateData->update($newData);
        $message=1;
-        return redirect('brands')->with('message',$message);
+        return redirect('brands')->with('message2',$message);
 
     }
 
@@ -100,6 +100,6 @@ class BrandsController extends Controller
         $deletaData=brand::findorfail($id);
         $deletaData->delete($deletaData);
         $message=0;
-        return redirect('brands')->with('message',$message);
+        return redirect('brands')->with('message3',$message);
     }
 }

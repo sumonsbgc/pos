@@ -97,7 +97,7 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            </tbody>
+                                         
 
                                             <div class="modal fade" id="exampleModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -142,6 +142,30 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            
+                                            @if(Session::has('message1'))
+
+                                            <div id="updateModal" class="modal fade show">
+                                                <div class="modal-dialog modal-upload">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-check"></i>
+                                                            </div>
+                                                            <h4 class="modal-title">Great!</h4>
+
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Your data has been updated successfully</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
 
                                              <div class="modal fade" id="exampleModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
@@ -248,6 +272,30 @@
                                                 </div>
                                             </div>  
                                             @endforeach
+
+                                            @if(Session::has('message2'))
+
+                                            <div id="deleteModal" class="modal fade show">
+                                                <div class="modal-dialog modal-upload">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-check"></i>
+                                                            </div>
+                                                            <h4 class="modal-title">Great!</h4>
+
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Your data has been deleted successfully</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+                                            </tbody>
                                             <tfoot>
                                             <tr>
                                                 <th>SL</th>
@@ -275,3 +323,28 @@
     </div>
 
 @endsection
+
+@section('scripts')
+<script>
+        @if(Session::has('message1'))
+                $('#updateModal').modal('show');
+            @endif
+            $('#updateModal').delay(2000).fadeOut('slow') 
+            setTimeout(function(){
+              $('#updateModal').modal('hide')
+    }, 2500);
+    // $('#successModal').delay(2000).fadeOut('slow');
+    
+    </script>
+    
+    <script>
+        @if(Session::has('message2'))
+        $('#deleteModal').modal('show');
+        @endif
+        $('#deleteModal').delay(2000).fadeOut('slow')
+        setTimeout(function(){
+            $('#deleteModal').modal('hide')
+        },2500);
+    
+    </script>
+    @endsection

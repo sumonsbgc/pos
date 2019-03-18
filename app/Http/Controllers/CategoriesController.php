@@ -47,7 +47,7 @@ class CategoriesController extends Controller
             // 'category_name' => $request->category_name,
             // 'parent_status' =>$request->parent_name
             $message=0;
-            return redirect('categories')->with('message',$message);
+            return redirect('categories')->with('message1',$message);
     }
 
     /**
@@ -85,7 +85,7 @@ class CategoriesController extends Controller
         $updateData=Category::findorfail($id);
         $updateData->update($newData);  
         $message=1;     
-        return redirect('categories')->with('message',$message);
+        return redirect('categories')->with('message2',$message);
 
     }
 
@@ -100,7 +100,7 @@ class CategoriesController extends Controller
         $deleteData=Category::findOrfail($id);
         $deleteData->delete();
         $message=1;     
-        return redirect('categories')->with('message',$message);
+        return redirect('categories')->with('message3',$message);
 
     }
 
