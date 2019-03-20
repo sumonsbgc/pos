@@ -66,8 +66,13 @@
                                                         <td>{{ App\Category::find($data->category_id)->category_name }}</td>
                                                         <td>
                                                             @if($data->brand_id != null)
-                                                            {{ App\Brand::find($data->brand_id)->brand_name }}</td>
+                                                            @php $brand= App\Brand::find($data->brand_id);
+
+                                                            echo $brand->brand_name;
+
+                                                            @endphp
                                                             @endif
+                                                        </td>
                                                         <td>
                                                             @if($data->quantity == null)
                                                                 {{get_total_products($data->product_name)}}
@@ -166,16 +171,11 @@
                                                                         <label class="col-md-3 label-control"
                                                                                for="projectinput2">Category </label>
                                                                         <div class="col-md-9">
-                                                                            <select id="subCategory" name="category_id" class="form-control" onclick="goToBrands(this.value)">
+                                                                            <select id="category" name="category_id" class="form-control" onclick="goToSubCategory(this.value)">
                                                                                 @foreach($category as $sub)
-                                                                                    <option value="
-{{$sub->id}}"
-                                                                                            @if($data->category_id == $sub->id)
 
-                                                                                            selected
-
-                                                                                            @endif
-                                                                                    >{{$sub->category_name}}</option>
+                                                                                    <option value="{{$sub->id}}">{{$sub->category_name}}
+                                                                                    </option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
@@ -183,18 +183,12 @@
 
                                                                     <div class="form-group row">
                                                                         <label class="col-md-3 label-control"
-                                                                               for="projectinput2">Category </label>
+                                                                               for="projectinput2">Sub Category </label>
                                                                         <div class="col-md-9">
                                                                             <select id="subCategory" name="category_id" class="form-control" onclick="goToBrands(this.value)">
                                                                                 @foreach($sub_category as $sub)
                                                                                     <option value="
-{{$sub->id}}"
-                                                                                            @if($data->category_id == $sub->id)
-
-                                                                                            selected
-
-                                                                                            @endif
-                                                                                    >{{$sub->category_name}}</option>
+{{$sub->id}}">{{$sub->category_name}}</option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
@@ -205,17 +199,10 @@
                                                                                for="projectinput2">Brand </label>
                                                                         <div class="col-md-9">
                                                                             <select id="product_brand" name="brand_id" class="form-control">
-                                                                                @if($data->brand_id != null)
+
                                                                                 @foreach($brands as $brand)
-                                                                                    <option value="{{$brand->id}}"
-                                                                                            @if($data->brand_id == $brand->id)
-
-                                                                                            selected
-
-                                                                                            @endif
-                                                                                    >{{$brand->brand_name}}</option>
+                                                                                    <option value="{{isset($brand->id)? $brand->id : ''}}">{{isset($brand->brand_name) ? $brand->brand_name : ''}}</option>
                                                                                 @endforeach
-                                                                                    @endif
                                                                             </select>
                                                                         </div>
                                                                     </div>

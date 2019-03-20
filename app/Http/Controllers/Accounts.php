@@ -47,7 +47,8 @@ class Accounts extends Controller
         //dd("slks");
 
         if ($request->from !=null && $request->to !=null){
-            $request_to = date("Y-m-d", strtotime($request->to));
+            $request_to = date("Y-m-d", strtotime($request->to.'+ 1 day'));
+
             $from = date("Y-m-d", strtotime($request->from));
 
             $all_sale = DB::table('sales_entries')
@@ -126,7 +127,7 @@ class Accounts extends Controller
 
         }
 
-        return view('account_filter', compact('all_sale','all_purchase','all_expense','expense_quantity','total_expense_amount','purchase_quantity','total_purchase_amount','sale_quantity','total_sale','loss','profit','paid_purchase','due_purchase','paid_sale','due_sale'));
+        return view('report_filter', compact('all_sale','all_purchase','all_expense','expense_quantity','total_expense_amount','purchase_quantity','total_purchase_amount','sale_quantity','total_sale','loss','profit','paid_purchase','due_purchase','paid_sale','due_sale'));
     }
 
     

@@ -141,7 +141,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="date1">Product Quantity</label>
-                                                            <input type="text" class="form-control" id="date1" name="quantity" value="1">
+                                                            <input type="text" class="form-control" id="date1" name="quantity">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">

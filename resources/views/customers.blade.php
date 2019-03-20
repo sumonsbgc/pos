@@ -207,6 +207,8 @@
                                                             <div class="modal-body">
                                                                 @php
                                                                     $customers_info = get_customers_data($customer->id);
+
+
                                                                 @endphp
                                                                 <div class="row">
                                                                     <div class="col-12">
@@ -249,9 +251,18 @@
                                                                                     echo $product;
                                                                                     @endphp
                                                                                 </div>
-                                                                                <div class="col-2 t-c">{{$datum->retail_rate}}</div>
+                                                                                <div class="col-2 t-c">{{$datum->retail_rate * $datum->sale_quantity}}</div>
                                                                                 <div class="col-2 t-c" id="receive_amount{{$datum->id}}">{{$datum->receive_amount}}</div>
-                                                                                <div class="col-2 t-c" id="due_amount{{$datum->id}}">{{$datum->due_amount}}</div>
+                                                                                <div class="col-2 t-c" id="due_amount{{$datum->id}}">
+                                                                                    @if($datum->due_amount == null)
+                                                                                        {{'0'}}
+                                                                                        @else
+
+
+                                                                                    {{$datum->due_amount}}
+                                                                                        @endif
+
+                                                                                </div>
                                                                                 <div class="col-2 t-c">
                                                                                     <input type="number" class="form-control" name="paid" id="paid{{$datum->id}}">
                                                                                 </div>
@@ -260,6 +271,8 @@
                                                                                     @if($datum->due_amount != 0)
 
                                                                                         <button type="button" class="btn btn-primary" id="{{$datum->id}}" onclick="sale_due(this.id)">Add</button>
+                                                                                        @else
+                                                                                        {{'Nothing to pay'}}
                                                                                     @endif
                                                                                 </div>
                                                                             </div>
@@ -397,7 +410,7 @@
 @section('scripts')
 
     @if(Session::has('deleted'))
-        <script>swal("Good job!", "You clicked the button!", "success")</script>
+        <script>swal("Good job!", "Customer Deleted Successfully", "success")</script>
         {{--@php session()->flash('delete') @endphp--}}
     @elseif(Session::has('delete'))
         <script>swal("Warning!", "This Customer Have some records in sell list. You Cannot delete this customer","warning")</script>

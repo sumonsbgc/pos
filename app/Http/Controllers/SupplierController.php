@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Purchase_history;
 use App\Supplier;
 use Illuminate\Http\Request;
@@ -102,9 +103,19 @@ $message=1;
     public function destroy($id)
     {
         $target = Supplier::findorfail($id);
-        $target->delete();
 
-        $message=1;
-        return redirect('supplier')->with('message3',$message);
+        $product_have_supplier = Product::where('supplier_id',$id)->get();
+
+
+        if ($product_have_supplier->toArray() == null){
+
+            $target->delete();
+            $message=1;
+            return redirect('supplier')->with('message3',$message);
+        }else{
+            $message = 4;
+
+            return redirect('supplier')->with('message4',$message);
+        }
     }
 }

@@ -286,6 +286,11 @@
 @endsection
 
 @section('scripts')
+
+    @if(Session::has('message10'))
+        <script>swal("Warning!", "This Category Has Many Product Or Brands. Remove Or Change Those Category First", "warning")</script>
+    @endif
+
 <script>
     @if(Session::has('message1'))
             $('#successModal').modal('show');

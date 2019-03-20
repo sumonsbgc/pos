@@ -14,9 +14,9 @@
 
 Route::middleware('auth')->group(function (){
 
-    Route::get('/', function () {
-        return view('index');
-    });
+    Route::get('/', 'IndexController@dashboard');
+
+    Route::get('/dashboard','IndexController@dashboard');
 
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -57,10 +57,10 @@ Route::middleware('auth')->group(function (){
     Route::get('/product_invoice/{receipt_no}','InvoiceController@product_invoice');
 
 
-    Route::get('/account','Accounts@index');
-    Route::post('/account_search','Accounts@index')->name('account_search');
-    Route::get('/accountfilter_days/{days}','Accounts@filter_account');
-    Route::post('/accountsearch','Accounts@search_account');
+    Route::get('/report','Accounts@index');
+    Route::post('/report_search','Accounts@index')->name('report_search');
+    Route::get('/reportfilter_days/{days}','Accounts@filter_account');
+    Route::post('/reportsearch','Accounts@search_account');
 
     Route::resource('/customers','CustomerController');
     Route::post('/pay_due_amount','CustomerController@pay_due_amount');

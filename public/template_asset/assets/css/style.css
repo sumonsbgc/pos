@@ -10,6 +10,26 @@ NOTE:
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
 
+
+
+
+.avatar{
+    height: 30px;
+    margin-right: unset !important;
+}
+.avatar i {
+    background: unset !important;
+    font-size: 20px;
+    right: unset;
+    bottom: unset;
+    width: unset;
+    height: unset;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
 .card-form-body{
     display: block;
     padding: 1.5rem;
@@ -242,23 +262,12 @@ body {
 .table th, .table td {
     padding: 0.75rem .5rem;
 }
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/shakhawat
 .quantity_input{
     border: none;
     border-bottom: 1px solid #ddd;
     border-radius: unset;
 }
-<<<<<<< HEAD
-.retail_price{
-=======
 .retail_price {
->>>>>>> origin/shakhawat
     border: none;
     border-bottom: 1px solid #ddd;
     border-radius: unset;
@@ -279,9 +288,6 @@ body {
     background: transparent;
     border: none;
     margin-top: 10px;
-<<<<<<< HEAD
-}
-=======
 }
 
 
@@ -290,11 +296,6 @@ body {
     width: 100% !important;
 
 }
-<<<<<<< HEAD
 .t-column input{
     width: 90px;
 }
-=======
->>>>>>> fb3a5ce27e08c64954181349a67f0cb781b3b2db
->>>>>>> origin/shakhawat
->>>>>>> bb18717d530fa68596a780c406f3aa72ab65e952

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Category;
 
+use App\Product;
 use Illuminate\Http\Request;
 use App\Brand;
 
@@ -99,9 +100,21 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $deleteData=Category::findOrfail($id);
-        $deleteData->delete();
-        $message=0;
-        return redirect('categories')->with('message3',$message);
+
+        $category_has_brand = Brand::where('category_id',$id)->get();
+
+        $category_has_product = Product::where('category_id',$id)->get();
+
+        if ($category_has_brand->toArray() == null && $category_has_product->toArray() == null){
+
+            $deleteData->delete();
+            $message=0;
+            return redirect('categories')->with('message3',$message);
+        }else{
+            $message=10;
+            return redirect('categories')->with('message10',$message);
+        }
+
 
     }
 
@@ -109,26 +122,46 @@ class CategoriesController extends Controller
 
     public function changingSubCat($id){
         $subCategories =  Category::where('parent_status', '=', $id)->get();
+
+
         $html1 =[];
         $html2 =[];
 
-        foreach ($subCategories as $subcategory){
-            array_push($html1, "<option value='$subcategory->id'>$subcategory->category_name</option>");
-//            $html1[] = "<option value='$subcategory->id'>$subcategory->category_name</option>";
+        if ($subCategories->toArray() != null){
 
-            if (Brand::all() != null){
-                $brands =  Brand::where('category_id', '=', $subcategory->id)->get();
+            foreach ($subCategories as $subcategory){
+                array_push($html1, "<option value='$subcategory->id'>$subcategory->category_name</option>");
+    //            $html1[] = "<option value='$subcategory->id'>$subcategory->category_name</option>";
 
-                foreach ($brands as $brand){
-                    array_push($html2, "<option value='$brand->id'>$brand->brand_name</option>");
-    //                $html2[] = "<option value='$brand->id'>$brand->brand_name</option>";
+                if (Brand::all() != null){
+                    $brands =  Brand::where('category_id', '=', $subcategory->id)->get();
+
+                    foreach ($brands as $brand){
+                        array_push($html2, "<option value='$brand->id'>$brand->brand_name</option>");
+        //                $html2[] = "<option value='$brand->id'>$brand->brand_name</option>";
+                    }
+
                 }
 
             }
 
+            return array($html1, $html2);
+        }
+        else{
+            if (Brand::all() != null){
+                $brands =  Brand::where('category_id', '=', $id)->get();
+
+                foreach ($brands as $brand){
+                    array_push($html2, "<option value='$brand->id'>$brand->brand_name</option>");
+                    //                $html2[] = "<option value='$brand->id'>$brand->brand_name</option>";
+                }
+
+            }
+
+            return array($html1, $html2);
         }
 
-        return array($html1, $html2);
+
 
     }
 

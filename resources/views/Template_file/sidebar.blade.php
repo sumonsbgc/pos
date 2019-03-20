@@ -3,24 +3,22 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item"><a href="{{url('/')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
             </li>
-
-            <li class=" nav-item"><a href="{{url('/categories/create')}}"><i class="ft-share-2"></i><span
-                            class="menu-title" data-i18n="">Product Category</span></a>
-            </li>
-
-            <li class=" nav-item"><a href="{{url('/brands/create')}}"><i class="icon-badge"></i><span class="menu-title"
-                                                                                                   data-i18n="">Product Brand</span></a>
-            </li>
-
             <li class=" nav-item"><a href="#"><i class="icon-handbag"></i><span class="menu-title"
                                                                             data-i18n=""> Products </span></a>
                 <ul class="menu-content">
+                    <li><a href="{{url('/categories/create')}}"><i class="ft-share-2"></i><span
+                                    class="menu-title" data-i18n="">Product Category</span></a>
+                    </li>
+
+                    <li><a href="{{url('/brands/create')}}"><i class="icon-badge"></i><span class="menu-title"
+                                                                                                              data-i18n="">Product Brand</span></a>
+                    </li>
                     <li>
-                        <a href="{{url('/products/create')}}"><span class="menu-title"
+                        <a href="{{url('/products/create')}}"><i class="ft-box"></i><span class="menu-title"
                                                                     data-i18n="">Add Product</span></a>
                     </li>
                     <li>
-                        <a href="{{url('/products')}}"><span class="menu-title" data-i18n="">Show Product</span></a>
+                        <a href="{{url('/products')}}"><i class="ft-list"></i><span class="menu-title" data-i18n="">Show Product</span></a>
                     </li>
                 </ul>
             </li>
@@ -71,8 +69,8 @@
             <li class=" nav-item"><a href="{{url('/customers')}}"><i class="fa fa-users"></i><span
                             class="menu-title" data-i18n="">Customers</span></a>
             </li>
-            <li class="nav-item"><a href="{{url('/account')}}"><i class="fa fa-money"></i><span class="menu-title"
-                                                                                                data-i18n="">Account</span></a>
+            <li class="nav-item"><a href="{{url('/report')}}"><i class="fa fa-money"></i><span class="menu-title"
+                                                                                                data-i18n="">Reports</span></a>
             </li>
             <li class=" nav-item"><a href="#"><i class="ft-cast"></i><span class="menu-title" data-i18n="">Servicing</span></a>
                 <ul class="menu-content">

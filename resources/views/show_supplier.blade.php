@@ -74,11 +74,11 @@
                                                         </button>
 
                                                         <button type="button" class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
-                                                            <i class="fa fa-list"></i>
+                                                            <i class="fa fa-edit"></i>
                                                         </button>
 
                                                         <button type="button" class="btn btn-primary btn-circle " data-toggle="modal" data-target="#history{{$data->id}}">
-                                                            <i class="fa fa-bar-chart"></i>
+                                                            <i class="ft-clock"></i>
                                                         </button>
 
                                                         <button type="button" class="btn btn-warning btn-circle" data-toggle="modal" data-target="#del{{$data->id}}"><i
@@ -287,12 +287,14 @@
                                                     <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title d-inline-block" id="myModalLabel19">Details</h4>
+                                                                <h4 class="modal-title d-inline-block mt-2" id="myModalLabel19">History</h4>
                                                                 <button type="button" class="close cls-btn" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">×</span>
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
+
+                                                                <span>Transaction History Of {{$data->supplier_name}}</span>
 
                                                                 @php
 
@@ -393,7 +395,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <div class="icon-box" data-dismiss="modal" aria-label="Close">
-                                                                    <i class="fa fa-check"></i>
+                                                                    <i class="fa fa-remove"></i>
                                                                 </div>
                                                                 <h4 class="modal-title">Great!</h4>
 
@@ -408,6 +410,7 @@
                                                     </div>
                                                 </div>
                                             @endif
+
                                             </tbody>
 
 
@@ -436,6 +439,14 @@
 
 
 @section('scripts')
+
+    @if(Session::has('message4'))
+    <script>swal("Warning!", "This Supplier Have Some Records in Products", "warning")</script>
+
+    @elseif(Session::has('message3'))
+        <script>swal("Delete!", "Successfully Deleted This Supplier", "success")</script>
+    @endif
+
 
     <script>
 
@@ -494,6 +505,17 @@
         $('#deleteModal').delay(2000).fadeOut('slow')
         setTimeout(function(){
             $('#deleteModal').modal('hide')
+        }, 2500);
+        // $('#successModal').delay(2000).fadeOut('slow');
+    </script>
+
+    <script>
+        @if(Session::has('message4'))
+        $('#warning').modal('show');
+        @endif
+        $('#warning').delay(2000).fadeOut('slow')
+        setTimeout(function(){
+            $('#warning').modal('hide')
         }, 2500);
         // $('#successModal').delay(2000).fadeOut('slow');
     </script>

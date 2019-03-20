@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class BrandsController extends Controller
@@ -99,8 +100,18 @@ class BrandsController extends Controller
     public function destroy($id)
     {
         $deletaData=brand::findorfail($id);
-        $deletaData->delete($deletaData);
-        $message=1;
-        return redirect('brands')->with('message3',$message);
+
+        $brands_has_product = Product::where('brand_id',$id)->get();
+
+        if ($brands_has_product->toArray() == null){
+            $deletaData->delete($deletaData);
+            $message=1;
+            return redirect('brands')->with('message3',$message);
+        }else{
+            $message=10;
+            return redirect('brands')->with('message10',$message);
+        }
+
+
     }
 }
