@@ -58,8 +58,8 @@
                                             <thead>
                                             <tr class="text-center">
                                                 <th>Serial</th>
-                                                <th>Receipt No</th>
                                                 <th>Product Name</th>
+                                                <th>Receipt No</th>
                                                 <th>Sale Quantity</th>
                                                 <th>Retail Rate</th>
                                                 <th>Total Amount</th>
@@ -95,8 +95,8 @@
                                             <tfoot>
                                             <tr>
                                                 <th>Serial</th>
-                                                <th>Receipt No</th>
                                                 <th>Product Name</th>
+                                                <th>Receipt No</th>
                                                 <th>Sale Quantity</th>
                                                 <th>Retail Rate</th>
                                                 <th>Total Amount</th>

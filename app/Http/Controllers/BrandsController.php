@@ -39,15 +39,22 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
+        $hascat = Brand::where('category_id',$request->category_id)->where('brand_name',$request->brand_name)->first();
 
-
-        $this->validate($request,[
-            'brand_name'=>'required | unique:brands'
-        ]);
-        $store=$request->all();
-        Brand::create($store);  
-       $message=1;
-        return redirect('brands')->with('message1',$message);
+        if ($hascat == null){
+            $store=$request->all();
+            Brand::create($store);
+            $message=1;
+            return redirect('brands')->with('message1',$message);
+        }else{
+            $this->validate($request,[
+                'brand_name'=>'required | unique:brands'
+            ]);
+            $store=$request->all();
+            Brand::create($store);
+            $message=1;
+            return redirect('brands')->with('message1',$message);
+        }
     }
     /**
      * Display the specified resource.

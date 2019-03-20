@@ -18,6 +18,17 @@ if(!function_exists('parent_cate_name')){
     }
 }
 
+if (!function_exists('cat_name')){
+    function cat_name($category_id){
+        if (isset($category_id)){
+            $data = Category::where('id',$category_id)->first();
+            return $data['category_name'];
+        }else{
+            return "";
+        }
+    }
+}
+
 if(!function_exists('get_suppliers_data')){
     function get_suppliers_data($supplier_id){
         $data = Purchase::where('supplier_id', $supplier_id)->get();

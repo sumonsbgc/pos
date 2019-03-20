@@ -94,6 +94,7 @@ class ProductsController extends Controller
             'product_name' =>'required',
             'category_id' => 'required',
             'supplier_id' => 'required',
+            'product_description' =>'required',
             'purchase_rate' => 'required',
             'retail_rate' => 'required',
         ]);

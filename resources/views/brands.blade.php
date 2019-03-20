@@ -111,6 +111,7 @@
                                         <thead>
                                             <tr class="text-center">
                                                 <th>Serial</th>
+                                                <th>Category</th>
                                                 <th>Brand Name</th>
                                                 <th>Action</th>
                                             </tr>
@@ -123,6 +124,14 @@
 
                                             <tr class="text-center">
                                                 <td>{{$id}}</td>
+                                                <td>
+                                                    @php
+
+                                                        echo cat_name($data->category_id);
+
+                                                    @endphp
+
+                                                </td>
                                                 <td>{{$data->brand_name}}</td>
                                                 <td class="text-center action_data">
                                                     <button type="button" class="btn btn-primary btn-circle " data-toggle="modal" data-target="#exampleModal{{$data->id}}">
@@ -234,6 +243,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Serial</th>
+                                                <th>Category</th>
                                                 <th>Brand Name</th>
                                                 <th>Action</th>
                                             </tr>
