@@ -58,7 +58,12 @@
                                                                          data-i18n="">Sales Entries</span></a>
                     </li>
                     <li>
+<<<<<<< HEAD
                         <a href="{{url('/sold')}}"><span class="menu-title" data-i18n="">Sold Product</span></a>
+=======
+                        <a href="{{url('/show_sales')}}"><span class="menu-title"
+                                                                        data-i18n="">Show All Sale</span></a>
+>>>>>>> 8ad1e82d2d278c9277bf15faedc35138821eff59
                     </li>
                     <li>
                         <a href="{{url('/sales_history')}}"><span class="menu-title"

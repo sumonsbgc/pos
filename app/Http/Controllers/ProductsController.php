@@ -97,6 +97,9 @@ class ProductsController extends Controller
             'product_description' =>'required',
             'purchase_rate' => 'required',
             'retail_rate' => 'required',
+
+            // 'imei_1' => 'required',
+
         ]);
 
         $all =$request->except(['imei_1','imei_2']);

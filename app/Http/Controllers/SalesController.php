@@ -13,35 +13,36 @@ use Illuminate\Support\Facades\DB;
 class SalesController extends Controller
 {
     public function store(Request $request){
-
-
-        $current_date = date('ym');
-
+          $current_date = date('ym');
+        
         $generate_num = $current_date. '00';
-
+        
         $single_data = Sales_entry::all();
-
-
+        
+        
         if (isset($single_data->last()->receipt_no)){
-            $receipt = $single_data->last()->receipt_no;
-            $receipt_first_four = $receipt[0] . $receipt[1] . $receipt[2] . $receipt[3];
-
-            if ($receipt_first_four != $current_date){
-                $receipt_no = $generate_num . 1;
-            }
-            else{
-                $receipt_no = $receipt + 1;
-            }
-        }else{
-            $receipt_no = $generate_num . 1;
+        $receipt = $single_data->last()->receipt_no;
+        $receipt_first_four = $receipt[0] . $receipt[1] . $receipt[2] . $receipt[3];
+        
+        if ($receipt_first_four != $current_date){
+        $receipt_no = $generate_num . 1;
         }
-
-
-
-
+        else{
+        $receipt_no = $receipt + 1;
+        }
+        }else{
+        $receipt_no = $generate_num . 1;
+        }
+        
+        
+        
+        
         $products_id = $request->pro_id;
         $quantity = $request->qty;
         $rate = $request->rate;
+
+        
+
 
 
         if ($request->customer_id == null){
@@ -60,9 +61,8 @@ class SalesController extends Controller
             $customer_address = $customer_info->address;
         }
 
-
         $count_p_id = count($products_id);
-
+        
         for ($i = 0; $i < $count_p_id; $i++){
 
             $request['receipt_no'] = $receipt_no;
@@ -105,19 +105,28 @@ class SalesController extends Controller
                 Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
             }
 
+
         }
-
-//        Product::where('id',$products_id)->delete(['product_id'=>$products_id]);
+        else{
+            
+        $total_quantity = $p_quan->quantity - $quantity[$i];
+        Product::where('id',$products_id[$i])->update(['quantity'=>$total_quantity]);
+        }
+        
+        }
+        
+        // Product::where('id',$products_id)->delete(['product_id'=>$products_id]);
         return redirect('product_invoice/'.$receipt_no);
-
-
-    }
+        
+        
+        }
 
     public function show_sales_form(){
 
         $products= Product::where('status','0')->orwhere('quantity','>','0')->get();
 
         $customers =Customer::all();
+
 
         return view('sale',compact('products','customers'));
     }

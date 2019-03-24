@@ -90,8 +90,13 @@ $message=1;
         $new  = $request->all();
         $old  = Supplier::findorfail($id);
         $old->update($new);
+<<<<<<< HEAD
         $message=1;
         return redirect('supplier')->with('message2',$message);
+=======
+        $message=0;
+        return redirect('supplier')->with('message1',$message);
+>>>>>>> 8ad1e82d2d278c9277bf15faedc35138821eff59
     }
 
     /**
@@ -103,6 +108,7 @@ $message=1;
     public function destroy($id)
     {
         $target = Supplier::findorfail($id);
+<<<<<<< HEAD
 
         $product_have_supplier = Product::where('supplier_id',$id)->get();
 
@@ -117,5 +123,10 @@ $message=1;
 
             return redirect('supplier')->with('message4',$message);
         }
+=======
+        $target->delete();
+        $message=0;
+        return redirect('supplier')->with('message2',$message);
+>>>>>>> 8ad1e82d2d278c9277bf15faedc35138821eff59
     }
 }

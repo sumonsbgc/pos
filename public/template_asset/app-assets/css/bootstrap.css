@@ -3820,7 +3820,11 @@ button.update_close {
 
 .modal-title {
   margin-bottom: 0;
+<<<<<<< HEAD
   line-height: 2.45;
+=======
+  line-height: 3.45;
+>>>>>>> 8ad1e82d2d278c9277bf15faedc35138821eff59
   margin-left: 20px;
  }
 

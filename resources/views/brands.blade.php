@@ -119,8 +119,10 @@
                                         <tbody>
 
                                             @php $id=0; 
-@endphp @foreach($all as $data) @php $id++; 
-@endphp
+                           @endphp
+                            @foreach($all as $data)
+                             @php $id++; 
+                            @endphp
 
                                             <tr class="text-center">
                                                 <td>{{$id}}</td>
@@ -162,10 +164,38 @@
                                                                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
                                                                 <button class="btn btn-primary" type="submit"><strong>Update</strong></button>
                                                             </form>
+
+                                                  
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            @if(Session::has('message2'))
+
+                                            <div id="updateModal" class="modal fade show">
+                                                <div class="modal-dialog modal-upload">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-check"></i>
+                                                            </div>
+                                                            <h4 class="modal-title">Great!</h4>
+
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Your data has been updated successfully</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+
+
+                                      
 
                                             @if(Session::has('message2'))
 
@@ -211,6 +241,7 @@
                                                                 <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                                             </form>
+                                    
                                                         </div>
                                                     </div>
                                                 </div>
@@ -219,6 +250,7 @@
 
                                             @if(Session::has('message3'))
 
+<<<<<<< HEAD
                                                 <div id="deleteModal" class="modal fade show">
                                                     <div class="modal-dialog modal-upload">
                                                         <div class="modal-content">
@@ -238,6 +270,27 @@
                                                         </div>
                                                     </div>
                                                 </div>
+=======
+                                            <div id="deleteModal" class="modal fade show">
+                                                <div class="modal-dialog modal-upload">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="icon-box" data-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-check"></i>
+                                                            </div>
+                                                            <h4 class="modal-title">Great!</h4>
+
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Your data has been deleted successfully</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+>>>>>>> 8ad1e82d2d278c9277bf15faedc35138821eff59
                                             @endif
                                         </tbody>
                                         <tfoot>
@@ -277,6 +330,30 @@
           $('#successModal').modal('hide')
 }, 2500);
 // $('#successModal').delay(2000).fadeOut('slow');
+
+</script>
+
+<script>
+    @if(Session::has('message2'))
+            $('#updateModal').modal('show');
+        @endif
+        $('#updateModal').delay(2000).fadeOut('slow') 
+        setTimeout(function(){
+          $('#updateModal').modal('hide')
+}, 2500);
+// $('#successModal').delay(2000).fadeOut('slow');
+
+</script>
+
+<script>
+    @if(Session::has('message3'))
+    $('#deleteModal').modal('show');
+    @endif
+    $('#deleteModal').delay(2000).fadeOut('slow')
+    setTimeout(function(){
+        $('#deleteModal').modal('hide')
+    },2500);
+
 </script>
 
 <script>

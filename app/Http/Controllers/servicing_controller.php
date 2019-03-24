@@ -89,7 +89,11 @@ class servicing_controller extends Controller
         $updataData->due=$request->due;
         $updataData->save();
         $message=1;
+<<<<<<< HEAD
         return redirect('servicing')->with('message2',$message);
+=======
+        return redirect('servicing/{servicing}')->with('message1',$message);
+>>>>>>> 8ad1e82d2d278c9277bf15faedc35138821eff59
     }
 
     /**
@@ -103,6 +107,10 @@ class servicing_controller extends Controller
         $deleteData=servicing::findOrfail($id);
         $deleteData->delete();
         $message=1;
+<<<<<<< HEAD
         return redirect('servicing')->with('message3',$message);
+=======
+        return redirect('servicing/{servicing}')->with('message2',$message);
+>>>>>>> 8ad1e82d2d278c9277bf15faedc35138821eff59
     }
 }
